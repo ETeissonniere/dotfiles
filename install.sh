@@ -65,8 +65,8 @@ defaults write com.apple.terminal SecureKeyboardEntry -bool true
 #defaults write com.apple.Terminal.plist "Startup Window Settings" "Pro"
 
 # Metadata
-defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+#defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+#defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 #defaults write com.apple.CrashReporter DialogType -string "none"
 
