@@ -28,7 +28,7 @@ defaults write -g com.apple.trackpad.scaling 3
 sudo fdesetup enable
 
 # Firmware password
-sudo firmwarepasswd -setpasswd -setmode command
+#sudo firmwarepasswd -setpasswd -setmode command
 
 # Enable firewall
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
