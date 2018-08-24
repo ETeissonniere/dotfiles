@@ -12,9 +12,9 @@ xcode-select --install || echo "Developer tools already installed"
 # Install docker
 
 # Max mouse sensitivity
-defaults write -g com.apple.trackpad.scaling 3
+#defaults write -g com.apple.trackpad.scaling 3
 
-# Ask passwords immediately
+# Ask passwords immediately (security settings)
 
 # Reset .ssh
 # Reset .gpg
@@ -25,25 +25,24 @@ defaults write -g com.apple.trackpad.scaling 3
 # Reconnect accounts
 
 # Enable filevault
-sudo fdesetup enable
+#sudo fdesetup enable
 
 # Firmware password
 #sudo firmwarepasswd -setpasswd -setmode command
 
 # Enable firewall
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
+#sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+#sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
 #sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned off
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp off
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
-sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingopt throttled
+#sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp off
+#sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
+#sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingopt throttled
 
 # Disable guest user
-sudo sysadminctl -guestAccount off
+#sudo sysadminctl -guestAccount off
 
 # Authorize non App Stores apps
 # Don't ask password for free apps
-# Request password immediately
 
 # iCloud
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false # I care about my privacy
