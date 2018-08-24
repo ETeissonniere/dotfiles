@@ -2,7 +2,7 @@
 
 osascript -e 'tell application "System Preferences" to quit'
 
-chsh -s zsh
+chsh -s $(which zsh)
 
 xcode-select --install || echo "Developer tools already installed"
 
@@ -62,8 +62,8 @@ defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 
 # Terminal
 defaults write com.apple.terminal SecureKeyboardEntry -bool true
-defaults write com.apple.Terminal.plist "Default Window Settings" "Pro"
-defaults write com.apple.Terminal.plist "Startup Window Settings" "Pro"
+#defaults write com.apple.Terminal.plist "Default Window Settings" "Pro"
+#defaults write com.apple.Terminal.plist "Startup Window Settings" "Pro"
 
 # Metadata
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
