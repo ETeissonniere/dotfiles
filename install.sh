@@ -45,7 +45,8 @@ xcode-select --install || echo "Developer tools already installed"
 # Don't ask password for free apps
 
 # iCloud
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false # I care about my privacy
+#defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false # I care about my privacy
+
 # Enable FindMyMac
 
 # Disable dashboard (why does it even exists?)
@@ -60,7 +61,7 @@ defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
 defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 
 # Terminal
-defaults write com.apple.terminal SecureKeyboardEntry -bool true
+#defaults write com.apple.terminal SecureKeyboardEntry -bool true
 #defaults write com.apple.Terminal.plist "Default Window Settings" "Pro"
 #defaults write com.apple.Terminal.plist "Startup Window Settings" "Pro"
 
