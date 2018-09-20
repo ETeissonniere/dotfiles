@@ -22,3 +22,4 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
