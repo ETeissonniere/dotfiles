@@ -73,9 +73,3 @@ defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 
 # OH MY ZSH (disable auto update)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-cp -rf ./vim ~/.vim
-cp -f ./vimrc ~/.vimrc
-cp -f ./gitconfig ~/.gitconfig
-cp -f ./gitignore ~/.gitignore
-cp -f ./zshrc ~/.zshrc
