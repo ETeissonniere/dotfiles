@@ -2,8 +2,6 @@
 
 osascript -e 'tell application "System Preferences" to quit'
 
-chsh -s $(which zsh)
-
 xcode-select --install || echo "Developer tools already installed"
 
 # Install XCODE
@@ -70,6 +68,3 @@ defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 #defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 #defaults write com.apple.CrashReporter DialogType -string "none"
-
-# OH MY ZSH (disable auto update)
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
