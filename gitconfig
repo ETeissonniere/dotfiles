@@ -1,6 +1,3 @@
 [user]
 	email = gitlab.eliott@teissonniere.org
 	name = Eliott Teissonniere
-	signingkey = B2AB9ED948C859A6
-[commit]
-	gpgsign = true
