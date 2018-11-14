@@ -2,6 +2,7 @@ ln -sf `pwd`/vim ~/.vim
 ln -sf `pwd`/vimrc ~/.vimrc
 ln -sf `pwd`/gitconfig ~/.gitconfig
 ln -sf `pwd`/gitignore ~/.gitignore
+ln -sf `pwd`/bash_profile ~/.bash_profile
 
 mkdir -p ~/.ssh
 ln -sf `pwd`/ssh_config ~/.ssh/config
