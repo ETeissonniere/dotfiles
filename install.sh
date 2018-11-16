@@ -2,7 +2,7 @@
 
 brew analytics off
 
-brew cask install firefox
+brew cask install google-chrome
 brew cask install docker
 brew cask install sublime-text
 
