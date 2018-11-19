@@ -9,5 +9,7 @@ brew cask install docker
 brew cask install sublime-text
 
 brew install go
+brew install kubectl
+brew install bash-completion
 
 ./update.sh
