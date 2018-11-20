@@ -11,6 +11,7 @@ brew cask install sublime-text
 brew install git
 brew install go
 brew install node
+brew install yarn
 brew install coffeescript
 brew install kubectl
 brew install bash-completion
