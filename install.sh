@@ -8,6 +8,7 @@ brew cask install google-chrome
 brew cask install docker
 brew cask install sublime-text
 
+brew install git
 brew install go
 brew install node
 brew install coffeescript
