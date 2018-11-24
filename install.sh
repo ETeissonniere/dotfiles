@@ -7,7 +7,6 @@ brew analytics off
 brew cask install google-chrome
 brew cask install docker
 brew cask install sublime-text
-brew cask install android-studio
 
 brew install git
 brew install go
