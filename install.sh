@@ -8,6 +8,7 @@ brew cask install google-chrome
 brew cask install docker
 brew cask install sublime-text
 brew cask install android-studio
+brew cask install drawio
 
 brew install git
 brew install go
