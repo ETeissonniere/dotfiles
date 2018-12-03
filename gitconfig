@@ -1,3 +1,5 @@
 [user]
 	email = git.eliott@teissonniere.org
 	name = Eliott Teissonniere
+[hub]
+	protocol = ssh

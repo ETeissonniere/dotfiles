@@ -12,6 +12,7 @@ brew cask install drawio
 
 brew install git
 brew install go
+brew install hub
 brew install node
 brew install yarn
 brew install coffeescript
