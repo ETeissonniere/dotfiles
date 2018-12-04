@@ -7,12 +7,11 @@ brew analytics off
 brew cask install google-chrome
 brew cask install docker
 brew cask install sublime-text
-brew cask install android-studio
 brew cask install drawio
 
 brew install git
-brew install go
 brew install hub
+brew install go
 brew install node
 brew install yarn
 brew install coffeescript
