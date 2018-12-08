@@ -27,7 +27,7 @@ mas lucky Numbers
 mas lucky Slack
 mas lucky Xcode
 
-hub clone ETeissonniere/dotfiles ~/.dotfiles
+git clone https://github.com/ETeissonniere/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 
 ./update.sh
