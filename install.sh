@@ -31,3 +31,4 @@ hub clone ETeissonniere/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 
 ./update.sh
+./mac_defaults.sh
