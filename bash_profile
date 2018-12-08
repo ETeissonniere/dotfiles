@@ -1,5 +1,8 @@
 eval "$(hub alias -s)"
 
+export DOTFILES_DIR=.dotfiles
+
+export PATH=$PATH:/Users/`whoami`/$DOTFILES_DIR/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH=$PATH:/Users/`whoami`/go/bin
 
