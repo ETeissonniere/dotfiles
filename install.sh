@@ -1,5 +1,6 @@
 networksetup -setdnsservers Wi-Fi 1.1.1.1
 
+xcode-select --install
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew analytics off
@@ -18,5 +19,8 @@ brew install yarn
 brew install coffeescript
 brew install kubectl
 brew install bash-completion
+
+hub clone ETeissonniere/dotfiles ~/.dotfiles
+cd ~/.dotfiles
 
 ./update.sh
