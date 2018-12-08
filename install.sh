@@ -20,6 +20,13 @@ brew install coffeescript
 brew install kubectl
 brew install bash-completion
 
+brew install mas
+mas lucky Pages
+mas lucky Keynote
+mas lucky Numbers
+mas lucky Slack
+mas lucky Xcode
+
 hub clone ETeissonniere/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 
