@@ -1,3 +1,5 @@
+read -p "[DOTFILES] Please make sure you are logged in the Mac App Store"
+
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew analytics off
@@ -18,9 +20,8 @@ brew install kubectl
 brew install bash-completion
 brew install dockutil
 
-#brew install mas
-#mas lucky Pages
-#mas lucky Keynote
-#mas lucky Numbers
-#mas lucky Slack
-#mas lucky Xcode
+brew install mas
+mas lucky Pages
+mas lucky Keynote
+mas lucky Numbers
+mas lucky Slack
