@@ -8,3 +8,4 @@ cd ~/.dotfiles
 ./update.sh
 ./mac_defaults.sh
 ./mac_apps.sh
+./mac_dock.sh
