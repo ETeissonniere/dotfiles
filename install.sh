@@ -9,3 +9,4 @@ cd ~/.dotfiles
 ./mac_defaults.sh
 ./mac_apps.sh
 ./mac_dock.sh
+./mac_firewall.sh
