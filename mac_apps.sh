@@ -25,3 +25,6 @@ mas lucky Pages
 mas lucky Keynote
 mas lucky Numbers
 mas lucky Slack
+
+# Will pop up and ask to install docker
+open -a "Docker"
