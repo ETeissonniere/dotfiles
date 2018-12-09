@@ -22,6 +22,9 @@ echo "Disabling TimeMachine (need SUDO)"
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 sudo tmutil disable
 
+# Screenshots
+defaults write com.apple.screencapture disable-shadow -bool true
+
 # Kill affected apps
 for app in "Dock" \
 	"Safari"; do
