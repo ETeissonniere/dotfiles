@@ -1,4 +1,5 @@
 dockutil --remove all
+dockutil --add /Applications/Safari.app
 dockutil --add /Applications/Google\ Chrome.app
 dockutil --add /Applications/Mail.app
 dockutil --add /Applications/Slack.app
