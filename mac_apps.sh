@@ -18,6 +18,7 @@ brew install yarn
 brew install awscli
 brew install coffeescript
 brew install kubectl
+brew install kops
 brew install bash-completion
 brew install dockutil
 
