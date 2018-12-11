@@ -14,7 +14,6 @@ brew install git
 brew install hub
 brew install go
 brew install node
-brew install yarn
 brew install awscli
 brew install coffeescript
 brew install kubectl
