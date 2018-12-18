@@ -9,6 +9,7 @@ brew cask install docker
 brew cask install sublime-text
 brew cask install drawio
 brew cask install ledger-live
+brew cask install android-studio
 
 brew install git
 brew install hub
