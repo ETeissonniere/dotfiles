@@ -3,3 +3,5 @@
 	name = Eliott Teissonniere
 [hub]
 	protocol = ssh
+[core]
+	excludesfile = /Users/eliott/.gitignore
