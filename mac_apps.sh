@@ -18,6 +18,7 @@ brew install go
 brew install node
 brew install coffeescript
 brew install dockutil
+brew install zsh
 
 brew install mas
 mas lucky Pages
