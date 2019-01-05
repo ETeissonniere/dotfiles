@@ -18,6 +18,7 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
-alias ls='ls -G'
+eval "$(hub alias -s)"
+alias ls="ls -G"
 
 export PATH=$PATH:/Users/`whoami`/.dotfiles/bin
