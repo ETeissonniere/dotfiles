@@ -16,11 +16,7 @@ brew install git
 brew install hub
 brew install go
 brew install node
-brew install awscli
 brew install coffeescript
-brew install kubectl
-brew install kops
-brew install bash-completion
 brew install dockutil
 
 brew install mas
