@@ -1,11 +1,20 @@
+set nocompatible                         " be iMproved
+filetype off                             " required by Vundle
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'dracula/vim'
+
+call vundle#end()
+filetype plugin indent on                " required by Vundle
+
 syntax on
 set number
 set ruler
 set showmode
 set title
-
-filetype indent on
-filetype plugin on
 
 set expandtab
 set tabstop=4
@@ -21,19 +30,9 @@ set incsearch
 set hlsearch
 
 set showcmd
-set nocompatible
-set wildmenu
 
 set encoding=UTF-8
-
 set autoread
 
-set noerrorbells " Shut your mouth
-
-set ttyfast " Optimize for fast coonections
-
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-set undodir=~/.vim/undo
-
-set backupskip=/tmp/*,/private/tmp/* " Don't backup this
+set noerrorbells                         " Shut your mouth
+set ttyfast                              " Optimize for fast coonections
