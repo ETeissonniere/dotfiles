@@ -19,3 +19,5 @@ fi
 zplug load
 
 alias ls='ls -G'
+
+export PATH=$PATH:/Users/`whoami`/.dotfiles/bin
