@@ -11,3 +11,5 @@ cd ~/.dotfiles
 ./mac_apps.sh
 ./mac_dock.sh
 ./mac_firewall.sh
+
+chsh -s /bin/zsh

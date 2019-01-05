@@ -19,6 +19,9 @@ brew install node
 brew install coffeescript
 brew install dockutil
 brew install zsh
+brew install zsh-autosuggestions
+brew install zsh-completions
+brew install zsh-syntax-highlighting
 
 brew install mas
 mas lucky Pages
