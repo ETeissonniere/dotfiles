@@ -4,4 +4,4 @@
 [hub]
 	protocol = ssh
 [core]
-	excludesfile = /Users/eliott/.gitignore
+	excludesfile = /Users/eliottteissonniere/.gitignore
