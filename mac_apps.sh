@@ -10,6 +10,7 @@ brew cask install drawio
 brew cask install ledger-live
 brew cask install android-studio
 brew cask install iterm2
+brew cask install sketch
 
 brew install git
 brew install hub
