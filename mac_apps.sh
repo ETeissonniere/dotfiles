@@ -11,7 +11,6 @@ brew cask install ledger-live
 brew cask install android-studio
 brew cask install iterm2
 
-brew cask install vagrant
 brew cask install virtualbox
 brew cask install virtualbox-extension-pack
 
