@@ -19,6 +19,7 @@ brew install hub
 brew install go
 brew install node
 brew install coffeescript
+brew install carthage
 brew install dockutil
 brew install zsh
 brew install zplug
@@ -28,6 +29,7 @@ mas lucky Pages
 mas lucky Keynote
 mas lucky Numbers
 mas lucky Slack
+mas lucky Xcode
 
 # Will pop up and ask to install docker
 open -a "Docker"
