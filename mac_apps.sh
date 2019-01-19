@@ -20,6 +20,7 @@ brew install go
 brew install node
 brew install coffeescript
 brew install carthage
+brew install cocoapods
 brew install dockutil
 brew install zsh
 brew install zplug
