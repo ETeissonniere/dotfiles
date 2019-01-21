@@ -1,17 +1,14 @@
-networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1 2606:4700:4700::1111 2606:4700:4700::1001
+do_cd_sh () {
+    echo "Installing $1"
+    cd ~/.dotfiles/$1 && ./*.sh
+}
 
 xcode-select --install
-read -p "[DOTFILES] Press enter when command lines tools are installed"
+read -p "[DOTFILES] Press enter when command lines tools are installed"
 
 git clone https://github.com/ETeissonniere/dotfiles ~/.dotfiles
-cd ~/.dotfiles
 
-./update.sh
-./mac_defaults.sh
-./mac_apps.sh
-./mac_dock.sh
-./mac_firewall.sh
-
-chsh -s /bin/zsh
-
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+do_cd_sh configs
+do_cd_sh plugins
+do_cd_sh tools
+do_cd_sh prefs
