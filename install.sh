@@ -1,5 +1,5 @@
 do_cd_sh () {
-    echo "Installing $1"
+    echo "[DOTFILES] Installing $1"
     cd ~/.dotfiles/$1 && ./*.sh
 }
 
