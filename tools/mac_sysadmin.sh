@@ -1,3 +1,6 @@
+brew install kubernetes-cli
+brew install kops
+brew install awscli
 brew install dockutil
 brew install mas
 
