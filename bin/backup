@@ -1,7 +1,7 @@
 #! /bin/sh
 
 if [ -n "$1" ]; then
-    rsync --archive --exclude=node_modules --progress ~/Documents ~/Desktop ~/.ssh $1
+    rsync --archive --exclude=node_modules --progress ~/Documents ~/Desktop ~/.ssh ~/.aws $1
 else
     echo "Usage: backup <destination>"
 fi
