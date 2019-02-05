@@ -22,3 +22,4 @@ eval "$(hub alias -s)"
 alias ls="ls -G"
 
 export PATH=$PATH:/Users/`whoami`/.dotfiles/bin
+export PATH=$PATH:/Users/`whoami`/Library/Android/sdk/platform-tools
