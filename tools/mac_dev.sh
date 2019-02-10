@@ -16,8 +16,8 @@ brew install go
 brew install node
 brew install coffeescript
 
-brew install carthage
-brew install cocoapods
-
 brew install zsh
 brew install zplug
+
+brew install mint
+mint install jakeheis/Ice
