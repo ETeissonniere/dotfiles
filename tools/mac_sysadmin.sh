@@ -1,3 +1,6 @@
+brew cask install lulu
+brew cask install knockknock
+
 brew install kubernetes-cli
 brew install kops
 brew install awscli
