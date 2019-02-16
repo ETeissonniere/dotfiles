@@ -15,6 +15,3 @@ brew install coffeescript
 
 brew install zsh
 brew install zplug
-
-brew install mint
-mint install jakeheis/Ice
