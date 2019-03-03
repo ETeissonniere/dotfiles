@@ -50,5 +50,7 @@ set ttyfast                              " Optimize for fast coonections
 set laststatus=2                         " Lightline colors
 set noshowmode                           " Lightline handles this
 
-let g:netrw_banner=  0                   " Explorer: no banner
+let g:netrw_banner=0                     " Explorer: no banner
 let g:netrw_browse_split=3               " Explorer: open in ew tab
+
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
