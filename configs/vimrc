@@ -16,7 +16,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'            " Plugin manager
 Plugin 'dracula/vim'                     " Match ZSH's and iTerm themes
 Plugin 'itchyny/lightline.vim'           " Bottom line style
-Plugin 'terryma/vim-multiple-cursors'    " Sublime text's cursors
 Plugin 'tomlion/vim-solidity'            " Syntax: solidity
 Plugin 'kchmck/vim-coffee-script'        " Syntax: coffeescript
 
