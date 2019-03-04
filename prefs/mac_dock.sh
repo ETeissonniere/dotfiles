@@ -3,7 +3,6 @@ dockutil --no-restart --add /Applications/Safari.app
 dockutil --no-restart --add /Applications/Brave\ Browser.app
 dockutil --no-restart --add /Applications/Station.app
 dockutil --no-restart --add /Applications/Mail.app
-dockutil --no-restart --add /Applications/Slack.app
 dockutil --no-restart --add /Applications/Keynote.app
 dockutil --no-restart --add /Applications/Numbers.app
 dockutil --no-restart --add /Applications/Pages.app
