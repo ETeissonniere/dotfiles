@@ -1,5 +1,4 @@
 dockutil --no-restart --remove all
-dockutil --no-restart --add /Applications/Safari.app
 dockutil --no-restart --add /Applications/Brave\ Browser.app
 dockutil --no-restart --add /Applications/Station.app
 dockutil --no-restart --add /Applications/Mail.app
