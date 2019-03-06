@@ -1,11 +1,6 @@
 # Prevent tampering
 osascript -e 'tell application "System Preferences" to quit'
 
-# Dock
-defaults write com.apple.dock autohide -bool true
-defaults write com.apple.dock tilesize -int 36
-defaults write com.apple.dock orientation -string right
-
 # Fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
