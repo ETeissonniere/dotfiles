@@ -1,7 +1,6 @@
 brew cask install docker
 open -a "Docker"
 
-brew cask install drawio
 brew cask install android-studio
 brew cask install iterm2
 
