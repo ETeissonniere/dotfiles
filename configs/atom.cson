@@ -1,0 +1,12 @@
+"*":
+  core:
+    telemetryConsent: "no"
+  "exception-reporting":
+    userId: "7547d24d-90c9-447b-ad77-5effa5006f6c"
+".console.serpent.text":
+  editor:
+    softWrapHangingIndent: 4
+    tabLength: 4
+".solidity.source":
+  editor:
+    tabLength: 4
