@@ -1,8 +1,11 @@
 "*":
   core:
     telemetryConsent: "no"
+  editor: {}
   "exception-reporting":
     userId: "7547d24d-90c9-447b-ad77-5effa5006f6c"
+  "tree-view":
+    hideVcsIgnoredFiles: true
 ".console.serpent.text":
   editor:
     softWrapHangingIndent: 4
