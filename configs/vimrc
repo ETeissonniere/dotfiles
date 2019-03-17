@@ -1,5 +1,4 @@
 " BEGIN CHEATSHEET
-" <C-n>...c : place multiple cursors and edit
 " :Explore  : open file explorer (default in vim)
 " {i}gt     : go to tab {i}
 " gt        : next tab
