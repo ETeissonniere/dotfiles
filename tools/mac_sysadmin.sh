@@ -2,7 +2,6 @@ brew cask install lulu
 brew cask install knockknock
 
 brew install kubernetes-cli
-brew install kops
 brew install awscli
 brew cask install google-cloud-sdk
 brew install dockutil
