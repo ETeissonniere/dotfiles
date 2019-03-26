@@ -11,4 +11,3 @@ brew install mas
 mas lucky Pages
 mas lucky Keynote
 mas lucky Numbers
-mas lucky Xcode
