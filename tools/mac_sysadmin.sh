@@ -1,4 +1,3 @@
-brew cask install lulu
 brew cask install knockknock
 
 brew install gopass
