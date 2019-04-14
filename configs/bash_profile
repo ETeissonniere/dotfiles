@@ -1,1 +1,2 @@
 eval "$(hub alias -s)"
+export PATH=$PATH:/Users/$(whoami)/.dotfiles/bin
