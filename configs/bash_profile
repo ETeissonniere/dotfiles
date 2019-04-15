@@ -1,2 +1,2 @@
 eval "$(hub alias -s)"
-export PATH=$PATH:/Users/$(whoami)/.dotfiles/bin
+export PATH=$PATH:/Users/$(whoami)/Library/Android/sdk/platform-tools:/Users/$(whoami)/.dotfiles/bin
