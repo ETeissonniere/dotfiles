@@ -10,3 +10,7 @@ brew install go
 
 brew install node
 brew install coffeescript
+
+brew tap aws/tap
+brew install aws-sam-cli
+brew install awscli
