@@ -16,3 +16,5 @@ brew install aws-sam-cli
 brew install awscli
 
 brew cask install postman
+brew cask install sublime-text
+brew cask install sublime-merge
