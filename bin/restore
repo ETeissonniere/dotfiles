@@ -1,8 +1,6 @@
 #! /bin/sh
 
 if [ -n "$1" ]; then
-    rsync -a --progress --delete $1/Documents/* ~/Documents/
-    rsync -a --progress --delete $1/Desktop/* ~/Desktop/
     rsync -a --progress --delete $1/.ssh/* ~/.ssh/
     rsync -a --progress --delete $1/.gnupg/* ~/.gnupg/
     rsync -a --progress --delete $1/.password-store/* ~/.password-store/
