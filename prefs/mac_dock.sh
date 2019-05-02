@@ -1,6 +1,5 @@
 dockutil --no-restart --remove all
 dockutil --no-restart --add /Applications/Brave\ Browser.app
-dockutil --no-restart --add /Applications/Station.app
 dockutil --no-restart --add /Applications/Mail.app
 dockutil --no-restart --add /Applications/Keynote.app
 dockutil --no-restart --add /Applications/Numbers.app
@@ -13,5 +12,7 @@ dockutil --no-restart --add /Applications/Xcode.app
 dockutil --no-restart --add /Applications/Utilities/Terminal.app
 dockutil --no-restart --add /Applications/Docker.app
 dockutil --no-restart --add /Applications/Ledger\ Live.app
+dockutil --no-restart --add /Applications/Sublime\ Merge.app
+dockutil --no-restart --add /Applications/Sublime\ Text.app
 dockutil --no-restart --add ~/Downloads
 killall Dock # Restart
