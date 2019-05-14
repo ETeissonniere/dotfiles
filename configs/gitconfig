@@ -1,8 +1,11 @@
 [user]
 	email = git.eliott@teissonniere.org
 	name = Eliott Teissonniere
+	signingkey = 9A43A2D0AD61F8B283BC6ED9D4E5BC94342810EB
 [hub]
 	protocol = ssh
 [core]
 	excludesfile = /Users/eliottteissonniere/.gitignore
 	autocrlf = input
+[commit]
+	gpgsign = true
