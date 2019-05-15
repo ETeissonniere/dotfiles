@@ -1,1 +1,1 @@
-brew install gpg
+brew install gpg pinentry-mac
