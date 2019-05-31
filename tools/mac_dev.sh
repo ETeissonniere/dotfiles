@@ -4,6 +4,7 @@ open -a "Docker"
 brew cask install android-studio
 
 brew install git
+brew install git-flow
 brew install hub
 
 brew install go
