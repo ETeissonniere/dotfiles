@@ -3,7 +3,11 @@ URL=https://github.com/ETeissonniere/dotfiles
 
 do_cd_sh () {
     echo "[DOTFILES] Installing $1"
-    cd $FOLDER/$1 && ./*.sh
+    cd $FOLDER/$1
+
+    for f in *.sh; do
+  		sh "$f" || echo "$f failed"
+	done
 }
 
 xcode-select --install
