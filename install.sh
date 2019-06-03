@@ -6,7 +6,11 @@ do_cd_sh () {
 xcode-select --install
 read -p "[DOTFILES] Press enter when command lines tools are installed"
 
-git clone https://github.com/ETeissonniere/dotfiles ~/.dotfiles
+FOLDER=~/.dotfiles
+URL=https://github.com/ETeissonniere/dotfiles
+if [ ! -d "$FOLDER" ] ; then
+    git clone "$URL" "$FOLDER"
+fi
 
 do_cd_sh configs
 do_cd_sh tools
