@@ -17,6 +17,17 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# System zshrc for various things.
+source /etc/zshrc
+
+# Open new tabs in same directory
+if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
+  function chpwd {
+    printf '\e]7;%s\a' "file://$HOSTNAME${PWD// /%20}"
+  }
+  chpwd
+fi
+
 # Correct key mappings
 bindkey -e
 bindkey '[C' forward-word
