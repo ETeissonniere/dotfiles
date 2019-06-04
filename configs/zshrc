@@ -23,9 +23,7 @@ bindkey '[C' forward-word
 bindkey '[D' backward-word
 
 # Prompt
-autoload -Uz promptinit
-promptinit
-prompt fire
+export PS1="%10F%m%f:%11F%1~%f \$ "
 
 # Various environment variables
 export CLICOLOR=1
