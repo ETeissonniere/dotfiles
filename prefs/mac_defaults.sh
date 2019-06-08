@@ -20,7 +20,7 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 #sudo tmutil disable
 
 # Screenshots
-defaults write com.apple.screencapture disable-shadow -bool true
+#defaults write com.apple.screencapture disable-shadow -bool true
 
 # Show battery percentage
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
