@@ -1,7 +1,0 @@
-#! /bin/sh
-
-if [ -n "$1" ]; then
-    rsync --archive --exclude=node_modules --progress ~/.ssh ~/.gnupg ~/.password-store $1
-else
-    echo "Usage: backup <destination>"
-fi
