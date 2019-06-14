@@ -10,7 +10,8 @@ brew install hub
 
 # Programming languages
 brew install go
-brew install node
+brew install node@10
+brew install yarn
 
 # Cloud
 brew install awscli
