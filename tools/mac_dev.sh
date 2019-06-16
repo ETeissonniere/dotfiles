@@ -11,6 +11,7 @@ brew install hub
 # Programming languages
 brew install go
 brew install node@10
+brew install yarn
 
 # Cloud
 brew install awscli
@@ -25,3 +26,8 @@ brew cask install sublime-merge
 # Awesome tooling
 brew install httpie
 brew install exa
+
+# Ethereum
+yarn global add truffle
+yarn global add zos
+brew cask install ganache
