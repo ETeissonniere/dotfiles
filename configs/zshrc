@@ -39,11 +39,12 @@ export PS1="%10F%m%f:%11F%1~%f \$ "
 # Various environment variables
 export CLICOLOR=1
 export EDITOR="/usr/local/bin/subl -w"
-export GOPATH=/Users/$(whoami)/.go
+export GOPATH=$HOME/.go
 
 # PATH specifics
-export PATH=$PATH:/Users/$(whoami)/Library/Android/sdk/platform-tools
+export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin
 
 # Aliases
