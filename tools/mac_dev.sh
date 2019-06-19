@@ -12,6 +12,7 @@ brew install hub
 brew install go
 brew install node@10
 brew install yarn
+curl https://sh.rustup.rs -sSf | sh
 
 # Cloud
 brew install awscli
