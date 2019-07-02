@@ -10,7 +10,7 @@ brew install hub
 
 # Programming languages
 brew install go
-brew install node@10
+brew install node
 brew install yarn
 curl https://sh.rustup.rs -sSf | sh
 
