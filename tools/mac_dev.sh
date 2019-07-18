@@ -27,8 +27,3 @@ brew cask install sublime-merge
 # Awesome tooling
 brew install httpie
 brew install exa
-
-# Ethereum
-yarn global add truffle
-yarn global add zos
-brew cask install ganache
