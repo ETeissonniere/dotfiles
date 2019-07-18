@@ -5,7 +5,6 @@ open -a "Docker"
 
 # Version control
 brew install git
-brew install git-flow
 brew install hub
 
 # Programming languages
@@ -15,7 +14,6 @@ brew install yarn
 curl https://sh.rustup.rs -sSf | sh
 
 # Cloud
-brew install awscli
 brew cask install google-cloud-sdk
 
 # (Heavy) Development tools
