@@ -13,6 +13,9 @@ brew install node
 brew install yarn
 curl https://sh.rustup.rs -sSf | sh
 
+rustup component add rustfmt
+rustup component add clippy
+
 # Cloud
 brew cask install google-cloud-sdk
 
