@@ -19,8 +19,7 @@ brew cask install google-cloud-sdk
 # (Heavy) Development tools
 brew cask install postman
 brew cask install android-studio
-brew cask install sublime-text
-brew cask install sublime-merge
+brew cask install visual-studio-code
 
 # Awesome tooling
 brew install httpie

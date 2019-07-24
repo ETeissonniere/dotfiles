@@ -13,7 +13,6 @@ dockutil --no-restart --add /Applications/Xcode.app
 dockutil --no-restart --add /Applications/Utilities/Terminal.app
 dockutil --no-restart --add /Applications/Docker.app
 dockutil --no-restart --add /Applications/Ledger\ Live.app
-dockutil --no-restart --add /Applications/Sublime\ Merge.app
-dockutil --no-restart --add /Applications/Sublime\ Text.app
+dockutil --no-restart --add /Applications/Visual\ Studio\ Code.app
 dockutil --no-restart --add ~/Downloads
 killall Dock # Restart
