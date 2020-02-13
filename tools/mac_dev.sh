@@ -6,6 +6,7 @@ open -a "Docker"
 # Version control
 brew install git
 brew install hub
+brew install github/gh/gh
 
 # Programming languages
 brew install go
