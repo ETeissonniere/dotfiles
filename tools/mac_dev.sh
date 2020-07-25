@@ -12,7 +12,6 @@ brew install github/gh/gh
 brew install go
 brew install node
 brew install yarn
-brew cask install fastlane
 curl https://sh.rustup.rs -sSf | sh
 
 rustup component add rustfmt
