@@ -34,7 +34,7 @@ bindkey '[C' forward-word
 bindkey '[D' backward-word
 
 # Prompt
-export PS1="%10F%m%f:%11F%1~%f \$ "
+eval "$(starship init zsh)"
 
 # Various environment variables
 export CLICOLOR=1

@@ -1,3 +1,3 @@
-brew install zsh zsh-completions
+brew install zsh zsh-completions starship
 
 sudo chsh -s $(which zsh) $(whoami)

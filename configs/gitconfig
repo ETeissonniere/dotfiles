@@ -9,3 +9,5 @@
 	autocrlf = input
 [commit]
 	gpgsign = true
+[pull]
+	rebase = true
