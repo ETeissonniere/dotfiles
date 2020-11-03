@@ -14,14 +14,6 @@ defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 
-# TimeMachine
-#echo "Disabling TimeMachine (need SUDO)"
-#defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
-#sudo tmutil disable
-
-# Screenshots
-#defaults write com.apple.screencapture disable-shadow -bool true
-
 # Show battery percentage
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
