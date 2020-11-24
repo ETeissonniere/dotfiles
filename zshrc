@@ -16,6 +16,7 @@ compinit
 
 # System zshrc for various things.
 source /etc/zshrc
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Open new tabs in same directory
 if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
