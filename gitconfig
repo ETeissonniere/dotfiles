@@ -1,7 +1,7 @@
 [user]
 	email = git.eliott@teissonniere.org
 	name = Eliott Teissonniere
-	signingkey = 9A43A2D0AD61F8B283BC6ED9D4E5BC94342810EB
+	signingkey = 022E02D1A4CD36881EFAC7D4F9C1E683CEC137E4
 [core]
 	excludesfile = /Users/eliottteissonniere/.gitignore
 	autocrlf = input

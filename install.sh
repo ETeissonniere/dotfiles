@@ -1,15 +1,6 @@
 FOLDER=~/.dotfiles
 URL=https://github.com/ETeissonniere/dotfiles
 
-do_cd_sh () {
-    echo "[DOTFILES] Installing $1"
-    cd $FOLDER/$1
-
-    for f in *.sh; do
-  		sh "$f" || echo "$f failed"
-	done
-}
-
 xcode-select --install
 read -p "[DOTFILES] Press enter when command lines tools are installed"
 
@@ -20,6 +11,6 @@ else
     git pull $URL
 fi
 
-do_cd_sh configs
-do_cd_sh tools
-do_cd_sh prefs
+cd $FOLDER
+./confs.sh
+./prefs.sh

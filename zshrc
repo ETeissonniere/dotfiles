@@ -1,12 +1,9 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
+HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory autocd extendedglob
 unsetopt beep
 bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' menu select
@@ -33,6 +30,10 @@ bindkey -e
 bindkey '[C' forward-word
 bindkey '[D' backward-word
 
+# GPG / SSH
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
 # Prompt
 eval "$(starship init zsh)"
 
@@ -42,10 +43,10 @@ export EDITOR=vim
 export GOPATH=$HOME/.go
 
 # PATH specifics
+export PATH=/opt/homebrew/bin:$PATH
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:/usr/local/MacGPG2/bin
 
-# gcloud
-export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+alias ish="arch --x86_64 zsh"
+Alias ibrew="/usr/local/bin/brew"
