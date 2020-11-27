@@ -50,4 +50,4 @@ export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/usr/local/MacGPG2/bin
 
 alias ish="arch --x86_64 zsh"
-alias ibrew="arch --x86_64 zsh /usr/local/bin/brew"
+alias ibrew="arch --x86_64 /usr/local/bin/brew"
