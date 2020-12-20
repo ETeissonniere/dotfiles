@@ -49,6 +49,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:/usr/local/MacGPG2/bin
 export PATH=$PATH:$HOME/.radicle/bin
+export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 alias ish="arch --x86_64 zsh"
 alias ibrew="arch --x86_64 /usr/local/bin/brew"
