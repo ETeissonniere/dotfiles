@@ -35,13 +35,11 @@ bindkey '[D' backward-word
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
-# Prompt
-eval "$(starship init zsh)"
-
 # Various environment variables
 export CLICOLOR=1
 export EDITOR=vim
 export GOPATH=$HOME/.go
+export ORIGIN_SDK_PATH=/Users/eliottteissonniere/Documents/Work/Ledger/OriginSDK_0_1_0_Darwin
 
 # PATH specifics
 export PATH=/opt/homebrew/bin:$PATH
@@ -51,8 +49,13 @@ export PATH=$PATH:/usr/local/MacGPG2/bin
 export PATH=$PATH:$HOME/.radicle/bin
 export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
+# Prompt
+eval "$(starship init zsh)"
+
 alias ish="arch --x86_64 zsh"
 alias ibrew="arch --x86_64 /usr/local/bin/brew"
 
 # SSH agent compat
 eval "$(ssh-agent)"
+autoload -U +X bashcompinit && bashcompinit
+if [[ -x /usr/local/bin/monk ]]; then complete -o nospace -C /usr/local/bin/monk monk; fi
