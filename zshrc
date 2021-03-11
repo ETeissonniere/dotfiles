@@ -53,7 +53,6 @@ export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/b
 eval "$(starship init zsh)"
 
 alias ish="arch --x86_64 zsh"
-alias ibrew="arch --x86_64 /usr/local/bin/brew"
 
 # SSH agent compat
 eval "$(ssh-agent)"
