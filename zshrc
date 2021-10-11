@@ -57,4 +57,3 @@ alias ish="arch --x86_64 zsh"
 # SSH agent compat
 eval "$(ssh-agent)"
 autoload -U +X bashcompinit && bashcompinit
-if [[ -x /usr/local/bin/monk ]]; then complete -o nospace -C /usr/local/bin/monk monk; fi
