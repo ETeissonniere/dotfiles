@@ -14,4 +14,10 @@ case "$(uname -s)" in
         sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
      ;;
 
+    Linux)
+        # If we are on linux, we assume we are in a github codespace
+        # environment and thus disable git signing
+        git config --global commit.gpgsign false
+     ;;
+
 esac
