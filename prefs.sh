@@ -25,7 +25,7 @@ case "$(uname -s)" in
         sudo apt update
         sudo apt install -y zsh
         sudo /tmp/starship.rs --yes
-        chsh -s $(which zsh)
+	sudo chsh -s $(which zsh) $(whoami)
      ;;
 
 esac
