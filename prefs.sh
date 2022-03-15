@@ -16,8 +16,13 @@ case "$(uname -s)" in
 
     Linux)
         # If we are on linux, we assume we are in a github codespace
-        # environment and thus disable git signing
+        # environment and:
+        # disable git signing
         git config --global commit.gpgsign false
+        # use a correct sh system
+        curl -sS https://starship.rs/install.sh | sh
+        sudo apt-get install -y zsh
+        chsh -s $(which zsh)
      ;;
 
 esac
