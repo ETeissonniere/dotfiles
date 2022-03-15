@@ -20,8 +20,11 @@ case "$(uname -s)" in
         # disable git signing
         git config --global commit.gpgsign false
         # use a correct sh system
-        curl -sS https://starship.rs/install.sh | sh
-        sudo apt-get install -y zsh
+        curl -sS https://starship.rs/install.sh > /tmp/starship.rs
+        chmod +x /tmp/starship.rs
+        sudo apt update
+        sudo apt install -y zsh
+        sudo /tmp/starship.rs --yes
         chsh -s $(which zsh)
      ;;
 
