@@ -1,12 +1,9 @@
 [user]
 	email = git.eliott@teissonniere.org
 	name = Eliott Teissonniere
-	signingkey = 8DC7D48CE7439FB0C4D1424EB1FD373857A074DD
 [core]
 	excludesfile = /Users/eliottteissonniere/.gitignore
 	autocrlf = input
-[commit]
-	gpgsign = true
 [pull]
 	rebase = true
 [submodule]

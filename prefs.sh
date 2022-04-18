@@ -6,6 +6,10 @@ case "$(uname -s)" in
         defaults write com.apple.screensaver askForPassword -int 1
         defaults write com.apple.screensaver askForPasswordDelay -int 0
 
+        # Properly configure git signing
+        git config --global user.signingkey 8DC7D48CE7439FB0C4D1424EB1FD373857A074DD
+        git config --global commit.gpgsign true
+
         # Firewall
         sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
         sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall off
@@ -15,10 +19,6 @@ case "$(uname -s)" in
      ;;
 
     Linux)
-        # If we are on linux, we assume we are in a github codespace
-        # environment and:
-        # disable git signing
-        git config --global commit.gpgsign false
         # use a correct sh system
         curl -sS https://starship.rs/install.sh > /tmp/starship.rs
         chmod +x /tmp/starship.rs
