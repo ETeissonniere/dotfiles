@@ -51,8 +51,6 @@ export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/b
 # Prompt
 eval "$(starship init zsh)"
 
-alias ish="arch --x86_64 zsh"
-
 # SSH agent compat
 eval "$(ssh-agent)"
 autoload -U +X bashcompinit && bashcompinit
