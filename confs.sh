@@ -1,8 +1,8 @@
-ln -s `pwd`/gitconfig ~/.gitconfig || echo "skipping overwrite"
-ln -s `pwd`/gitignore ~/.gitignore || echo "skipping overwrite"
-ln -s `pwd`/zshrc ~/.zshrc || echo "skipping overwrite"
+ln -sf `pwd`/gitconfig ~/.gitconfig
+ln -sf `pwd`/gitignore ~/.gitignore
+ln -sf `pwd`/zshrc ~/.zshrc
 mkdir -p ~/.gnupg
-ln -s `pwd`/gpg.conf ~/.gnupg/gpg.conf || echo "skipping overwrite"
-ln -s `pwd`/gpg-agent.conf ~/.gnupg/gpg-agent.conf || echo "skipping overwrite"
+ln -sf `pwd`/gpg.conf ~/.gnupg/gpg.conf
+ln -sf `pwd`/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 mkdir -p ~/.ssh
-ln -s `pwd`/ssh ~/.ssh/config || echo "skipping overwrite"
+ln -sf `pwd`/ssh ~/.ssh/config
