@@ -37,7 +37,7 @@ gpgconf --launch gpg-agent
 
 # Various environment variables
 export CLICOLOR=1
-export EDITOR=vim
+export EDITOR=code
 export GOPATH=$HOME/.go
 
 # PATH specifics
