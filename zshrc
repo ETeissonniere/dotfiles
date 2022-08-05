@@ -39,7 +39,6 @@ gpgconf --launch gpg-agent
 export CLICOLOR=1
 export EDITOR=vim
 export GOPATH=$HOME/.go
-export ORIGIN_SDK_PATH=/Users/eliottteissonniere/Documents/Work/Ledger/OriginSDK_0_1_0_Darwin
 
 # PATH specifics
 export PATH=/opt/homebrew/bin:$PATH
