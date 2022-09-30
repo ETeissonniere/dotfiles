@@ -9,5 +9,4 @@ else
 fi
 
 cd $FOLDER
-./confs.sh
 ./prefs.sh
