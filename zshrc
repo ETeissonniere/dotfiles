@@ -37,10 +37,6 @@ bindkey -e
 bindkey '[C' forward-word
 bindkey '[D' backward-word
 
-# GPG / SSH
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
-
 # Various environment variables
 export CLICOLOR=1
 export EDITOR=code
