@@ -7,9 +7,6 @@ case "$(uname -s)" in
      Darwin)
           # Configuration files
           cp -f `pwd`/gitconfig ~/.gitconfig
-          mkdir -p ~/.gnupg
-          ln -sf `pwd`/gpg.conf ~/.gnupg/gpg.conf
-          ln -sf `pwd`/gpg-agent.conf ~/.gnupg/gpg-agent.conf
           mkdir -p ~/.ssh
           ln -sf `pwd`/ssh ~/.ssh/config
 
