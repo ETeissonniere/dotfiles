@@ -26,6 +26,10 @@ case "$(uname -s)" in
           sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on
           sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp off
           sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
+
+          # Packages
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          brew bundle
      ;;
 
      Linux) # Github Codespace
