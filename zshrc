@@ -46,7 +46,6 @@ export GOPATH=$HOME/.go
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.cargo/bin
-export PATH=$PATH:/usr/local/MacGPG2/bin
 export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # Prompt
