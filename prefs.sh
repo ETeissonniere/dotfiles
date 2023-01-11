@@ -39,7 +39,7 @@ case "$(uname -s)" in
           sudo apt update
           sudo apt install -y zsh
           sudo /tmp/starship.rs --yes
-	  sudo chsh -s $(which zsh) $(whoami)
+          sudo chsh -s $(which zsh) $(whoami)
 
           # use our gitignore file, we are not duplicating our gitconfig for Codespaces
           git config --global core.excludesfile ~/.gitignore
