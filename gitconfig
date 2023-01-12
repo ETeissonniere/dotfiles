@@ -2,7 +2,6 @@
 	email = git.eliott@teissonniere.org
 	name = Eliott Teissonniere
 [core]
-	excludesfile = /Users/eliottteissonniere/.gitignore
 	autocrlf = input
 [pull]
 	rebase = true

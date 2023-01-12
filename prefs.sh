@@ -1,4 +1,3 @@
-ln -sf `pwd`/gitignore ~/.gitignore
 ln -sf `pwd`/zshrc ~/.zshrc
 
 # See https://stackoverflow.com/a/27776822
@@ -20,6 +19,9 @@ case "$(uname -s)" in
           git config --global gpg.format ssh
           git config --global gpg.ssh.program "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
+          # use our gitignore file, we are not duplicating our gitconfig for Codespaces
+          git config --global core.excludesfile `pwd`/gitignore
+
           # Firewall
           sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
           sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall off
@@ -40,9 +42,5 @@ case "$(uname -s)" in
           sudo apt install -y zsh
           sudo /tmp/starship.rs --yes
           sudo chsh -s $(which zsh) $(whoami)
-
-          # use our gitignore file, we are not duplicating our gitconfig for Codespaces
-          git config --global core.excludesfile ~/.gitignore
      ;;
-
 esac
