@@ -47,6 +47,7 @@ export PATH=/opt/homebrew/bin:$PATH
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 
 # Prompt
 eval "$(starship init zsh)"
