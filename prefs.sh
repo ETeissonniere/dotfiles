@@ -18,6 +18,7 @@ case "$(uname -s)" in
           git config --global commit.gpgsign true
           git config --global gpg.format ssh
           git config --global gpg.ssh.program "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+          git config --global gpg.ssh.allowedSignersFile `pwd`/allowed_signers
 
           # use our gitignore file, we are not duplicating our gitconfig for Codespaces
           git config --global core.excludesfile `pwd`/gitignore
