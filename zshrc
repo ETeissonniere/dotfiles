@@ -41,6 +41,7 @@ bindkey '[D' backward-word
 export CLICOLOR=1
 export EDITOR=code
 export GOPATH=$HOME/.go
+export GOPRIVATE=github.com/NodleCode/*
 
 # PATH specifics
 export PATH=/opt/homebrew/bin:$PATH
