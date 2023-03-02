@@ -39,7 +39,7 @@ bindkey '[D' backward-word
 
 # Various environment variables
 export CLICOLOR=1
-export EDITOR=code
+export EDITOR="code --wait"
 export GOPATH=$HOME/.go
 export GOPRIVATE=github.com/NodleCode/*
 
