@@ -1,3 +1,5 @@
+mkdir -p ~/.config
+ln -sf `pwd`/starship.toml ~/.config/starship.toml
 ln -sf `pwd`/zshrc ~/.zshrc
 
 # See https://stackoverflow.com/a/27776822
