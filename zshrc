@@ -59,3 +59,5 @@ export SSH_AUTH_SOCK="~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agen
 
 # end
 autoload -U +X bashcompinit && bashcompinit
+
+source /Users/eliottteissonniere/.docker/init-zsh.sh || true # Added by Docker Desktop
