@@ -11,5 +11,4 @@ cask 'visual-studio-code'
 
 mas '1Password for Safari', id: 1569813296
 mas 'Bear – Markdown Notes', id: 1091189122
-mas 'Slack for Desktop', id: 803453959
 mas 'The Unarchiver', id: 425424353
