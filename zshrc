@@ -40,24 +40,13 @@ bindkey '[D' backward-word
 # Various environment variables
 export CLICOLOR=1
 export EDITOR="code --wait"
-export GOPATH=$HOME/.go
-export GOPRIVATE=github.com/NodleCode/*
 
 # PATH specifics
 export PATH=/opt/homebrew/bin:$PATH
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 
 # Prompt
 eval "$(starship init zsh)"
 
-# SSH agent compat
-eval "$(ssh-agent)"
-export SSH_AUTH_SOCK="~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-
 # end
 autoload -U +X bashcompinit && bashcompinit
-
-source /Users/eliottteissonniere/.docker/init-zsh.sh || true # Added by Docker Desktop
