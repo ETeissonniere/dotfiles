@@ -34,7 +34,7 @@ case "$(uname -s)" in
           brew bundle
      ;;
 
-     Linux) # Github Codespace
+     Linux) # Github Codespace / VsCode devcontainers
           # use a correct sh system
           sudo apt update
           sudo apt install -y zsh
