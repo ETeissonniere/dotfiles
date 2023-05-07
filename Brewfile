@@ -6,7 +6,6 @@ cask 'docker'
 brew 'gh'
 cask 'google-chrome'
 cask 'notion'
-brew 'starship'
 cask 'visual-studio-code'
 
 mas '1Password for Safari', id: 1569813296

@@ -38,11 +38,8 @@ case "$(uname -s)" in
 
      Linux) # Github Codespace
           # use a correct sh system
-          curl -sS https://starship.rs/install.sh > /tmp/starship.rs
-          chmod +x /tmp/starship.rs
           sudo apt update
           sudo apt install -y zsh
-          sudo /tmp/starship.rs --yes
           sudo chsh -s $(which zsh) $(whoami)
      ;;
 esac
