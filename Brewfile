@@ -7,6 +7,7 @@ brew 'gh'
 cask 'google-chrome'
 cask 'notion'
 cask 'visual-studio-code'
+cask 'warp'
 
 mas '1Password for Safari', id: 1569813296
 mas 'Bear – Markdown Notes', id: 1091189122
