@@ -13,6 +13,15 @@ if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
   chpwd
 fi
 
+# If running on Mac OS, ensure we properly load our SSH keys
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  function init_ssh {
+    eval "$(ssh-agent -s)"
+    ssh-add --apple-use-keychain
+  }
+  init_ssh > /dev/null 2>&1
+fi
+
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
