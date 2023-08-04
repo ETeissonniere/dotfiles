@@ -47,10 +47,14 @@ autoload -U +X bashcompinit && bashcompinit
 
 # Common environment variables
 export CLICOLOR=1
-export EDITOR="code --wait"
+export EDITOR="subl -w"
+
 # PATH adjustments
 # Homebrew binaries will shadow system binaries. This is intended.
 export PATH=/opt/homebrew/bin:$PATH
+# The `code` cli is handy
+#export PATH=$PATH:"/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+export PATH=$PATH:"/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
 # Ensure we can obtain VCS/Git infos in prompt later on
 autoload -Uz vcs_info
