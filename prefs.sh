@@ -37,6 +37,11 @@ case "$(uname -s)" in
           git config --global gpg.format ssh
           git config --global gpg.ssh.allowedSignersFile `pwd`/allowed_signers
 
+          # Reminder to configure SSH key
+          echo "#######################################################"
+          echo "# ⚠️  Don't forget to drop your SSH key in ~/.ssh/    #"
+          echo "#######################################################"
+
           # use our gitignore file, we are not duplicating our gitconfig for Codespaces
           git config --global core.excludesfile `pwd`/gitignore
 
