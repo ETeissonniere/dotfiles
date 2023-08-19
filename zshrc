@@ -56,6 +56,7 @@ export PATH=$PATH:"/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
 # Aliases
 alias dotedit="cd ~/.dotfiles && subl ."
+alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
 
 # Ensure we can obtain VCS/Git infos in prompt later on
 autoload -Uz vcs_info
