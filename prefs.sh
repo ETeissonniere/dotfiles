@@ -37,11 +37,6 @@ case "$(uname -s)" in
           git config --global gpg.format ssh
           git config --global gpg.ssh.allowedSignersFile `pwd`/allowed_signers
 
-          # Reminder to configure SSH key
-          echo "#######################################################"
-          echo "# ⚠️  Don't forget to drop your SSH key in ~/.ssh/    #"
-          echo "#######################################################"
-
           # use our gitignore file, we are not duplicating our gitconfig for Codespaces
           git config --global core.excludesfile `pwd`/gitignore
 
@@ -60,6 +55,15 @@ case "$(uname -s)" in
                /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           fi
           brew bundle
+
+          # Reminders / TODOs
+          echo "#######################################################"
+          echo "# 🔥 Battlestation ready - remaining actions          #"
+          echo "#######################################################"
+          echo ""
+          echo "→ Install SSH key"
+          echo "→ Set Sublime Text License"
+          echo "→ Install Package Control in Sublime Text"
      ;;
 
      Linux) # Github Codespace / VsCode devcontainers
