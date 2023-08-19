@@ -54,6 +54,9 @@ export EDITOR="subl -w"
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=$PATH:"/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
+# Aliases
+alias dotedit="cd ~/.dotfiles && subl ."
+
 # Ensure we can obtain VCS/Git infos in prompt later on
 autoload -Uz vcs_info
 precmd() {
