@@ -2,6 +2,7 @@ cask 'docker'
 brew 'gh'
 cask 'google-chrome'
 cask 'notion'
+cask 'raycast'
 cask 'sublime-text'
 
 mas 'Bear – Markdown Notes', id: 1091189122
