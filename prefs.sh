@@ -9,6 +9,14 @@ case "$(uname -s)" in
           mkdir -p ~/.ssh
           ln -sf `pwd`/ssh ~/.ssh/config
 
+          echo "### Please enter the computer name:"
+          read computerName
+
+          sudo scutil --set ComputerName $computerName
+          sudo scutil --set HostName $computerName
+          sudo scutil --set LocalHostName $computerName
+          sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $computerName
+
           # Sublime Text config
           mkdir -p ~/Library/Application\ Support/Sublime\ Text/Packages/User
           ln -sf `pwd`/sublime/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/Preferences.sublime-settings
