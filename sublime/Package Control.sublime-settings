@@ -1,0 +1,17 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"ayu",
+		"LSP",
+		"LSP-copilot",
+		"LSP-gopls",
+		"LSP-terraform",
+		"LSP-typescript",
+		"Package Control",
+		"Terraform",
+	],
+}

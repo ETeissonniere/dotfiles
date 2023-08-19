@@ -9,6 +9,12 @@ case "$(uname -s)" in
           mkdir -p ~/.ssh
           ln -sf `pwd`/ssh ~/.ssh/config
 
+          # Sublime Text config
+          mkdir -p ~/Library/Application\ Support/Sublime\ Text/Packages/User
+          ln -sf `pwd`/sublime/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/Preferences.sublime-settings
+          ln -sf `pwd`/sublime/Package\ Control.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/Package\ Control.sublime-settings
+          ln -sf `pwd`/sublime/LSP.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/LSP.sublime-settings
+
           # Require password immediately on sleep
           defaults write com.apple.screensaver askForPassword -int 1
           defaults write com.apple.screensaver askForPasswordDelay -int 0
