@@ -19,9 +19,8 @@ case "$(uname -s)" in
           defaults write com.apple.screensaver askForPassword -int 1
           defaults write com.apple.screensaver askForPasswordDelay -int 0
           
-          defaults write NSGlobalDomain AppleLocale -string "en_US"
-          
           # Use proper units
+          defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
           defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
           defaults write NSGlobalDomain AppleMetricUnits -bool true
           defaults write NSGlobalDomain AppleTemperatureUnit -string "Celsius"
