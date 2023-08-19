@@ -30,7 +30,12 @@ case "$(uname -s)" in
           sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
 
           # Packages
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+          # Only run the below if brew is not installed
+          if ! command -v brew &> /dev/null
+          then
+               /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          fi
           brew bundle
      ;;
 
