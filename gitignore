@@ -32,6 +32,3 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# Folder to store secret values and files in any projects
-.secrets
