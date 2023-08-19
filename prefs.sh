@@ -32,9 +32,6 @@ case "$(uname -s)" in
           defaults write NSGlobalDomain com.apple.trackpad.scaling -float 3
           defaults write NSGlobalDomain com.apple.mouse.scaling -float 3
 
-          # disable cmd+space so raycast can use it
-          defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "<dict><key>enabled</key><false/></dict>"
-
           # non obtrusive dock
           defaults write com.apple.dock autohide -bool YES
           defaults write com.apple.dock tilesize -integer 64
