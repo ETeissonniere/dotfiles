@@ -1,7 +1,6 @@
 cask 'docker'
 brew 'gh'
 cask 'google-chrome'
-cask 'notion'
 cask 'rectangle'
 cask 'sublime-text'
 
