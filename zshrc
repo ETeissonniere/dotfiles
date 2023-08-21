@@ -19,7 +19,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     eval "$(ssh-agent -s)"
     ssh-add --apple-use-keychain
   }
-  init_ssh > /dev/null 2>&1
+  # We disown the function call so that no pesky logs show up in the terminal
+  init_ssh > /dev/null 2>&1 &!
 fi
 
 HISTFILE=~/.zsh_history
