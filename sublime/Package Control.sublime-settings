@@ -9,6 +9,7 @@
 		"LSP",
 		"LSP-copilot",
 		"LSP-gopls",
+		"LSP-rust-analyzer",
 		"LSP-terraform",
 		"LSP-typescript",
 		"Package Control",
