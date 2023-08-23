@@ -16,7 +16,10 @@ fi
 # If running on Mac OS, ensure we properly load our SSH keys
 if [[ "$OSTYPE" == "darwin"* ]]; then
   function init_ssh {
-    eval "$(ssh-agent -s)"
+    # if ssh-agent is not running, start it
+    if ! pgrep -q ssh-agent; then
+      eval "$(ssh-agent -s)"
+    fi
     ssh-add --apple-use-keychain
   }
   # We disown the function call so that no pesky logs show up in the terminal
