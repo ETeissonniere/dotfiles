@@ -8,6 +8,7 @@
 		"ayu",
 		"LSP",
 		"LSP-copilot",
+		"LSP-file-watcher-chokidar",
 		"LSP-gopls",
 		"LSP-rust-analyzer",
 		"LSP-terraform",
