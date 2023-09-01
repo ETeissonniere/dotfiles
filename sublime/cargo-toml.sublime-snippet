@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[
+[package]
+authors = ["${1:authors}$0"]
+edition = "2021"
+version = "0.1.0"
+name = "${2:pkg_name}"
+
+[dependencies]
+]]></content>
+	<tabTrigger>cargotoml</tabTrigger>
+	<scope>text.plain</scope>
+</snippet>

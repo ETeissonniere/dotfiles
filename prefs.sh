@@ -19,9 +19,12 @@ case "$(uname -s)" in
 
           # Sublime Text config
           mkdir -p ~/Library/Application\ Support/Sublime\ Text/Packages/User
-          ln -sf `pwd`/sublime/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/Preferences.sublime-settings
-          ln -sf `pwd`/sublime/Package\ Control.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/Package\ Control.sublime-settings
-          ln -sf `pwd`/sublime/LSP.sublime-settings ~/Library/Application\ Support/Sublime\ Text/Packages/User/LSP.sublime-settings
+
+          # iterate on files in sublime folder
+          for file in `pwd`/sublime/*; do
+               filename=$(basename -- "$file")
+               ln -sf "$file" "$HOME/Library/Application Support/Sublime Text/Packages/User/$filename"
+          done
 
           # Require password immediately on sleep
           defaults write com.apple.screensaver askForPassword -int 1
