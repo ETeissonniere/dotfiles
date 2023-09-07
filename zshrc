@@ -20,7 +20,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     if ! pgrep -q ssh-agent; then
       eval "$(ssh-agent -s)"
     fi
-    ssh-add --apple-use-keychain
+    # ensure we load the keychain
+    ssh-add --apple-load-keychain
   }
   # We disown the function call so that no pesky logs show up in the terminal
   init_ssh > /dev/null 2>&1 &!
