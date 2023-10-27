@@ -17,15 +17,6 @@ case "$(uname -s)" in
           sudo scutil --set LocalHostName $computerName
           sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $computerName
 
-          # Sublime Text config
-          mkdir -p ~/Library/Application\ Support/Sublime\ Text/Packages/User
-
-          # iterate on files in sublime folder
-          for file in `pwd`/sublime/*; do
-               filename=$(basename -- "$file")
-               ln -sf "$file" "$HOME/Library/Application Support/Sublime Text/Packages/User/$filename"
-          done
-
           # Require password immediately on sleep
           defaults write com.apple.screensaver askForPassword -int 1
           defaults write com.apple.screensaver askForPasswordDelay -int 0

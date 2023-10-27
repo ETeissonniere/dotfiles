@@ -52,15 +52,14 @@ autoload -U +X bashcompinit && bashcompinit
 
 # Common environment variables
 export CLICOLOR=1
-export EDITOR="subl -w"
+export EDITOR="code -w"
 
 # PATH adjustments
 # Homebrew binaries will shadow system binaries. This is intended.
 export PATH=/opt/homebrew/bin:$PATH
-export PATH=$PATH:"/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
 # Aliases
-alias dotedit="cd ~/.dotfiles && subl ."
+alias dotedit="cd ~/.dotfiles && code ."
 alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
 
 # Ensure we can obtain VCS/Git infos in prompt later on
