@@ -73,7 +73,7 @@ zstyle ':vcs_info:git*' actionformats "[%b (%a)]"
 # Prompt styling
 setopt prompt_subst
 # Left `username on hostname in directory (status) # `
-PROMPT='%F{cyan}%n%f %F{white}on%f %F{blue}%m%f %F{white}in%f %F{magenta}%2~%f %F{yellow}${vcs_info_msg_0_}%f
-%(?.%F{green}√%f.%F{red}%?%f) → '
+PROMPT='%F{81}%n%f %F{247}on%f %F{39}%m%f %F{247}in%f %F{161}%2~%f %F{228}${vcs_info_msg_0_}%f
+%(?.%F{76}√%f.%F{196}%?%f) → '
 # Blinking cursor
 echo -e -n "\x1b[\x31 q"
