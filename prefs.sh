@@ -20,13 +20,13 @@ case "$(uname -s)" in
           # Require password immediately on sleep
           defaults write com.apple.screensaver askForPassword -int 1
           defaults write com.apple.screensaver askForPasswordDelay -int 0
-          
+
           # Use proper units
           defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
           defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
           defaults write NSGlobalDomain AppleMetricUnits -bool true
           defaults write NSGlobalDomain AppleTemperatureUnit -string "Celsius"
-          
+
           # ⚡ fast keyboard, trackpad, and mouse
           defaults write NSGlobalDomain KeyRepeat -int 2
           defaults write NSGlobalDomain InitialKeyRepeat -int 30
@@ -62,6 +62,8 @@ case "$(uname -s)" in
                /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           fi
           brew bundle
+
+          open -a "Google Chrome" --args --make-default-browser
 
           # Reminders / TODOs
           echo "#######################################################"
