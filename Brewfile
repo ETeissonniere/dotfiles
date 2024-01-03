@@ -1,6 +1,6 @@
+cask 'arc'
 cask 'docker'
 brew 'gh'
-cask 'google-chrome'
 cask 'rectangle'
 cask 'zed'
 
