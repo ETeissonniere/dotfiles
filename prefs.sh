@@ -72,8 +72,6 @@ case "$(uname -s)" in
           echo ""
           echo "→ Install SSH key"
           echo "→ Run \`gh auth login -p ssh\`"
-          echo "→ Set Sublime Text License"
-          echo "→ Install Package Control in Sublime Text"
           echo "→ Setup TimeMachine"
      ;;
 
