@@ -61,6 +61,7 @@ export PATH=/opt/homebrew/bin:$PATH
 # Aliases
 alias dotedit="cd ~/.dotfiles && zed ."
 alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
+alias coding="cd ~/Documents/Code.nosync"
 
 # Ensure we can obtain VCS/Git infos in prompt later on
 autoload -Uz vcs_info
