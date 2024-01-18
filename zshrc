@@ -52,14 +52,14 @@ autoload -U +X bashcompinit && bashcompinit
 
 # Common environment variables
 export CLICOLOR=1
-export EDITOR="zed --wait"
+export EDITOR="code --wait"
 
 # PATH adjustments
 # Homebrew binaries will shadow system binaries. This is intended.
 export PATH=/opt/homebrew/bin:$PATH
 
 # Aliases
-alias dotedit="cd ~/.dotfiles && zed ."
+alias dotedit="cd ~/.dotfiles && code ."
 alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
 alias coding="cd ~/Documents/Code.nosync"
 
