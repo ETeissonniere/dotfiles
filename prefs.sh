@@ -63,8 +63,6 @@ case "$(uname -s)" in
           fi
           brew bundle
 
-          open -a "Google Chrome" --args --make-default-browser
-
           # Reminders / TODOs
           echo "#######################################################"
           echo "# 🔥 Battlestation ready - remaining actions          #"
