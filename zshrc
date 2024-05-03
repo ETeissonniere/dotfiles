@@ -56,7 +56,7 @@ export EDITOR="code --wait"
 
 # PATH adjustments
 # Homebrew binaries will shadow system binaries. This is intended.
-export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/bin:$PATH:/Users/`whoami`/.local/bin
 
 # Aliases
 alias dotedit="cd ~/.dotfiles && code ."
