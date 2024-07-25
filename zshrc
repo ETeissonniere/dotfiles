@@ -31,6 +31,13 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
+# Common environment variables
+export CLICOLOR=1
+# Make folders cyan instead of blue as it renders better on a terminal with semi-transparent background
+export LSCOLORS=gxfxcxdxbxegedabagacad
+# Converted via https://geoff.greer.fm/lscolors/
+export LS_COLORS="di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+
 # Add commands to history and enable extended globbing
 setopt appendhistory extendedglob
 # No beep sound
@@ -50,10 +57,6 @@ bindkey '[D' backward-word
 autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-# Common environment variables
-export CLICOLOR=1
-# Make folders cyan instead of blue as it renders better on a terminal with semi-transparent background
-export LSCOLORS=gxfxcxdxbxegedabagacad
 export EDITOR="code --wait"
 
 # PATH adjustments
