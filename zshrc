@@ -52,6 +52,8 @@ autoload -U +X bashcompinit && bashcompinit
 
 # Common environment variables
 export CLICOLOR=1
+# Make folders cyan instead of blue as it renders better on a terminal with semi-transparent background
+export LSCOLORS=gxfxcxdxbxegedabagacad
 export EDITOR="code --wait"
 
 # PATH adjustments
