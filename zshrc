@@ -57,16 +57,15 @@ bindkey '[D' backward-word
 autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-export EDITOR="code --wait"
+export EDITOR="zed --wait"
 
 # PATH adjustments
 # Homebrew binaries will shadow system binaries. This is intended.
 export PATH=/opt/homebrew/bin:$PATH:/Users/`whoami`/.local/bin
 
 # Aliases
-alias dotedit="cd ~/.dotfiles && code ."
+alias dotedit="cd ~/.dotfiles && zed ."
 alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
-alias coding="cd ~/Documents/Code.nosync"
 
 # Ensure we can obtain VCS/Git infos in prompt later on
 autoload -Uz vcs_info
