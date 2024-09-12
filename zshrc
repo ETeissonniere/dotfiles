@@ -63,6 +63,8 @@ export EDITOR="zed --wait"
 # Homebrew binaries will shadow system binaries. This is intended.
 export PATH=/opt/homebrew/bin:$PATH:/Users/`whoami`/.local/bin
 
+export GOPATH=~/Developer/.gopath
+
 # Aliases
 alias dotedit="cd ~/.dotfiles && zed ."
 alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
