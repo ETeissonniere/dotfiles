@@ -66,10 +66,10 @@ case "$(uname -s)" in
           echo "→ Setup TimeMachine"
      ;;
 
-     Linux) # Github Codespace / VsCode devcontainers
-          # use a correct sh system
-          sudo apt update
-          sudo apt install -y zsh
-          sudo chsh -s $(which zsh) $(whoami)
+     Linux)
+          # switch to ZSH if installed
+          if [ -x "$(command -v zsh)" ]; then
+            chsh -s $(which zsh) $(whoami)
+          fi
      ;;
 esac

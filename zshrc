@@ -4,11 +4,15 @@ if [ -f $ZSH_RC ]; then
     source $ZSH_RC
 fi
 
+typeset -U path PATH
+path=(~/.local/bin $path)
+
 # If running on Mac OS, ensure we properly load our SSH keys and init the terminal
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export EDITOR="zed --wait"
-  export PATH=/opt/homebrew/bin:$PATH:/Users/`whoami`/.local/bin
   export GOPATH=~/Developer/.gopath
+
+  path=(/opt/homebrew/bin $path)
 
   if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
     function chpwd {
@@ -29,6 +33,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   init_ssh > /dev/null 2>&1 &!
 fi
 
+export PATH
+
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
@@ -48,6 +54,7 @@ unsetopt beep
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+zstyle ':completion:*' rehash true # find new binaries as they are installed
 zstyle :compinstall filename /Users/`whoami`/.zshrc
 
 # Key bindings, EMACS mode. Cursor by move on a per word basis
@@ -58,6 +65,9 @@ bindkey '[D' backward-word
 # Auto completion - with tabs and bash compatibility
 autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
+
+eval "$(fzf --zsh)"
+eval "$(zoxide init zsh)"
 
 # Aliases
 alias dotedit="cd ~/.dotfiles && $EDITOR ."
