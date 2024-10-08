@@ -4,17 +4,19 @@ if [ -f $ZSH_RC ]; then
     source $ZSH_RC
 fi
 
-# If running in the Apple Terminal, ensure new tabs
-# open in the same directory than the current shell.
-if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
-  function chpwd {
-    printf '\e]7;%s\a' "file://$HOSTNAME${PWD// /%20}"
-  }
-  chpwd
-fi
-
-# If running on Mac OS, ensure we properly load our SSH keys
+# If running on Mac OS, ensure we properly load our SSH keys and init the terminal
 if [[ "$OSTYPE" == "darwin"* ]]; then
+  export EDITOR="zed --wait"
+  export PATH=/opt/homebrew/bin:$PATH:/Users/`whoami`/.local/bin
+  export GOPATH=~/Developer/.gopath
+
+  if [[ "$TERM_PROGRAM" == "Apple_Terminal" ]]; then
+    function chpwd {
+      printf '\e]7;%s\a' "file://$HOSTNAME${PWD// /%20}"
+    }
+    chpwd
+  fi
+
   function init_ssh {
     # if ssh-agent is not running, start it
     if ! pgrep -q ssh-agent; then
@@ -57,16 +59,8 @@ bindkey '[D' backward-word
 autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-export EDITOR="zed --wait"
-
-# PATH adjustments
-# Homebrew binaries will shadow system binaries. This is intended.
-export PATH=/opt/homebrew/bin:$PATH:/Users/`whoami`/.local/bin
-
-export GOPATH=~/Developer/.gopath
-
 # Aliases
-alias dotedit="cd ~/.dotfiles && zed ."
+alias dotedit="cd ~/.dotfiles && $EDITOR ."
 alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
 
 # Ensure we can obtain VCS/Git infos in prompt later on
