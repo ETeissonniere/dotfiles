@@ -73,6 +73,16 @@ eval "$(zoxide init zsh)"
 alias dotedit="cd ~/.dotfiles && $EDITOR ."
 alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
 
+# if zoxide is installed, override cd
+if command -v zoxide &> /dev/null; then
+  alias cd="zoxide cd"
+fi
+
+# if exa is installed, override ls
+if command -v eza &> /dev/null; then
+  alias ls="eza"
+fi
+
 # Ensure we can obtain VCS/Git infos in prompt later on
 autoload -Uz vcs_info
 precmd() {
