@@ -66,21 +66,24 @@ bindkey '[D' backward-word
 autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-eval "$(fzf --zsh)"
-eval "$(zoxide init zsh)"
-
 # Aliases
 alias dotedit="cd ~/.dotfiles && $EDITOR ."
 alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
 
-# if zoxide is installed, override cd
+# if zoxide is installed, init and override cd
 if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
   alias cd="z"
 fi
 
 # if exa is installed, override ls
 if command -v eza &> /dev/null; then
   alias ls="eza"
+fi
+
+# if fzf is installed, set it up
+if command -v fzf &> /dev/null; then
+  eval "$(fzf --zsh)"
 fi
 
 # Ensure we can obtain VCS/Git infos in prompt later on
