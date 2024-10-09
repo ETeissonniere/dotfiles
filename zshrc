@@ -75,7 +75,7 @@ alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
 
 # if zoxide is installed, override cd
 if command -v zoxide &> /dev/null; then
-  alias cd="zoxide cd"
+  alias cd="z"
 fi
 
 # if exa is installed, override ls
