@@ -16,5 +16,4 @@ brew 'terraform'
 cask 'zed'
 brew 'zoxide'
 
-mas 'Bear – Markdown Notes', id: 1091189122
 mas 'The Unarchiver', id: 425424353

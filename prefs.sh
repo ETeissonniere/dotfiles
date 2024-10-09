@@ -67,9 +67,18 @@ case "$(uname -s)" in
      ;;
 
      Linux)
+          # if pacman is installed, we run on Arch and thus install
+          # our local packages
+          # Note that this really only installs useful packages and
+          # in no way sets up a full arch distro
+          if [ -x "$(command -v pacman)" ]; then
+            sudo pacman -Syu --noconfirm
+            sudo pacman -S --noconfirm $(cat arch-packages)
+          fi
+
           # switch to ZSH if installed
           if [ -x "$(command -v zsh)" ]; then
-            chsh -s $(which zsh) $(whoami)
+            chsh -s $(which zsh)
           fi
      ;;
 esac
