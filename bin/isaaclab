@@ -1,0 +1,9 @@
+#! /bin/sh
+
+# requires building container in advance
+# https://github.com/ETeissonniere/isaac-docker
+
+docker run -v $(pwd):/work \
+  --gpus all \
+  --network=host \
+  -it nvidia/isaac-lab "$@"

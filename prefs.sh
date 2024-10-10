@@ -3,6 +3,9 @@ cp -f `pwd`/gitconfig ~/.gitconfig
 git config --global gpg.ssh.allowedSignersFile `pwd`/allowed_signers
 git config --global core.excludesfile `pwd`/gitignore
 
+mkdir -p ~/.local/bin
+ln -sf `pwd`/bin/* ~/.local/bin
+
 # See https://stackoverflow.com/a/27776822
 case "$(uname -s)" in
 
