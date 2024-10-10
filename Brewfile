@@ -1,6 +1,7 @@
 cask '1password'
 cask 'arc'
 cask 'appcleaner'
+cask 'font-cascadia-code-nf'
 cask 'docker'
 brew 'eza'
 brew 'fzf'
