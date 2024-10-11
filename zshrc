@@ -9,7 +9,7 @@ path=(~/.local/bin $path)
 
 # If running on Mac OS, ensure we properly load our SSH keys and init the terminal
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  export EDITOR="zed --wait"
+  export EDITOR="code --wait"
   export GOPATH=~/Developer/.gopath
 
   path=(/opt/homebrew/bin $path)
@@ -31,6 +31,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   }
   # We disown the function call so that no pesky logs show up in the terminal
   init_ssh > /dev/null 2>&1 &!
+else
+  export EDITOR="vim"
 fi
 
 export PATH

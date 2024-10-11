@@ -14,7 +14,7 @@ cask 'ledger-live'
 brew 'pipx'
 cask 'superhuman'
 brew 'terraform'
-cask 'zed'
+cask 'visual-studio-code'
 brew 'zoxide'
 
 mas 'The Unarchiver', id: 425424353
