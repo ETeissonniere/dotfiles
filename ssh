@@ -1,3 +1,7 @@
+Host neuromancer
+    HostName neuromancer
+    User eliott
+
 Host *
     ForwardAgent yes
     UseKeychain yes
