@@ -38,6 +38,11 @@ fi
 
 export PATH
 
+# if `dockerd-rootless.sh` is installed, set up the environment
+if [ -x "$(command -v dockerd-rootless.sh)" ]; then
+  export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+fi
+
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000

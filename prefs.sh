@@ -76,6 +76,11 @@ case "$(uname -s)" in
             sudo pacman -S --noconfirm $(cat arch-packages)
           fi
 
+          # if yay is installed, install AUR packages
+          if [ -x "$(command -v yay)" ]; then
+            yay -S --noconfirm $(cat aur-packages)
+          fi
+          
           # switch to ZSH if installed
           if [ -x "$(command -v zsh)" ]; then
             chsh -s $(which zsh)
