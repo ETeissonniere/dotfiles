@@ -6,6 +6,7 @@ fi
 
 typeset -U path PATH
 path=(~/.local/bin $path)
+path=(~/.dotfiles/bin $path)
 
 # If running on Mac OS, ensure we properly load our SSH keys and init the terminal
 if [[ "$OSTYPE" == "darwin"* ]]; then
