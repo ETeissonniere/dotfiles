@@ -1,0 +1,6 @@
+#! /bin/sh
+
+# Requires building container in advance
+# https://github.com/ETeissonniere/onshape-to-robot-docker
+
+docker run --env-file=.env -v $(pwd):/work --rm -it onshape/urdf-exporter "$@"
