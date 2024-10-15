@@ -3,7 +3,20 @@
 # requires building container in advance
 # https://github.com/ETeissonniere/isaac-docker
 
-docker run -v $(pwd):/work \
-  --gpus all \
-  --network=host \
-  -it nvidia/isaac-lab "$@"
+# if $1 is `convert` call pass `-p /isaac-lab/source/standalone/tools/convert_urdf.py <all_other_args>`
+# else call container as is
+
+# TCP: 47995 to 48012
+# TCP: 49000 to 49007
+# TCP: 49100
+# UDP: 47995 to 48012
+# UDP: 49000 to 49007
+
+docker_args="-v $(pwd):/work --gpus all --network=host -it nvidia/isaac-lab"
+
+if [ "$1" = "convert" ]; then
+  shift
+  docker run $docker_args -p /isaac-lab/source/standalone/tools/convert_urdf.py "$@"
+else
+  docker run $docker_args "$@"
+fi
