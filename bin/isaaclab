@@ -12,7 +12,7 @@
 # UDP: 47995 to 48012
 # UDP: 49000 to 49007
 
-docker_args="-v $(pwd):/work --gpus all --network=host -it nvidia/isaac-lab"
+docker_args="-v $(pwd):/work --gpus all --network=host --rm -it nvidia/isaac-lab"
 
 if [ "$1" = "convert" ]; then
   shift
