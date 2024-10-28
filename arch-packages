@@ -11,6 +11,7 @@ httpie
 nvidia
 nvidia-container-toolkit
 nvidia-utils
+rustup
 sudo
 tailscale
 vim
