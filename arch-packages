@@ -14,6 +14,7 @@ nvidia-utils
 rustup
 sudo
 tailscale
+uv
 vim
 zoxide
 zsh
