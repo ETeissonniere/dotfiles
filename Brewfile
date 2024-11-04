@@ -14,6 +14,7 @@ cask 'ledger-live'
 brew 'pipx'
 cask 'superhuman'
 brew 'terraform'
+brew 'uv'
 cask 'visual-studio-code'
 brew 'zoxide'
 
