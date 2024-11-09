@@ -1,3 +1,7 @@
+  Host powern
+    HostName powern.local
+    User eliott
+
 Host neuromancer
     HostName neuromancer
     User eliott
