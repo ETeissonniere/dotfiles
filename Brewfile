@@ -17,5 +17,3 @@ brew 'terraform'
 brew 'uv'
 cask 'visual-studio-code'
 brew 'zoxide'
-
-mas 'The Unarchiver', id: 425424353
