@@ -2,8 +2,8 @@
     HostName powern.local
     User eliott
 
-Host neuromancer
-    HostName neuromancer
+Host hercules
+    HostName hercules
     User eliott
 
 Host *
