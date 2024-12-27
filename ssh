@@ -3,7 +3,7 @@
     User eliott
 
 Host hercules
-    HostName hercules
+    HostName hercules.local
     User eliott
 
 Host *
