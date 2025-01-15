@@ -1,11 +1,3 @@
-  Host powern
-    HostName powern.local
-    User eliott
-
-Host hercules
-    HostName hercules.local
-    User eliott
-
 Host *
     ForwardAgent yes
     UseKeychain yes
