@@ -72,6 +72,7 @@ autoload -U +X bashcompinit && bashcompinit
 # Aliases
 alias dotedit="cd ~/.dotfiles && $EDITOR ."
 alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
+alias conda-enter="source ~/miniconda3/bin/activate"
 
 # if zoxide is installed, init and override cd
 if command -v zoxide &> /dev/null; then
