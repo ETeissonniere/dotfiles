@@ -6,7 +6,6 @@ fi
 
 typeset -U path PATH
 path=(~/.local/bin $path)
-path=(~/.dotfiles/bin $path)
 path=(~/miniconda3/bin $path)
 
 # If running on Mac OS, ensure we properly load our SSH keys and init the terminal
