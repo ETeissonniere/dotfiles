@@ -6,7 +6,6 @@ fi
 
 typeset -U path PATH
 path=(~/.local/bin $path)
-path=(~/miniconda3/bin $path)
 
 # If running on Mac OS, ensure we properly load our SSH keys and init the terminal
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -87,6 +86,11 @@ fi
 # if fzf is installed, set it up
 if command -v fzf &> /dev/null; then
   eval "$(fzf --zsh)"
+fi
+
+# if miniconda folder exists, add an alias to activate it
+if [ -d ~/miniconda3 ]; then
+  alias conda-activate="source ~/miniconda3/bin/activate"
 fi
 
 # Ensure we can obtain VCS/Git infos in prompt later on
