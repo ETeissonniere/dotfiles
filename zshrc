@@ -7,6 +7,7 @@ fi
 typeset -U path PATH
 path=(~/.local/bin $path)
 path=(~/.dotfiles/bin $path)
+path=(~/miniconda3/bin $path)
 
 # If running on Mac OS, ensure we properly load our SSH keys and init the terminal
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -72,7 +73,6 @@ autoload -U +X bashcompinit && bashcompinit
 # Aliases
 alias dotedit="cd ~/.dotfiles && $EDITOR ."
 alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
-alias conda-enter="source ~/miniconda3/bin/activate"
 
 # if zoxide is installed, init and override cd
 if command -v zoxide &> /dev/null; then
