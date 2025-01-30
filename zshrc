@@ -90,7 +90,10 @@ fi
 
 # if miniconda folder exists, add an alias to activate it
 if [ -d ~/miniconda3 ]; then
-  alias conda-activate="source ~/miniconda3/bin/activate"
+  conda-activate() {
+    source ~/miniconda3/bin/activate
+    conda activate "$1"
+  }
 fi
 
 # Ensure we can obtain VCS/Git infos in prompt later on
