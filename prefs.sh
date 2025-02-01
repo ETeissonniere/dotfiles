@@ -78,7 +78,7 @@ case "$(uname -s)" in
           # in no way sets up a full arch distro
           if [ -x "$(command -v pacman)" ]; then
             sudo pacman -Syu --noconfirm
-	    sudo pacman -S --noconfirm $(cat arch-packages) $(cat arch-gui-packages)
+            sudo pacman -S --noconfirm $(cat arch-packages) $(cat arch-gui-packages)
           fi
 
           # if yay is installed, install AUR packages
@@ -90,5 +90,8 @@ case "$(uname -s)" in
           if [ -x "$(command -v zsh)" ]; then
             chsh -s $(which zsh)
           fi
+          
+          # Enable a couple services for desktop use, can be skipped on pure servers
+          systemctl enable --now bluetooth || echo "BLE not installed"
      ;;
 esac

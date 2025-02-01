@@ -1,6 +1,11 @@
+bluez
+bluez-utils
+fuse2
 ghostty
 hyprland
 hyprpolkitagent
+libfido2
+libva-nvidia-driver
 rofi-wayland
 swaync
 uwsm
