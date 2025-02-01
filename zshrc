@@ -10,7 +10,6 @@ path=(~/miniconda3/bin $path)
 
 # If running on Mac OS, ensure we properly load our SSH keys and init the terminal
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  export EDITOR="code --wait"
   export GOPATH=~/Developer/.gopath
 
   path=(/opt/homebrew/bin $path)
@@ -33,7 +32,15 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   # We disown the function call so that no pesky logs show up in the terminal
   init_ssh > /dev/null 2>&1 &!
 else
-  export EDITOR="vim"
+  function init_ssh {
+    # if ssh-agent is not running, start it
+    if ! pgrep -q ssh-agent; then
+      eval "$(ssh-agent -s)"
+    fi
+    ssh-add
+  }
+  # We disown the function call so that no pesky logs show up in the terminal
+  init_ssh > /dev/null 2>&1 &!
 fi
 
 export PATH
@@ -97,6 +104,18 @@ if command -v uwsm &> /dev/null; then
     fi
   fi
 fi
+
+# if cursor is installed, set it as the editor.
+# else if code is installed, set it as the editor,
+# else set it to vim
+if command -v cursor &> /dev/null; then
+  export EDITOR="cursor"
+elif command -v code &> /dev/null; then
+  export EDITOR="code --wait"
+else
+  export EDITOR="vim"
+fi
+
 
 # Ensure we can obtain VCS/Git infos in prompt later on
 autoload -Uz vcs_info

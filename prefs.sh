@@ -2,9 +2,6 @@ ln -sf `pwd`/condarc ~/.condarc
 ln -sf `pwd`/zshrc ~/.zshrc
 cp -f `pwd`/gitconfig ~/.gitconfig
 
-ln -sf `pwd`/configs/hypr ~/.config/hypr
-ln -sf `pwd`/configs/waybar ~/.config/waybar
-
 git config --global gpg.ssh.allowedSignersFile `pwd`/allowed_signers
 git config --global core.excludesfile `pwd`/gitignore
 
@@ -75,6 +72,10 @@ case "$(uname -s)" in
           mkdir -p ~/.ssh
           ln -sf `pwd`/ssh.linux ~/.ssh/config
 
+          ln -sf `pwd`/configs/hypr ~/.config/hypr
+          ln -sf `pwd`/configs/waybar ~/.config/waybar
+          ln -sf `pwd`/configs/systemd ~/.config/systemd
+
           # if pacman is installed, we run on Arch and thus install
           # our local packages
           # Note that this really only installs useful packages and
@@ -96,5 +97,8 @@ case "$(uname -s)" in
           
           # Enable a couple services for desktop use, can be skipped on pure servers
           systemctl enable --now bluetooth || echo "BLE not installed"
+
+          # Enable SSH agent service
+          systemctl enable --now --user ssh-agent.service
      ;;
 esac
