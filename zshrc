@@ -6,6 +6,7 @@ fi
 
 typeset -U path PATH
 path=(~/.local/bin $path)
+path=(~/miniconda3/bin $path)
 
 # If running on Mac OS, ensure we properly load our SSH keys and init the terminal
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -112,8 +113,6 @@ if [ $? -eq 0 ]; then
 else
     if [ -f "~/miniconda3/etc/profile.d/conda.sh" ]; then
         . "~/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="~/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
