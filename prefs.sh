@@ -1,6 +1,10 @@
 ln -sf `pwd`/condarc ~/.condarc
 ln -sf `pwd`/zshrc ~/.zshrc
 cp -f `pwd`/gitconfig ~/.gitconfig
+
+ln -sf `pwd`/configs/hypr ~/.config/hypr
+ln -sf `pwd`/configs/waybar ~/.config/waybar
+
 git config --global gpg.ssh.allowedSignersFile `pwd`/allowed_signers
 git config --global core.excludesfile `pwd`/gitignore
 
@@ -74,7 +78,7 @@ case "$(uname -s)" in
           # in no way sets up a full arch distro
           if [ -x "$(command -v pacman)" ]; then
             sudo pacman -Syu --noconfirm
-            sudo pacman -S --noconfirm $(cat arch-packages)
+	    sudo pacman -S --noconfirm $(cat arch-packages) $(cat arch-gui-packages)
           fi
 
           # if yay is installed, install AUR packages

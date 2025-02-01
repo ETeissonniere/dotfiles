@@ -89,6 +89,15 @@ if command -v fzf &> /dev/null; then
   eval "$(fzf --zsh)"
 fi
 
+# if uwsm and hyprland are installed, start them
+if command -v uwsm &> /dev/null; then
+  if command -v Hyprland &> /dev/null; then
+    if uwsm check may-start; then
+      exec uwsm start hyprland.desktop
+    fi
+  fi
+fi
+
 # Ensure we can obtain VCS/Git infos in prompt later on
 autoload -Uz vcs_info
 precmd() {
