@@ -14,7 +14,7 @@ case "$(uname -s)" in
      Darwin)
           # Configuration files
           mkdir -p ~/.ssh
-          ln -sf `pwd`/ssh ~/.ssh/config
+          ln -sf `pwd`/ssh.macos ~/.ssh/config
 
           echo "### Please enter the computer name:"
           read computerName
@@ -72,6 +72,9 @@ case "$(uname -s)" in
      ;;
 
      Linux)
+          mkdir -p ~/.ssh
+          ln -sf `pwd`/ssh.linux ~/.ssh/config
+
           # if pacman is installed, we run on Arch and thus install
           # our local packages
           # Note that this really only installs useful packages and
