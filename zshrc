@@ -88,14 +88,6 @@ if command -v fzf &> /dev/null; then
   eval "$(fzf --zsh)"
 fi
 
-# if miniconda folder exists, add an alias to activate it
-if [ -d ~/miniconda3 ]; then
-  conda-activate() {
-    source ~/miniconda3/bin/activate
-    conda activate "$1"
-  }
-fi
-
 # Ensure we can obtain VCS/Git infos in prompt later on
 autoload -Uz vcs_info
 precmd() {
@@ -111,3 +103,18 @@ PROMPT='%F{81}%n%f %F{247}on%f %F{39}%m%f %F{247}in%f %F{161}%2~%f %F{228}${vcs_
 %(?.%F{76}√%f.%F{196}%?%f) → '
 # Blinking cursor
 echo -e -n "\x1b[\x31 q"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/eliottteissonniere/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/eliottteissonniere/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/eliottteissonniere/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/eliottteissonniere/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
