@@ -1,3 +1,4 @@
+ln -sf `pwd`/condarc ~/.condarc
 ln -sf `pwd`/zshrc ~/.zshrc
 cp -f `pwd`/gitconfig ~/.gitconfig
 git config --global gpg.ssh.allowedSignersFile `pwd`/allowed_signers
