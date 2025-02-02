@@ -10,6 +10,7 @@ git
 git-lfs
 github-cli
 httpie
+inotify-tools
 nvidia
 nvidia-container-toolkit
 nvidia-utils
