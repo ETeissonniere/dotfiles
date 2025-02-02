@@ -6,8 +6,13 @@ hyprland
 hyprpolkitagent
 libfido2
 libva-nvidia-driver
+libvdpau-va-gl
+pipewire
+pipewire-alsa
+pipewire-pulse
 rofi-wayland
 swaync
 ttf-font-awesome
 waybar
+wireplumber
 xdg-desktop-portal-hyprland
