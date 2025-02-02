@@ -1,0 +1,40 @@
+configuration {
+    modi: "drun,window";
+    show-icons: true;
+    icon-theme: "Papirus";
+    terminal: "ghostty";
+    drun-display-format: "{icon} {name}";
+    window-format: "{icon} {t}";
+    window-command: "hyprctl dispatch focuswindow address:{window}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "";
+    display-window: "";
+    sidebar-mode: false;
+    
+    // Window class rewrites
+    window-match-fields: "class,title";
+    window-rewrite-rules: [
+        "cursor-url-handler:Cursor",
+        "com.mitchellh.ghostty:Ghostty",
+        "google-chrome:Google Chrome",
+        "theme.rasi - .dotfiles - Cursor:Cursor",
+        "config.rasi - .dotfiles - Cursor:Cursor"
+    ];
+    
+    // Vim-like navigation
+    kb-row-up: "Up,Control+k";
+    kb-row-down: "Down,Control+j";
+    kb-row-left: "Control+h";
+    kb-row-right: "Control+l";
+    kb-remove-to-eol: "";
+    kb-accept-entry: "Return,KP_Enter";
+    
+    // MacOS-like navigation
+    kb-remove-char-back: "BackSpace";
+    kb-mode-complete: "";
+    kb-remove-to-sol: "";
+}
+
+@theme "~/.config/rofi/theme.rasi" 
