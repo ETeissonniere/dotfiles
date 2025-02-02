@@ -96,11 +96,13 @@ if command -v fzf &> /dev/null; then
   eval "$(fzf --zsh)"
 fi
 
-# if uwsm and hyprland are installed, start them
-if command -v uwsm &> /dev/null; then
-  if command -v Hyprland &> /dev/null; then
-    if uwsm check may-start; then
-      exec uwsm start hyprland.desktop
+# if uwsm and hyprland are installed, start them (but not on SSH)
+if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ]; then
+  if command -v uwsm &> /dev/null; then
+    if command -v Hyprland &> /dev/null; then
+      if uwsm check may-start; then
+        exec uwsm start hyprland.desktop
+      fi
     fi
   fi
 fi
