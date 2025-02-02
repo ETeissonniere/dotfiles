@@ -73,6 +73,9 @@ bindkey '[C' forward-word
 bindkey '[D' backward-word
 bindkey '^[[1;3C' forward-word    # Alt + Right
 bindkey '^[[1;3D' backward-word   # Alt + Left
+bindkey '^H' backward-kill-word    # Ctrl + Backspace
+bindkey '^[[3;5~' kill-word       # Ctrl + Delete
+
 
 # Auto completion - with tabs and bash compatibility
 autoload -Uz compinit && compinit
