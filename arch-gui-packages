@@ -15,6 +15,7 @@ pipewire
 pipewire-alsa
 pipewire-pulse
 rofi-wayland
+showtime
 swaync
 ttf-font-awesome
 waybar
