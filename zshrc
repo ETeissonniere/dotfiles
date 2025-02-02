@@ -37,7 +37,7 @@ else
     if ! pgrep -q ssh-agent; then
       eval "$(ssh-agent -s)"
     fi
-    ssh-add
+    ssh-add ~/.ssh/id_rsa
   }
   # We disown the function call so that no pesky logs show up in the terminal
   init_ssh > /dev/null 2>&1 &!
