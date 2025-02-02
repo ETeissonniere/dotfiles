@@ -1,7 +1,10 @@
 bluez
 bluez-utils
+clapper
 fuse2
 ghostty
+gst-libav
+gst-plugin-va
 hypridle
 hyprland
 hyprlock
@@ -15,7 +18,6 @@ pipewire
 pipewire-alsa
 pipewire-pulse
 rofi-wayland
-showtime
 swaync
 ttf-font-awesome
 waybar
