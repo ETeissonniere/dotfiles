@@ -71,6 +71,8 @@ zstyle :compinstall filename /Users/`whoami`/.zshrc
 bindkey -e
 bindkey '[C' forward-word
 bindkey '[D' backward-word
+bindkey '^[[1;3C' forward-word    # Alt + Right
+bindkey '^[[1;3D' backward-word   # Alt + Left
 
 # Auto completion - with tabs and bash compatibility
 autoload -Uz compinit && compinit
