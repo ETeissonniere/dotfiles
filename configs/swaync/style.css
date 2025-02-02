@@ -13,27 +13,27 @@
 }
 
 .floating-notifications .notification-row {
-    padding: 6px;
-    margin: 6px 12px;
+    padding: 12px;
+    margin: 8px;
     border-radius: 8px;
-    background: rgba(18, 18, 23, 0.45);
+    background: rgba(18, 18, 23, 0.85);
     border: 1px solid rgba(184, 58, 58, 0.15);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .notification-row:hover {
-    background: rgba(26, 26, 32, 0.55);
+    background: rgba(26, 26, 32, 0.95);
 }
 
 .notification {
-    margin: 6px;
+    margin: 0;
     padding: 0;
 }
 
 .notification-content {
     background: transparent;
-    padding: 6px;
-    margin: 6px 0;
+    padding: 0;
+    margin: 0;
 }
 
 /* Notifications "title" */
@@ -41,6 +41,7 @@
     font-size: 14px;
     font-weight: bold;
     color: #e2d5cd;
+    margin-bottom: 8px;
 }
 
 .body {
@@ -48,18 +49,26 @@
 }
 
 .control-center {
-    background: rgba(18, 18, 23, 0.45);
+    background: rgba(18, 18, 23, 0.85);
     border: 1px solid rgba(184, 58, 58, 0.15);
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    margin: 6px 12px;
-    padding: 8px;
+    margin: 8px;
+    padding: 12px;
 }
 
 .control-center-list {
     background: transparent;
-    padding: 6px;
-    margin: 6px 0;
+    padding: 0;
+    margin: 8px 0;
+}
+
+.control-center-list > * {
+    margin-bottom: 8px;
+}
+
+.control-center-list > *:last-child {
+    margin-bottom: 0;
 }
 
 .control-center-list-placeholder {
@@ -71,19 +80,20 @@
     color: #e2d5cd;
     font-size: 14px;
     font-weight: bold;
+    margin-bottom: 8px;
 }
 
 .control-center-title {
-    margin: 4px;
-    padding: 8px;
+    margin: 4px 0;
+    padding: 8px 12px;
     background: rgba(184, 58, 58, 0.08);
     border-radius: 6px;
 }
 
 /* DND button */
 .dnd-button {
-    margin: 4px;
-    padding: 8px;
+    margin: 8px 0;
+    padding: 8px 12px;
     background: rgba(184, 58, 58, 0.08);
     border-radius: 6px;
     color: #d4bfb3;
@@ -126,8 +136,10 @@ button {
     color: #d4bfb3;
     border-radius: 6px;
     border: none;
-    padding: 8px;
+    padding: 8px 12px;
     margin: 4px;
+    outline: none;
+    box-shadow: none;
 }
 
 button:hover {
@@ -135,52 +147,34 @@ button:hover {
     color: #e2d5cd;
 }
 
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 .notification button {
-    background: rgba(184, 58, 58, 0.12);
+    background: rgba(184, 58, 58, 0.08);
     color: #d4bfb3;
     border-radius: 6px;
-}
-
-.notification button:hover {
-    background: rgba(184, 58, 58, 0.25);
-    color: #e2d5cd;
-}
-
-.notification button.notification-default-action {
-    background: rgba(184, 58, 58, 0.25);
-    color: #e2d5cd;
-}
-
-.notification button.notification-default-action:hover {
-    background: rgba(184, 58, 58, 0.4);
+    padding: 4px 8px;
+    margin: 8px 4px 0 0;
+    outline: none;
+    box-shadow: none;
 }
 
 /* Close button */
 button.close-button {
     background: rgba(139, 62, 62, 0.3);
     color: #e2d5cd;
+    border-radius: 6px;
     margin: 4px;
     padding: 4px 8px;
+    outline: none;
+    box-shadow: none;
 }
 
 button.close-button:hover {
     background: rgba(139, 62, 62, 0.5);
-}
-
-.notification-default-action,
-.notification-action {
-    padding: 4px;
-    margin: 0;
-    box-shadow: none;
-    background: rgba(184, 58, 58, 0.12);
-    border: none;
-    color: #d4bfb3;
-}
-
-.notification-default-action:hover,
-.notification-action:hover {
-    background: rgba(184, 58, 58, 0.25);
-    color: #e2d5cd;
 }
 
 /* Notifications close button */
@@ -190,6 +184,8 @@ button.close-button:hover {
     border-radius: 6px;
     color: #d4bfb3;
     background: rgba(139, 62, 62, 0.3);
+    outline: none;
+    box-shadow: none;
 }
 
 .notification-close:hover {
@@ -197,18 +193,50 @@ button.close-button:hover {
     color: #e2d5cd;
 }
 
+/* Switch */
+switch {
+    background: rgba(139, 62, 62, 0.3);
+    border-radius: 14px;
+    min-width: 45px;
+    min-height: 25px;
+    margin: 4px;
+    outline: none;
+    box-shadow: none;
+}
+
+switch:checked {
+    background: rgba(184, 58, 58, 0.6);
+}
+
+switch:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+switch slider {
+    background: #d4bfb3;
+    border-radius: 12px;
+    min-width: 20px;
+    min-height: 20px;
+    margin: 2px;
+}
+
+switch:checked slider {
+    background: #e2d5cd;
+}
+
 /* Notification urgency levels */
 .low {
-    background: rgba(26, 26, 32, 0.45);
+    background: rgba(26, 26, 32, 0.85);
     border: 1px solid rgba(184, 82, 75, 0.15);
 }
 
 .normal {
-    background: rgba(26, 26, 32, 0.45);
+    background: rgba(26, 26, 32, 0.85);
     border: 1px solid rgba(184, 58, 58, 0.15);
 }
 
 .critical {
-    background: rgba(26, 26, 32, 0.55);
+    background: rgba(26, 26, 32, 0.95);
     border: 1px solid rgba(139, 62, 62, 0.3);
 } 
