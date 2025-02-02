@@ -75,6 +75,7 @@ case "$(uname -s)" in
           ln -sf `pwd`/configs/hypr ~/.config/hypr
           ln -sf `pwd`/configs/waybar ~/.config/waybar
           ln -sf `pwd`/configs/systemd ~/.config/systemd
+          ln -sf `pwd`/configs/swaync ~/.config/swaync
 
           # if pacman is installed, we run on Arch and thus install
           # our local packages
