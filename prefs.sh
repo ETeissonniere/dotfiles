@@ -77,6 +77,7 @@ case "$(uname -s)" in
           ln -sf `pwd`/configs/rofi ~/.config/rofi
           ln -sf `pwd`/configs/systemd ~/.config/systemd
           ln -sf `pwd`/configs/swaync ~/.config/swaync
+          ln -sf `pwd`/configs/ghostty ~/.config/ghostty
 
           # if pacman is installed, we run on Arch and thus install
           # our local packages
