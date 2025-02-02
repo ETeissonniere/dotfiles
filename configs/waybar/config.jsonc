@@ -82,7 +82,8 @@
             "portable": "\uf3cd",
             "car": "\uf1b9",
             "default": ["\uf026", "\uf027", "\uf028"]
-        }
+        },
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
     "custom/notification": {
         "tooltip": false,
