@@ -105,12 +105,12 @@ if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ] && [ "$(tty)" = "/dev/tty1" ]; then
 fi
 
 # if cursor is installed, set it as the editor.
-# else if code is installed, set it as the editor,
+# else if we're in a VS Code terminal (Cursor), set it as the editor,
 # else set it to vim
 if command -v cursor &> /dev/null; then
-  export EDITOR="cursor"
-elif command -v code &> /dev/null; then
-  export EDITOR="code --wait"
+  export EDITOR="cursor --wait"
+elif [ "$VSCODE_INJECTION" = "1" ]; then
+  export EDITOR="cursor --wait"
 else
   export EDITOR="vim"
 fi
