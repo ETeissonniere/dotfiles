@@ -117,7 +117,8 @@ button:hover {
 #power-profiles-daemon,
 #mpd,
 #custom-notification,
-#custom-player {
+#custom-player,
+#custom-powermenu {
     background: rgba(26, 26, 32, 0.6);
     padding: 0 10px;
     margin: 4px 3px;
@@ -369,7 +370,8 @@ label:focus {
 #network:hover,
 #custom-notification:hover,
 #custom-player:hover,
-#idle_inhibitor:hover {
+#idle_inhibitor:hover,
+#custom-powermenu:hover {
     background: rgba(184, 58, 58, 0.25);
     color: #e2d5cd;
 }

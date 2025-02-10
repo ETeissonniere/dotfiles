@@ -1,5 +1,5 @@
 * {
-    font: "Roboto 12";
+    font: "FontAwesome, Roboto 12";
     
     /* Colors */
     bg0:     #121217dd;    /* Main window background - more opaque */

@@ -18,7 +18,8 @@
         "pulseaudio",
         "network",
         "clock",
-        "custom/notification"
+        "custom/notification",
+        "custom/powermenu"
     ],
     "custom/rofi": {
         "format": "<span color='#b8bb26'>\uf0c9</span>",
@@ -104,5 +105,10 @@
         "on-click-right": "swaync-client -d -sw",
         "on-click": "swaync-client -t -sw",
         "escape": true
+    },
+    "custom/powermenu": {
+        "format": "⏻",
+        "on-click": "rofi -show powermenu -modi powermenu:~/.config/rofi/powermenu.sh",
+        "tooltip": false
     }
 }
