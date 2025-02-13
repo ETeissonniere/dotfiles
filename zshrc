@@ -77,10 +77,6 @@ bindkey '^[[3;5~' kill-word       # Ctrl + Delete
 autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-# Aliases
-alias dotedit="cd ~/.dotfiles && $EDITOR ."
-alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
-
 # if zoxide is installed, init and override cd
 if command -v zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
@@ -114,6 +110,10 @@ elif [ "$VSCODE_INJECTION" = "1" ]; then
 else
   export EDITOR="vim"
 fi
+
+# Aliases
+alias dotedit="cd ~/.dotfiles && $EDITOR ."
+alias dotup="zsh -c \"cd ~/.dotfiles && git pull\""
 
 
 # Ensure we can obtain VCS/Git infos in prompt later on
