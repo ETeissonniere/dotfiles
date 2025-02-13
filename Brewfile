@@ -26,5 +26,6 @@ brew 'terraform'
 brew 'uv'
 brew 'zoxide'
 
+mas 'Flighty – Live Flight Tracker', id: 1358823008
 mas 'Telegram', id: 747648890
 mas 'WhatsApp Messenger', id: 310633997
