@@ -13,6 +13,9 @@ case "$(uname -s)" in
           mkdir -p ~/.ssh
           ln -sf `pwd`/ssh.macos ~/.ssh/config
 
+          # Finish git config using 1Password
+          git config --global gpg.ssh.program "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
           echo "### Please enter the computer name:"
           read computerName
 
