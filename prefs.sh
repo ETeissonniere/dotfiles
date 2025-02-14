@@ -61,6 +61,8 @@ case "$(uname -s)" in
           fi
           brew bundle
 
+          ./mac_dock.sh
+
           # Reminders / TODOs
           echo "#######################################################"
           echo "# 🔥 Battlestation ready - remaining actions          #"
