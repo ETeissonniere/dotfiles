@@ -23,7 +23,6 @@ cask 'raspberry-pi-imager'
 cask 'slack'
 cask 'superhuman'
 brew 'terraform'
-brew 'uv'
 brew 'zoxide'
 
 mas 'Flighty – Live Flight Tracker', id: 1358823008
