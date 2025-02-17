@@ -8,6 +8,7 @@ dockutil --no-restart --add "~/Applications/Chrome Apps.localized/YouTube Music.
 dockutil --no-restart --add "/Applications/Superhuman.app"
 dockutil --no-restart --add "/System/Applications/Mail.app"
 dockutil --no-restart --add "/System/Applications/Messages.app"
+dockutil --no-restart --add "/Applications/Slack.app"
 dockutil --no-restart --add "/Applications/Telegram.app"
 dockutil --no-restart --add "/Applications/WhatsApp.app"
 dockutil --no-restart --add "/Applications/Discord.app"
