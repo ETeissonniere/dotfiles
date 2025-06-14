@@ -5,8 +5,6 @@ if [ -f $ZSH_RC ]; then
 fi
 
 typeset -U path PATH
-path=(~/.local/bin $path)
-path=(~/miniconda3/bin $path)
 
 # If running on Mac OS, ensure we properly load our SSH keys and init the terminal
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -131,16 +129,3 @@ PROMPT='%F{81}%n%f %F{247}on%f %F{39}%m%f %F{247}in%f %F{161}%2~%f %F{228}${vcs_
 %(?.%F{76}√%f.%F{196}%?%f) → '
 # Blinking cursor
 echo -e -n "\x1b[\x31 q"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/miniconda3/etc/profile.d/conda.sh"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
