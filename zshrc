@@ -29,12 +29,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   }
   # We disown the function call so that no pesky logs show up in the terminal
   init_ssh > /dev/null 2>&1 &!
-else
-  # if the SSH agent socket created by our systemd service is present, use it
-  SSH_AUTH_SOCK=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/ssh-agent.socket
-  if [ -S "$SSH_AUTH_SOCK" ]; then
-    export SSH_AUTH_SOCK
-  fi
 fi
 
 export PATH
