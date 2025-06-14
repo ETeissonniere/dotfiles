@@ -91,13 +91,6 @@ if command -v fzf &> /dev/null; then
   eval "$(fzf --zsh)"
 fi
 
-# Start Hyprland automatically on TTY1 login (but not on SSH)
-if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-  if command -v Hyprland &> /dev/null; then
-    exec Hyprland
-  fi
-fi
-
 # if cursor is installed, set it as the editor.
 # else if we're in a VS Code terminal (Cursor), set it as the editor,
 # else set it to vim
