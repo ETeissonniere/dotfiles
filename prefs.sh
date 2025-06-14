@@ -44,13 +44,6 @@ case "$(uname -s)" in
           defaults write com.apple.dock tilesize -integer 64
           killall Dock
 
-          # Firewall
-          sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
-          sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setblockall off
-          sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on
-          sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp off
-          sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on
-
           # Packages
 
           # Only run the below if brew is not installed
