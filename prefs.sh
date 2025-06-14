@@ -1,4 +1,3 @@
-ln -sf `pwd`/condarc ~/.condarc
 ln -sf `pwd`/zshrc ~/.zshrc
 cp -f `pwd`/gitconfig ~/.gitconfig
 
