@@ -1,6 +1,7 @@
 cask '1password'
 cask 'appcleaner'
 cask 'bambu-studio'
+cask 'betaflight-configurator'
 cask 'chatgpt'
 cask 'cursor'
 cask 'discord'
