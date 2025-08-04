@@ -18,6 +18,7 @@ cask 'ledger-live'
 cask 'logi-options+'
 cask 'raspberry-pi-imager'
 brew 'terraform'
+cask 'visual-studio-code'
 brew 'zoxide'
 
 mas 'AdGuard for Safari', id: 1440147259
