@@ -85,13 +85,13 @@ if command -v fzf &> /dev/null; then
   eval "$(fzf --zsh)"
 fi
 
-# if cursor is installed, set it as the editor.
-# else if we're in a VS Code terminal (Cursor), set it as the editor,
+# if vscode is installed, set it as the editor.
+# else if we're in a VS Code terminal, set it as the editor,
 # else set it to vim
-if command -v cursor &> /dev/null; then
-  export EDITOR="cursor --wait"
+if command -v code &> /dev/null; then
+  export EDITOR="code --wait"
 elif [ "$VSCODE_INJECTION" = "1" ]; then
-  export EDITOR="cursor --wait"
+  export EDITOR="code --wait"
 else
   export EDITOR="vim"
 fi

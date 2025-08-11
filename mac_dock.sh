@@ -12,7 +12,7 @@ dockutil --no-restart --add "/System/Applications/Calendar.app"
 dockutil --no-restart --add "/System/Applications/Reminders.app"
 dockutil --no-restart --add "/Applications/GhostTy.app"
 dockutil --no-restart --add "/System/Applications/Utilities/Terminal.app"
-dockutil --no-restart --add "/Applications/Cursor.app"
+dockutil --no-restart --add "/Applications/Visual Studio Code.app"
 
 dockutil --no-restart --add "~/Downloads"
 
