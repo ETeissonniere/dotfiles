@@ -45,6 +45,9 @@ defaults write com.apple.dock autohide -bool YES
 defaults write com.apple.dock tilesize -integer 64
 killall Dock
 
+# set Terminal theme
+defaults write com.apple.Terminal "Default Window Settings" -string "Clear Dark"
+
 # Only run the below if brew is not installed
 if ! command -v brew &> /dev/null
 then
