@@ -61,6 +61,17 @@ then
      ./mac_dock.sh
 fi
 
+# Only run if NVM is installed
+if command -v nvm &> /dev/null
+then
+     echo "configuring node..."
+     nvm install --lts
+     nvm use --lts
+
+     echo "installing claude code..."
+     npm install -g @anthropic-ai/claude-code
+fi
+
 # Reminders / TODOs
 echo "#######################################################"
 echo "# 🔥 Battlestation ready - remaining actions#"
