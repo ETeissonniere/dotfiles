@@ -5,6 +5,7 @@ if [ -f $ZSH_RC ]; then
 fi
 
 typeset -U path PATH
+path=($HOME/.local/bin $path)
 
 # If running on Mac OS, ensure we properly load our SSH keys and init the terminal
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -29,8 +30,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   }
   # We disown the function call so that no pesky logs show up in the terminal
   init_ssh > /dev/null 2>&1 &!
-fi
 
+fi
 export PATH
 
 HISTFILE=~/.zsh_history
@@ -116,8 +117,3 @@ PROMPT='%F{81}%n%f %F{247}on%f %F{39}%m%f %F{247}in%f %F{161}%2~%f %F{228}${vcs_
 %(?.%F{76}√%f.%F{196}%?%f) → '
 # Blinking cursor
 echo -e -n "\x1b[\x31 q"
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$(brew --prefix nvm)/nvm.sh" ] && \. "$(brew --prefix nvm)/nvm.sh"
-[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
