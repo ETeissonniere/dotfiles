@@ -1,7 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
 FOLDER="$HOME/.dotfiles"
 URL=https://github.com/ETeissonniere/dotfiles
 
-if [ ! -d "$FOLDER" ]; then
+if [[ ! -d "$FOLDER" ]]; then
     git clone "$URL" "$FOLDER"
 else
     cd "$FOLDER" || exit 1
@@ -9,4 +12,4 @@ else
 fi
 
 cd "$FOLDER" || exit 1
-./prefs.sh
+exec "$FOLDER/scripts/bootstrap/main.sh" "$@"

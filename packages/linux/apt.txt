@@ -1,0 +1,7 @@
+# Base tooling
+build-essential
+curl
+git
+htop
+vim
+zsh
