@@ -41,13 +41,8 @@ case "${DOTFILES_PLATFORM}" in
     repo_url="https://download.docker.com/linux/ubuntu"
     codename="${UBUNTU_CODENAME:-$VERSION_CODENAME}"
     ;;
-  raspbian)
-    repo_url="https://download.docker.com/linux/raspbian"
-    codename="${VERSION_CODENAME:-}"
-    ;;
-  linux)
-    repo_url="https://download.docker.com/linux/debian"
-    codename="${VERSION_CODENAME:-}"
+  raspbian|linux)
+    # Raspberry Pi OS 64-bit and generic Debian use the default values above.
     ;;
   *)
     log_warn "Unsupported platform '$DOTFILES_PLATFORM' for Docker installer"
