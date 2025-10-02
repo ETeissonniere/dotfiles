@@ -9,10 +9,18 @@ case "$(uname -s)" in
      ;;
 esac
 
+EXPECTED_USER="eliottteissonniere"
+CURRENT_USER="${SUDO_USER:-$(id -un)}"
+if [ "$CURRENT_USER" != "$EXPECTED_USER" ]; then
+     echo "This setup expects macOS user '$EXPECTED_USER', but detected '$CURRENT_USER'." >&2
+     echo "Update the hardcoded paths in gitconfig or change the login before rerunning." >&2
+     exit 1
+fi
+
 mkdir -p ~/.ssh
 ln -sf `pwd`/ssh ~/.ssh/config
 ln -sf `pwd`/zshrc ~/.zshrc
-# this assumes username is "eliottteissonniere"
+# linking relies on username guard above
 ln -sf `pwd`/gitconfig ~/.gitconfig
 
 echo "### Please enter the computer name:"
