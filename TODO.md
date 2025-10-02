@@ -1,7 +1,6 @@
 # TODO
 
 - Decide whether to refresh `config/git/allowed_signers` with current SSH signing keys or skip the step entirely.
-- Switch the default SSH key references back to `id_rsa` instead of `id_ed25519`.
 - Change the shell prompt on servers and macOS installs.
 - Fix the Docker installation step.
 - Backport the modern tools (`eza`, etc.) to the apt-based package list.

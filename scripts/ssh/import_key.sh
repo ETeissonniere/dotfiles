@@ -11,13 +11,13 @@ Usage: $(basename "$0") [--from <path>] [--label <name>]
 Options:
   --from   Path to an existing SSH key (without extension). Copies both the
            private and public key to ~/.ssh.
-  --label  Alternate file name to use instead of id_ed25519.
+  --label  Alternate file name to use instead of id_rsa.
   --help   Show this message.
 USAGE
 }
 
 SOURCE=""
-LABEL="id_ed25519"
+LABEL="id_rsa"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
