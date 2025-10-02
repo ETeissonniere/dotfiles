@@ -5,3 +5,9 @@ git
 htop
 vim
 zsh
+
+# Modern CLI enhancements
+eza
+fzf
+ripgrep
+zoxide

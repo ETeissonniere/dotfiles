@@ -60,6 +60,10 @@ if command -v fzf >/dev/null 2>&1; then
   eval "$(fzf --zsh)"
 fi
 
+if command -v rg >/dev/null 2>&1; then
+  alias grep="rg"
+fi
+
 # Editor preference: favour VS Code when available.
 if command -v code >/dev/null 2>&1; then
   export EDITOR="code --wait"
