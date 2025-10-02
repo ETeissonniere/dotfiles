@@ -1,12 +1,12 @@
-FOLDER=~/.dotfiles
+FOLDER="$HOME/.dotfiles"
 URL=https://github.com/ETeissonniere/dotfiles
 
-if [ ! -d "$FOLDER" ] ; then
+if [ ! -d "$FOLDER" ]; then
     git clone "$URL" "$FOLDER"
 else
-    cd "$FOLDER"
-    git pull $URL
+    cd "$FOLDER" || exit 1
+    git pull
 fi
 
-cd $FOLDER
+cd "$FOLDER" || exit 1
 ./prefs.sh
