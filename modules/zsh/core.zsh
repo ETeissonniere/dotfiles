@@ -75,6 +75,7 @@ fi
 
 # VCS prompt integration.
 autoload -Uz vcs_info
+
 precmd() {
   vcs_info
 }
@@ -83,7 +84,15 @@ zstyle ':vcs_info:git*' formats "[%b]"
 zstyle ':vcs_info:git*' actionformats "[%b (%a)]"
 
 setopt prompt_subst
-PROMPT='%F{81}%n%f %F{247}on%f %F{39}%m%f %F{247}in%f %F{161}%2~%f %F{228}${vcs_info_msg_0_}%f
+
+if [[ -z ${PROMPT_REMOTE_LABEL-} ]]; then
+  if [[ -n ${SSH_CONNECTION:-} || -n ${SSH_TTY:-} ]]; then
+    PROMPT_REMOTE_LABEL='%F{244}[ %K{196}%F{231} remote %f%k%F{244} ]%f'
+  fi
+fi
+
+PROMPT='%F{81}%n%f %F{247}on%f %F{39}%m%f${PROMPT_PLATFORM_LABEL:+ ${PROMPT_PLATFORM_LABEL}}${PROMPT_REMOTE_LABEL:+ ${PROMPT_REMOTE_LABEL}} %F{247}in%f %F{161}%2~%f %F{228}${vcs_info_msg_0_}%f
 %(?.%F{76}√%f.%F{196}%?%f) → '
+RPROMPT='${RPROMPT_PLATFORM_LABEL}'
 
 printf '\033[1 q'
