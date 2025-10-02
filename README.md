@@ -5,10 +5,8 @@ These dotfiles configure macOS workstations and Linux servers with a consistent 
 ## Quick start
 
 ```sh
-# Install or update the dotfiles repo, then run the bootstrap sequence
-curl -fsSL https://git.io/eliott_dot_sh | sh
-
-# or, if the repo is already cloned
+git clone https://github.com/ETeissonniere/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
 make bootstrap
 ```
 
