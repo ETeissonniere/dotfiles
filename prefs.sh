@@ -61,12 +61,6 @@ then
      ./mac_dock.sh
 fi
 
-# Only run if claude is NOT installed
-if ! command -v claude &> /dev/null
-then
-     curl -fsSL https://claude.ai/install.sh | bash -s latest
-fi
-
 # Reminders / TODOs
 echo "#######################################################"
 echo "# 🔥 Battlestation ready - remaining actions#"
