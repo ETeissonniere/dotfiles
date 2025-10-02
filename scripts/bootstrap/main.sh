@@ -27,15 +27,11 @@ maybe_apply_macos_defaults() {
     return
   fi
 
-  read -r -p "Apply macOS defaults and system settings now? [y/N]: " response
-  case "$response" in
-    [Yy]*)
-      "${DOTFILES_ROOT}/scripts/macos/defaults.sh"
-      ;;
-    *)
-      log_info "Skipping macOS defaults"
-      ;;
-  esac
+  if prompt_confirm "Apply macOS defaults and system settings now?" "N"; then
+    "${DOTFILES_ROOT}/scripts/macos/defaults.sh"
+  else
+    log_info "Skipping macOS defaults"
+  fi
 }
 
 maybe_apply_macos_defaults
