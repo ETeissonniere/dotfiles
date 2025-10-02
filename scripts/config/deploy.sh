@@ -76,8 +76,37 @@ link_zsh() {
   fi
 }
 
+ensure_default_shell() {
+  local shell_path user
+  shell_path="$(command -v zsh || true)"
+
+  if [[ -z "$shell_path" ]]; then
+    log_warn "zsh is not installed; skipping default shell update"
+    return
+  fi
+
+  if [[ "$DRY_RUN" == "1" ]]; then
+    log_info "DRY RUN: would change default shell to $shell_path"
+    return
+  fi
+
+  if ! grep -Fxq "$shell_path" /etc/shells; then
+    log_warn "$shell_path is not listed in /etc/shells; please add it and rerun to change the default shell"
+    return
+  fi
+
+  user="$(id -un)"
+
+  if chsh -s "$shell_path" "$user"; then
+    log_info "Default shell changed to $shell_path"
+  else
+    log_warn "Failed to change default shell automatically; run 'chsh -s $shell_path' manually."
+  fi
+}
+
 render_gitconfig
 render_ssh_config
 link_zsh
+ensure_default_shell
 
 log_info "Configuration deployed"
