@@ -1,0 +1,13 @@
+# Base tooling
+build-essential
+curl
+git
+htop
+vim
+zsh
+
+# Modern CLI enhancements
+eza
+fzf
+ripgrep
+zoxide

@@ -1,0 +1,22 @@
+# shellcheck shell=zsh
+
+export DOTFILES_ROOT="${DOTFILES_ROOT:-$HOME/.dotfiles}"
+
+if [[ -f /etc/zshrc ]]; then
+  source /etc/zshrc
+fi
+
+source "$DOTFILES_ROOT/modules/zsh/core.zsh"
+source "$DOTFILES_ROOT/modules/zsh/aliases.zsh"
+
+case "$OSTYPE" in
+  darwin*)
+    source "$DOTFILES_ROOT/modules/zsh/platform/macos.zsh"
+    ;;
+  linux*)
+    source "$DOTFILES_ROOT/modules/zsh/platform/linux.zsh"
+    ;;
+  *)
+    # No platform overrides.
+    ;;
+esac
