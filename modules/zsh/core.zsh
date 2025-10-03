@@ -57,7 +57,26 @@ if command -v eza >/dev/null 2>&1; then
 fi
 
 if command -v fzf >/dev/null 2>&1; then
-  eval "$(fzf --zsh)"
+  if fzf --zsh >/dev/null 2>&1; then
+    eval "$(fzf --zsh)"
+  else
+    for script in /usr/share/doc/fzf/examples/key-bindings.zsh \
+                 /usr/share/fzf/shell/key-bindings.zsh \
+                 "$HOME/.fzf/shell/key-bindings.zsh"; do
+      if [[ -r "$script" ]]; then
+        source "$script"
+        break
+      fi
+    done
+    for script in /usr/share/doc/fzf/examples/completion.zsh \
+                 /usr/share/fzf/shell/completion.zsh \
+                 "$HOME/.fzf/shell/completion.zsh"; do
+      if [[ -r "$script" ]]; then
+        source "$script"
+        break
+      fi
+    done
+  fi
 fi
 
 if command -v rg >/dev/null 2>&1; then
