@@ -6,9 +6,6 @@ if [[ -f /etc/zshrc ]]; then
   source /etc/zshrc
 fi
 
-source "$DOTFILES_ROOT/modules/zsh/core.zsh"
-source "$DOTFILES_ROOT/modules/zsh/aliases.zsh"
-
 case "$OSTYPE" in
   darwin*)
     source "$DOTFILES_ROOT/modules/zsh/platform/macos.zsh"
@@ -20,3 +17,6 @@ case "$OSTYPE" in
     # No platform overrides.
     ;;
 esac
+
+source "$DOTFILES_ROOT/modules/zsh/core.zsh"
+source "$DOTFILES_ROOT/modules/zsh/aliases.zsh"
