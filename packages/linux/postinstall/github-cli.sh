@@ -44,24 +44,10 @@ esac
 
 log_info "Installing GitHub CLI from https://cli.github.com/packages"
 
-ensure_fetch_tool() {
-  if command -v wget >/dev/null 2>&1; then
-    printf 'wget'
-    return
-  fi
-
-  if command -v curl >/dev/null 2>&1; then
-    printf 'curl'
-    return
-  fi
-
-  log_info "Installing wget dependency"
-  sudo apt-get update
-  sudo apt-get install -y wget
-  printf 'wget'
-}
-
-fetch_tool="$(ensure_fetch_tool)"
+if ! command -v curl >/dev/null 2>&1; then
+  log_error "curl not available; cannot install GitHub CLI"
+  exit 1
+fi
 
 tmp_key="$(mktemp)"
 cleanup() {
@@ -69,11 +55,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
-if [[ "$fetch_tool" == "wget" ]]; then
-  wget -nv -O "$tmp_key" "https://cli.github.com/packages/githubcli-archive-keyring.gpg"
-else
-  curl -fsSL -o "$tmp_key" "https://cli.github.com/packages/githubcli-archive-keyring.gpg"
-fi
+curl -fsSL -o "$tmp_key" "https://cli.github.com/packages/githubcli-archive-keyring.gpg"
 
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo cp "$tmp_key" /etc/apt/keyrings/githubcli-archive-keyring.gpg

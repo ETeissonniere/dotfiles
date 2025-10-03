@@ -52,35 +52,15 @@ if ! command -v gpg >/dev/null 2>&1; then
   sudo apt-get install -y gpg
 fi
 
-ensure_fetch_tool() {
-  if command -v wget >/dev/null 2>&1; then
-    printf 'wget'
-    return
-  fi
-
-  if command -v curl >/dev/null 2>&1; then
-    printf 'curl'
-    return
-  fi
-
-  log_info "Installing wget dependency"
-  ensure_apt_updated
-  sudo apt-get install -y wget
-  printf 'wget'
-}
-
-fetch_tool="$(ensure_fetch_tool)"
+if ! command -v curl >/dev/null 2>&1; then
+  log_error "curl not available; cannot install eza"
+  exit 1
+fi
 
 log_info "Configuring eza repository"
 
 sudo install -m 0755 -d /etc/apt/keyrings
-if [[ "$fetch_tool" == "wget" ]]; then
-  wget -qO- "https://raw.githubusercontent.com/eza-community/eza/main/deb.asc" |
-    sudo gpg --dearmor -o "$keyring_path"
-else
-  curl -fsSL "https://raw.githubusercontent.com/eza-community/eza/main/deb.asc" |
-    sudo gpg --dearmor -o "$keyring_path"
-fi
+curl -fsSL "https://raw.githubusercontent.com/eza-community/eza/main/deb.asc" | sudo gpg --dearmor -o "$keyring_path"
 
 sudo install -m 0755 -d /etc/apt/sources.list.d
 printf '%s\n' "$repo_line" | sudo tee "$list_path" >/dev/null
