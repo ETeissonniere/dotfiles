@@ -3,7 +3,7 @@ build-essential
 curl
 git
 git-lfs
-htop
+btop
 vim
 zsh
 
