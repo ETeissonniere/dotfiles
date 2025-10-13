@@ -29,6 +29,9 @@ else
   log_info "Skipping computer name configuration"
 fi
 
+# Don't be a madman and start the week on monday
+defaults write NSGlobalDomain AppleFirstWeekday -dict gregorian 2
+
 # Security & input settings
 sudo defaults write com.apple.screensaver askForPassword -int 1
 sudo defaults write com.apple.screensaver askForPasswordDelay -int 0
