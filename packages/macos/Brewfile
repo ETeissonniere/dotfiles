@@ -1,6 +1,6 @@
 cask 'appcleaner'
 cask 'chatgpt'
-brew 'codex'
+cask 'codex'
 cask 'container'
 cask 'docker-desktop'
 brew 'dockutil'
