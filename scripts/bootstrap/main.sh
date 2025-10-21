@@ -34,6 +34,24 @@ maybe_apply_macos_defaults() {
   fi
 }
 
+maybe_apply_macos_dock() {
+  if [[ "$DOTFILES_PLATFORM" != "macos" ]]; then
+    return
+  fi
+
+  if [[ "${DRY_RUN:-0}" == "1" ]]; then
+    log_info "DRY RUN: skipping macOS dock"
+    return
+  fi
+
+  if prompt_confirm "Edit macOS dock configuration?" "N"; then
+    "${DOTFILES_ROOT}/scripts/macos/dock.sh"
+  else
+    log_info "Skipping macOS dock"
+  fi
+}
+
 maybe_apply_macos_defaults
+maybe_apply_macos_dock
 
 log_info "Bootstrap complete"
