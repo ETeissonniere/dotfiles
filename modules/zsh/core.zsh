@@ -56,6 +56,10 @@ if command -v eza >/dev/null 2>&1; then
   alias ls="eza"
 fi
 
+if command -v fdfind >/dev/null 2>&1; then
+  alias find="fdfind"
+fi
+
 if command -v fd >/dev/null 2>&1; then
   alias find="fd"
 fi
