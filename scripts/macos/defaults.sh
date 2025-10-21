@@ -65,8 +65,8 @@ mkdir -p ~/Developer
 defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/`whoami`/"
 
 #Turn on iCloud Drive desktop/documents
-defaults write com.apple.finder FXICloudDriveDesktop -bool “true”
-defaults write com.apple.finder FXICloudDriveDocuments -bool “true”
+defaults write com.apple.finder FXICloudDriveDesktop -bool true
+defaults write com.apple.finder FXICloudDriveDocuments -bool true
 
 # Sidebar settings
 defaults write com.apple.finder ShowRecentTags -bool no
