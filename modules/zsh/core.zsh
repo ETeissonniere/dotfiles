@@ -56,6 +56,10 @@ if command -v eza >/dev/null 2>&1; then
   alias ls="eza"
 fi
 
+if command -v fd >/dev/null 2>&1; then
+  alias find="fd"
+fi
+
 if command -v fzf >/dev/null 2>&1; then
   if fzf --zsh >/dev/null 2>&1; then
     eval "$(fzf --zsh)"

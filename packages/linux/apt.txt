@@ -8,6 +8,7 @@ vim
 zsh
 
 # Modern CLI enhancements
+fd-find
 fzf
 ripgrep
 zoxide
