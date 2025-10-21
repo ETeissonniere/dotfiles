@@ -29,6 +29,8 @@ else
   log_info "Skipping computer name configuration"
 fi
 
+log_info "Editing system settings"
+
 # Don't be a madman and start the week on monday
 defaults write NSGlobalDomain AppleFirstWeekday -dict gregorian 2
 
@@ -55,5 +57,23 @@ killall Dock >/dev/null 2>&1 || true
 
 # Terminal
 defaults write com.apple.Terminal "Default Window Settings" -string "Clear Dark"
+
+log_info "Editing Finder folders"
+mkdir -p ~/Developer
+
+# Open in home directory
+defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/`whoami`/"
+
+#Turn on iCloud Drive desktop/documents
+defaults write com.apple.finder FXICloudDriveDesktop -bool “true”
+defaults write com.apple.finder FXICloudDriveDocuments -bool “true”
+
+# Sidebar settings
+defaults write com.apple.finder ShowRecentTags -bool no
+# TODO (not figured out yet): set bookmarked folders
+
+log_info "Editing TimeMachine exclusions"
+tmutil addexclusion ~/Developer
+tmutil addexclusion ~/Downloads
 
 log_info "macOS defaults configured"
