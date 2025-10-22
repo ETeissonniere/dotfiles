@@ -62,7 +62,7 @@ log_info "Editing Finder folders"
 mkdir -p ~/Developer
 
 # Open in home directory
-defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/`whoami`/"
+defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/$(whoami)/"
 
 #Turn on iCloud Drive desktop/documents
 defaults write com.apple.finder FXICloudDriveDesktop -bool true
