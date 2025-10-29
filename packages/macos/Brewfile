@@ -1,8 +1,4 @@
 cask 'appcleaner'
-cask 'chatgpt'
-cask 'codex'
-cask 'container'
-cask 'docker-desktop'
 brew 'dockutil'
 brew 'eza'
 brew 'fd'
@@ -10,15 +6,30 @@ brew 'fzf'
 brew 'gh'
 brew 'git-lfs'
 brew 'httpie'
-cask 'logi-options+'
-brew 'nvm'
 brew 'ripgrep'
 brew 'uv'
-cask 'visual-studio-code'
 brew 'zoxide'
 
-mas 'Flighty – Live Flight Tracker', id: 1358823008
-mas 'Tailscale', id: 1475387142
-mas 'Telegram', id: 747648890
-mas 'uBlock Origin Lite', id: 6745342698
-mas 'WhatsApp Messenger', id: 310633997
+# Do not install the below in VMs
+if ENV["VM"] != ""
+    cask 'chatgpt'
+    cask 'codex'
+    cask 'container'
+    cask 'docker-desktop'
+    cask 'logi-options+'
+    cask 'visual-studio-code'
+    
+    mas 'Flighty – Live Flight Tracker', id: 1358823008
+    mas 'Telegram', id: 747648890
+    mas 'uBlock Origin Lite', id: 6745342698
+    mas 'WhatsApp Messenger', id: 310633997
+
+    # Allow to skip UTM
+    if ENV["NO_VIRT"] != "1"
+        cask "utm"
+    end
+end
+
+if ENV["LAPTOP"] == "1"
+    mas 'Tailscale', id: 1475387142
+end
