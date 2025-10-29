@@ -12,8 +12,6 @@ brew 'zoxide'
 
 # Do not install the below in VMs
 if ENV["VM"] != ""
-    cask 'chatgpt'
-    cask 'codex'
     cask 'container'
     cask 'docker-desktop'
     cask 'logi-options+'
