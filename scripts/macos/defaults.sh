@@ -68,6 +68,8 @@ killall Finder
 
 # Terminal
 defaults write com.apple.Terminal "Default Window Settings" -string "Clear Dark"
+/usr/libexec/PlistBuddy -c "Add :'Window Settings':'Clear Dark':shellExitAction integer 1" ~/Library/Preferences/com.apple.Terminal.plist 2>/dev/null || \
+/usr/libexec/PlistBuddy -c "Set :'Window Settings':'Clear Dark':shellExitAction 1" ~/Library/Preferences/com.apple.Terminal.plist
 
 log_info "Editing Finder folders"
 mkdir -p ~/Developer
