@@ -39,3 +39,4 @@ scripts/          # Bootstrap helpers, library code, verification, SSH tooling
 - Configure Time Machine / Tailscale / other services manually when desired.
 - On Mac, enable iCloud folder sync if desired.
 - Set wallpaper.
+- If desired, switch the dotfiles remote to SSH `git remote remove origin && git remote add origin git@github.com:ETeissonniere/dotfiles.git`
