@@ -37,3 +37,5 @@ scripts/          # Bootstrap helpers, library code, verification, SSH tooling
 - Generate/import SSH keys with `scripts/ssh/import_key.sh` (update `config/git/allowed_signers` as needed).
 - Run `gh auth login -p ssh` to authenticate GitHub.
 - Configure Time Machine / Tailscale / other services manually when desired.
+- On Mac, enable iCloud folder sync if desired.
+- Set wallpaper.

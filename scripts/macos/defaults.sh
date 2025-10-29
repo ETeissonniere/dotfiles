@@ -49,11 +49,22 @@ defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 30
 defaults write NSGlobalDomain com.apple.trackpad.scaling -float 3
 defaults write NSGlobalDomain com.apple.mouse.scaling -float 3
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 
 # Dock
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock tilesize -int 64
 killall Dock >/dev/null 2>&1 || true
+
+# Finder
+defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+defaults write com.apple.finder ShowSidebar -bool true
+defaults write com.apple.finder ShowRecentTags -bool false
+killall Finder
 
 # Terminal
 defaults write com.apple.Terminal "Default Window Settings" -string "Clear Dark"
@@ -70,7 +81,8 @@ defaults write com.apple.finder FXICloudDriveDocuments -bool true
 
 # Sidebar settings
 defaults write com.apple.finder ShowRecentTags -bool no
-# TODO (not figured out yet): set bookmarked folders
+
+osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
 
 log_info "Editing TimeMachine exclusions"
 tmutil addexclusion ~/Developer
