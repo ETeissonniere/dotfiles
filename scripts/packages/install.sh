@@ -12,7 +12,8 @@ export DRY_RUN
 export_platform
 
 install_macos_packages() {
-  local brewfile="$DOTFILES_ROOT/packages/macos/Brewfile"
+  local install_script="$DOTFILES_ROOT/packages/macos/install.sh"
+
   if ! command -v brew >/dev/null 2>&1; then
     log_warn "Homebrew not found"
     if [[ "$DRY_RUN" == "1" ]]; then
@@ -24,14 +25,14 @@ install_macos_packages() {
     fi
   fi
 
-  if [[ -f "$brewfile" ]]; then
+  if [[ -x "$install_script" ]]; then
     if [[ "$DRY_RUN" == "1" ]]; then
-      log_info "DRY RUN: brew bundle --file \"$brewfile\""
+      log_info "DRY RUN: $install_script"
     else
-      brew bundle --file "$brewfile"
+      "$install_script"
     fi
   else
-    log_warn "Missing $brewfile"
+    log_warn "Missing or non-executable $install_script"
   fi
 }
 
