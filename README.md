@@ -32,6 +32,14 @@ packages/         # Package manifests per platform + post-install hooks
 scripts/          # Bootstrap helpers, library code, verification, SSH tooling
 ```
 
+## macOS package toggles
+
+The macOS `Brewfile` reacts to a few environment variables so you can tailor installs:
+
+- `VM` – install GUI-heavy tools (ChatGPT, Docker Desktop, VS Code, etc.) only when set to a non-empty value.
+- `NO_VIRT` – skip UTM virtualization tooling when set to `1`; ignored otherwise.
+- `LAPTOP` – include laptop-only utilities such as Tailscale when set to `1`.
+
 ## Post-install reminders
 
 - Generate/import SSH keys with `scripts/ssh/import_key.sh` (update `config/git/allowed_signers` as needed).
