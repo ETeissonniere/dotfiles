@@ -17,6 +17,27 @@ fi
 "${DOTFILES_ROOT}/scripts/packages/install.sh"
 "${DOTFILES_ROOT}/scripts/config/deploy.sh"
 
+maybe_install_rosetta() {
+  if [[ "$DOTFILES_PLATFORM" != "macos" ]]; then
+    return
+  fi
+
+  if [[ "$(uname -m)" != "arm64" ]]; then
+    return
+  fi
+
+  if [[ "${DRY_RUN:-0}" == "1" ]]; then
+    log_info "DRY RUN: skipping Rosetta installation"
+    return
+  fi
+
+  if prompt_confirm "Install Rosetta 2 (required for non-ARM containers)?" "Y"; then
+    "${DOTFILES_ROOT}/scripts/macos/rosetta.sh"
+  else
+    log_info "Skipping Rosetta installation"
+  fi
+}
+
 maybe_apply_macos_defaults() {
   if [[ "$DOTFILES_PLATFORM" != "macos" ]]; then
     return
@@ -51,6 +72,7 @@ maybe_apply_macos_dock() {
   fi
 }
 
+maybe_install_rosetta
 maybe_apply_macos_defaults
 maybe_apply_macos_dock
 
