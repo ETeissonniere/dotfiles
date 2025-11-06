@@ -34,11 +34,11 @@ scripts/          # Bootstrap helpers, library code, verification, SSH tooling
 
 ## macOS package toggles
 
-The macOS `Brewfile` reacts to a few environment variables so you can tailor installs:
+The macOS package installer and configuration scripts react to a few environment variables so you can tailor installs:
 
-- `VM` – install GUI-heavy tools (ChatGPT, Docker Desktop, VS Code, etc.) only when set to a non-empty value.
-- `NO_VIRT` – skip UTM virtualization tooling when set to `1`; ignored otherwise.
-- `LAPTOP` – include laptop-only utilities such as Tailscale when set to `1`.
+- `VM=1` – skip GUI-heavy tools (VS Code, Docker Desktop, etc.), don't add them to the dock, and keep the dock visible instead of auto-hiding.
+- `NO_VIRT=1` – skip UTM virtualization tooling.
+- `LAPTOP=1` – include laptop-only utilities such as Tailscale.
 
 ## Post-install reminders
 

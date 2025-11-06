@@ -52,7 +52,9 @@ defaults write NSGlobalDomain com.apple.mouse.scaling -float 3
 defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 
 # Dock
-defaults write com.apple.dock autohide -bool true
+if [ "$VM" != "1" ]; then
+    defaults write com.apple.dock autohide -bool true
+fi
 defaults write com.apple.dock tilesize -int 64
 killall Dock >/dev/null 2>&1 || true
 

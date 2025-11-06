@@ -10,7 +10,11 @@ dockutil --no-restart --add "/System/Applications/Notes.app"
 dockutil --no-restart --add "/System/Applications/Calendar.app"
 dockutil --no-restart --add "/System/Applications/Reminders.app"
 dockutil --no-restart --add "/System/Applications/Utilities/Terminal.app"
-dockutil --no-restart --add "/Applications/Visual Studio Code.app"
+
+# Only add VSCode if not in VM mode
+if [ "$VM" != "1" ]; then
+    dockutil --no-restart --add "/Applications/Visual Studio Code.app"
+fi
 
 dockutil --no-restart --add "$HOME/Downloads"
 
