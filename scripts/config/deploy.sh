@@ -95,6 +95,12 @@ ensure_default_shell() {
     return
   fi
 
+  # Check if already using ZSH
+  if [[ "$SHELL" == "$shell_path" ]]; then
+    log_info "Default shell is already set to $shell_path"
+    return
+  fi
+
   user="$(id -un)"
 
   if chsh -s "$shell_path" "$user"; then
