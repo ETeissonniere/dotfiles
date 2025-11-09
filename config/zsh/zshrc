@@ -20,3 +20,4 @@ esac
 
 source "$DOTFILES_ROOT/modules/zsh/core.zsh"
 source "$DOTFILES_ROOT/modules/zsh/aliases.zsh"
+source "$DOTFILES_ROOT/modules/zsh/sync.zsh"
