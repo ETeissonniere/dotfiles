@@ -18,15 +18,19 @@ if [[ "${DRY_RUN:-0}" == "1" ]]; then
   exit 0
 fi
 
-read -r -p "Computer name (blank to skip renaming): " computer_name
-if [[ -n "$computer_name" ]]; then
-  sudo scutil --set ComputerName "$computer_name"
-  sudo scutil --set HostName "$computer_name"
-  sudo scutil --set LocalHostName "$computer_name"
-  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$computer_name"
-  log_info "Set computer/host names to $computer_name"
+if [[ "${SKIP_RENAMING:-0}" == "1" ]]; then
+  log_info "Skipping computer name configuration (SKIP_RENAMING=1)"
 else
-  log_info "Skipping computer name configuration"
+  read -r -p "Computer name (blank to skip renaming): " computer_name
+  if [[ -n "$computer_name" ]]; then
+    sudo scutil --set ComputerName "$computer_name"
+    sudo scutil --set HostName "$computer_name"
+    sudo scutil --set LocalHostName "$computer_name"
+    sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$computer_name"
+    log_info "Set computer/host names to $computer_name"
+  else
+    log_info "Skipping computer name configuration"
+  fi
 fi
 
 log_info "Editing system settings"
@@ -55,7 +59,7 @@ defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 31 '<dict><key>enabled</key><true/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>115</integer><integer>1</integer><integer>1179648</integer></array></dict></dict>'
 
 # Dock
-if [ "$VM" != "1" ]; then
+if [ "${VM:-0}" != "1" ]; then
     defaults write com.apple.dock autohide -bool true
 fi
 defaults write com.apple.dock tilesize -int 64

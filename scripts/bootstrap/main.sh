@@ -14,9 +14,6 @@ if [[ "${DRY_RUN:-0}" == "1" ]]; then
   log_info "Running in dry-run mode; no changes will be applied"
 fi
 
-"${DOTFILES_ROOT}/scripts/packages/install.sh"
-"${DOTFILES_ROOT}/scripts/config/deploy.sh"
-
 maybe_install_rosetta() {
   if [[ "$DOTFILES_PLATFORM" != "macos" ]]; then
     return
@@ -38,42 +35,8 @@ maybe_install_rosetta() {
   fi
 }
 
-maybe_apply_macos_defaults() {
-  if [[ "$DOTFILES_PLATFORM" != "macos" ]]; then
-    return
-  fi
-
-  if [[ "${DRY_RUN:-0}" == "1" ]]; then
-    log_info "DRY RUN: skipping macOS defaults"
-    return
-  fi
-
-  if prompt_confirm "Apply macOS defaults and system settings now?" "N"; then
-    "${DOTFILES_ROOT}/scripts/macos/defaults.sh"
-  else
-    log_info "Skipping macOS defaults"
-  fi
-}
-
-maybe_apply_macos_dock() {
-  if [[ "$DOTFILES_PLATFORM" != "macos" ]]; then
-    return
-  fi
-
-  if [[ "${DRY_RUN:-0}" == "1" ]]; then
-    log_info "DRY RUN: skipping macOS dock"
-    return
-  fi
-
-  if prompt_confirm "Edit macOS dock configuration?" "N"; then
-    "${DOTFILES_ROOT}/scripts/macos/dock.sh"
-  else
-    log_info "Skipping macOS dock"
-  fi
-}
-
+"${DOTFILES_ROOT}/scripts/packages/install.sh"
+"${DOTFILES_ROOT}/scripts/config/deploy.sh"
 maybe_install_rosetta
-maybe_apply_macos_defaults
-maybe_apply_macos_dock
 
 log_info "Bootstrap complete"

@@ -96,17 +96,13 @@ _dotfiles_sync() {
       echo "\033[1mReapplying configuration files...\033[0m"
       make -C "$dotfiles_dir" link
 
-      # Reapply macOS defaults if on macOS
-      if [[ "$OSTYPE" == darwin* ]]; then
-        echo ""
-        echo "\033[1mReapplying macOS defaults...\033[0m"
-
-        # Detect VM and pass flag to defaults script
-        if _is_vm; then
-          VM=1 "$dotfiles_dir/scripts/macos/defaults.sh"
-        else
-          "$dotfiles_dir/scripts/macos/defaults.sh"
-        fi
+      echo ""
+      echo "\033[1mReapplying system settings...\033[0m"
+      # Detect VM and pass flags to settings script
+      if _is_vm; then
+        VM=1 SKIP_RENAMING=1 make -C "$dotfiles_dir" settings
+      else
+        SKIP_RENAMING=1 make -C "$dotfiles_dir" settings
       fi
 
       echo ""

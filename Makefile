@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 DOTFILES_ROOT := $(shell pwd)
 
-.PHONY: bootstrap packages link
+.PHONY: bootstrap packages link settings
 
 bootstrap:
 	"$(DOTFILES_ROOT)/scripts/bootstrap/main.sh"
@@ -14,3 +14,6 @@ link:
 
 verify:
 	"$(DOTFILES_ROOT)/scripts/verify.sh"
+
+settings:
+	"$(DOTFILES_ROOT)/scripts/settings/apply.sh"

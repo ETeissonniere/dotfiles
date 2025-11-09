@@ -12,7 +12,7 @@ dockutil --no-restart --add "/System/Applications/Reminders.app"
 dockutil --no-restart --add "/System/Applications/Utilities/Terminal.app"
 
 # Only add VSCode if not in VM mode
-if [ "$VM" != "1" ]; then
+if [ "${VM:-0}" != "1" ]; then
     dockutil --no-restart --add "/Applications/Visual Studio Code.app"
 fi
 
