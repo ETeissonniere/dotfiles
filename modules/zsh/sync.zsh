@@ -90,7 +90,17 @@ _dotfiles_sync() {
 
     if [[ "$response" =~ ^[Yy]$ ]]; then
       echo "\033[1mPulling changes...\033[0m"
+      local old_head=$(git rev-parse HEAD)
       git pull origin master
+
+      # Check if package definitions changed
+      local changed_files=$(git diff --name-only "$old_head" HEAD 2>/dev/null || echo "")
+      if echo "$changed_files" | grep -q "^packages/"; then
+        echo ""
+        echo "\033[1;33m⚠ Package definitions changed\033[0m"
+        echo "Run \033[1;36mmake packages\033[0m to install/update packages"
+        echo ""
+      fi
 
       echo ""
       echo "\033[1mReapplying configuration files...\033[0m"
