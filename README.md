@@ -40,6 +40,7 @@ The macOS package installer and configuration scripts react to a few environment
 - `NO_VIRT=1` – skip UTM virtualization tooling.
 - `NO_SOCIALS=1` – skip social apps like WhatsApp and Telegram.
 - `LAPTOP=1` – include laptop-only utilities such as Tailscale.
+- `WORK_APPS=1` – include work only apps like Slack.
 
 ## Post-install reminders
 

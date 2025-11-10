@@ -60,6 +60,11 @@ if [[ "$LAPTOP" == "1" ]]; then
     echo "mas 'Tailscale', id: 1475387142" >> "$BREWFILE"
 fi
 
+if [[ "$WORK_APPS" == "1" ]]; then
+    echo "" >> "$BREWFILE"
+    echo "mas 'Slack for Desktop', id: 803453959" >> "$BREWFILE"
+fi
+
 # Run brew bundle
 if [[ "$1" == "cleanup" ]]; then
     brew bundle cleanup --file="$BREWFILE" "${@:2}"
