@@ -34,7 +34,7 @@ EOF
 if [[ "$VM" != "1" ]]; then
     cat >> "$BREWFILE" <<'EOF'
 
-cask 'container'
+brew 'container'
 cask 'docker-desktop'
 cask 'logi-options+'
 cask 'visual-studio-code'
