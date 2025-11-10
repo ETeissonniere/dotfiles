@@ -1,7 +1,9 @@
 SHELL := /bin/bash
 DOTFILES_ROOT := $(shell pwd)
 
-.PHONY: bootstrap packages link settings
+.PHONY: default bootstrap packages link settings
+
+default: bootstrap packages link settings
 
 bootstrap:
 	"$(DOTFILES_ROOT)/scripts/bootstrap/main.sh"
