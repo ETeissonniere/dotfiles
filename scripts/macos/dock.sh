@@ -16,6 +16,11 @@ if [ "${VM:-0}" != "1" ]; then
     dockutil --no-restart --add "/Applications/Visual Studio Code.app"
 fi
 
+# Only add slack if it is installed
+if [ -d "/Applications/Slack.app" ]; then
+    dockutil --no-restart --add "/Applications/Slack.app"
+fi
+
 dockutil --no-restart --add "$HOME/Downloads"
 
 killall Dock
