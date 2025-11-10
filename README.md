@@ -38,6 +38,7 @@ The macOS package installer and configuration scripts react to a few environment
 
 - `VM=1` – skip GUI-heavy tools (VS Code, Docker Desktop, etc.), don't add them to the dock, and keep the dock visible instead of auto-hiding.
 - `NO_VIRT=1` – skip UTM virtualization tooling.
+- `NO_SOCIALS=1` – skip social apps like WhatsApp and Telegram.
 - `LAPTOP=1` – include laptop-only utilities such as Tailscale.
 
 ## Post-install reminders

@@ -40,14 +40,18 @@ cask 'logi-options+'
 cask 'visual-studio-code'
 
 mas 'Flighty – Live Flight Tracker', id: 1358823008
-mas 'Telegram', id: 747648890
 mas 'uBlock Origin Lite', id: 6745342698
-mas 'WhatsApp Messenger', id: 310633997
 EOF
 
     if [[ "$NO_VIRT" != "1" ]]; then
         echo "" >> "$BREWFILE"
         echo "cask 'utm'" >> "$BREWFILE"
+    fi
+
+    if [[ "$NO_SOCIALS" != "1" ]]; then
+        echo "" >> "$BREWFILE"
+        echo "mas 'Telegram', id: 747648890" >> "$BREWFILE"
+        echo "mas 'WhatsApp Messenger', id: 310633997" >> "$BREWFILE"
     fi
 fi
 
