@@ -25,6 +25,11 @@ write_if_needed() {
 }
 
 render_gitconfig() {
+  if [[ -f "$HOME/.gitconfig" ]]; then
+    log_info "Gitconfig already exists at $HOME/.gitconfig, skipping"
+    return
+  fi
+
   local tmp
   tmp="$(mktemp)"
   trap 'rm -f "$tmp"' EXIT
