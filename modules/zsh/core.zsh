@@ -29,7 +29,7 @@ zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-if command -v zoxide >/dev/null 2>&1; then
+if command -v zoxide >/dev/null 2>&1 && [[ -z "${CLAUDECODE:-}" ]]; then
   eval "$(zoxide init zsh)"
   alias cd="z"
 fi
@@ -38,11 +38,11 @@ if command -v eza >/dev/null 2>&1; then
   alias ls="eza"
 fi
 
-if command -v fdfind >/dev/null 2>&1; then
+if command -v fdfind >/dev/null 2>&1 && [[ -z "${CLAUDECODE:-}" ]]; then
   alias find="fdfind"
 fi
 
-if command -v fd >/dev/null 2>&1; then
+if command -v fd >/dev/null 2>&1 && [[ -z "${CLAUDECODE:-}" ]]; then
   alias find="fd"
 fi
 
@@ -69,7 +69,7 @@ if command -v fzf >/dev/null 2>&1; then
   fi
 fi
 
-if command -v rg >/dev/null 2>&1; then
+if command -v rg >/dev/null 2>&1 && [[ -z "${CLAUDECODE:-}" ]]; then
   alias grep="rg"
 fi
 
