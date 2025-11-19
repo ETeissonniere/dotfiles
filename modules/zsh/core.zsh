@@ -73,6 +73,14 @@ if command -v rg >/dev/null 2>&1; then
   alias grep="rg"
 fi
 
+if command -v uv >/dev/null 2>&1; then
+  eval "$(uv generate-shell-completion zsh)"
+fi
+
+if command -v uvx >/dev/null 2>&1; then
+  eval "$(uvx --generate-shell-completion zsh)"
+fi
+
 # Editor preference: favour VS Code when available.
 if command -v code >/dev/null 2>&1; then
   export EDITOR="code --wait"
