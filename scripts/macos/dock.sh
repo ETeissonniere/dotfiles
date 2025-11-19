@@ -9,7 +9,7 @@ dockutil --no-restart --add "/System/Applications/Messages.app"
 dockutil --no-restart --add "/System/Applications/Notes.app"
 dockutil --no-restart --add "/System/Applications/Calendar.app"
 dockutil --no-restart --add "/System/Applications/Reminders.app"
-dockutil --no-restart --add "/System/Applications/Utilities/Terminal.app"
+dockutil --no-restart --add "/Applications/Ghostty.app"
 
 # Only add VSCode if not in VM mode
 if [ "${VM:-0}" != "1" ]; then

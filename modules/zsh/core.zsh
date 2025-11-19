@@ -25,15 +25,6 @@ zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':completion:*' rehash true
 zstyle :compinstall filename "$HOME/.zshrc"
 
-# Key bindings.
-bindkey -e
-bindkey '[C' forward-word
-bindkey '[D' backward-word
-bindkey '^[[1;5C' forward-word
-bindkey '^[[1;5D' backward-word
-bindkey '^H' backward-kill-word
-bindkey '^[[3;5~' kill-word
-
 # Completion and bash compatibility.
 autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
