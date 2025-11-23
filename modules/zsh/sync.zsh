@@ -58,11 +58,14 @@ _dotfiles_sync() {
   # Update timestamp
   date +%s > "$DOTFILES_SYNC_CACHE_FILE"
 
-  # Check for updates
-  cd "$dotfiles_dir" || return 1
+  # Change to dotfiles directory, saving previous directory on stack
+  pushd -q "$dotfiles_dir" || return 1
+
+  # Ensure we return to original directory even on interrupt
+  trap "popd -q 2>/dev/null; return 130" INT TERM
 
   # Fetch quietly
-  git fetch origin master 2>/dev/null || return 1
+  git fetch origin master 2>/dev/null || { popd -q; trap - INT TERM; return 1; }
 
   local local_rev=$(git rev-parse HEAD 2>/dev/null)
   local remote_rev=$(git rev-parse origin/master 2>/dev/null)
@@ -122,6 +125,10 @@ _dotfiles_sync() {
     fi
     echo ""
   fi
+
+  # Return to original directory and remove trap
+  popd -q
+  trap - INT TERM
 }
 
 # Alias to manually trigger sync
