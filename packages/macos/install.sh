@@ -45,25 +45,33 @@ mas 'uBlock Origin Lite', id: 6745342698
 EOF
 
     if [[ "$NO_VIRT" != "1" ]]; then
-        echo "" >> "$BREWFILE"
-        echo "cask 'utm'" >> "$BREWFILE"
+        {
+            echo ""
+            echo "cask 'utm'"
+        } >> "$BREWFILE"
     fi
 
     if [[ "$NO_SOCIALS" != "1" ]]; then
-        echo "" >> "$BREWFILE"
-        echo "mas 'Telegram', id: 747648890" >> "$BREWFILE"
-        echo "mas 'WhatsApp Messenger', id: 310633997" >> "$BREWFILE"
+        {
+            echo ""
+            echo "mas 'Telegram', id: 747648890"
+            echo "mas 'WhatsApp Messenger', id: 310633997"
+        } >> "$BREWFILE"
     fi
 fi
 
 if [[ "$LAPTOP" == "1" ]]; then
-    echo "" >> "$BREWFILE"
-    echo "mas 'Tailscale', id: 1475387142" >> "$BREWFILE"
+    {
+        echo ""
+        echo "mas 'Tailscale', id: 1475387142"
+    } >> "$BREWFILE"
 fi
 
 if [[ "$WORK_APPS" == "1" ]]; then
-    echo "" >> "$BREWFILE"
-    echo "mas 'Slack for Desktop', id: 803453959" >> "$BREWFILE"
+    {
+        echo ""
+        echo "mas 'Slack for Desktop', id: 803453959"
+    } >> "$BREWFILE"
 fi
 
 # Run brew bundle
