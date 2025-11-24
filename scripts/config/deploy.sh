@@ -81,6 +81,18 @@ link_zsh() {
   fi
 }
 
+link_ghostty() {
+  local source="$DOTFILES_ROOT/config/ghostty/config"
+  local target_dir="$HOME/.config/ghostty"
+  local target="$target_dir/config"
+  ensure_dir "$target_dir"
+  if [[ "$DRY_RUN" == "1" ]]; then
+    log_info "DRY RUN: would link $target -> $source"
+  else
+    link_file "$source" "$target"
+  fi
+}
+
 ensure_default_shell() {
   local shell_path user
   shell_path="$(command -v zsh || true)"
@@ -118,6 +130,7 @@ ensure_default_shell() {
 render_gitconfig
 render_ssh_config
 link_zsh
+link_ghostty
 ensure_default_shell
 
 log_info "Configuration deployed"
