@@ -19,6 +19,7 @@ BREWFILE="$SCRIPT_DIR/.Brewfile.tmp"
 # Generate Brewfile based on environment
 cat > "$BREWFILE" <<'EOF'
 cask 'appcleaner'
+cask 'claude'
 cask 'claude-code'
 brew 'dockutil'
 brew 'eza'
