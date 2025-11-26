@@ -20,6 +20,8 @@ if [ -d "/Applications/Slack.app" ]; then
     dockutil --no-restart --add "/Applications/Slack.app"
 fi
 
+dockutil --no-restart --add "/Applications/Claude.app"
+
 dockutil --no-restart --add "$HOME/Downloads"
 
 killall Dock
