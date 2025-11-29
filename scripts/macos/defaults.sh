@@ -54,6 +54,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 30
 defaults write NSGlobalDomain com.apple.trackpad.scaling -float 3
 defaults write NSGlobalDomain com.apple.mouse.scaling -float 3
 defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
+defaults write com.apple.HIToolbox AppleFnUsageType -int "3" # fn/globe does dictation instead of weird emoji picker
 
 # Screenshots - Set Cmd+Shift+S to copy screenshot selection to clipboard (requires logout)
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 31 '<dict><key>enabled</key><true/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>115</integer><integer>1</integer><integer>1179648</integer></array></dict></dict>'
