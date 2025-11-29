@@ -99,6 +99,9 @@ defaults write com.apple.finder FXICloudDriveDocuments -bool true
 # Sidebar settings
 defaults write com.apple.finder ShowRecentTags -bool no
 
+# Safari - Developer menu
+defaults write com.apple.Safari.SandboxBroker ShowDevelopMenu -bool true
+
 osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
 
 log_info "Editing TimeMachine exclusions"
