@@ -35,12 +35,11 @@ fi
 
 log_info "Editing system settings"
 
-# Don't be a madman and start the week on monday
-defaults write NSGlobalDomain AppleFirstWeekday -dict gregorian 2
-
-# Security & input settings
-sudo defaults write com.apple.screensaver askForPassword -int 1
-sudo defaults write com.apple.screensaver askForPasswordDelay -int 0
+# Manual System Settings configuration required (defaults commands no longer work reliably):
+# - First day of week: System Settings > General > Language & Region > First day of week > Monday
+# - Lock screen password: System Settings > Lock Screen > Require password after screen saver begins
+# See: https://stackoverflow.com/questions/45867402 (lock screen moved to keychain since 10.13)
+log_warn "Configure manually in System Settings: First day of week (Language & Region) and Lock Screen password"
 
 # Locale & measurement units
 defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
