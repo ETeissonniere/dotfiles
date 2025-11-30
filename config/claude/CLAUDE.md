@@ -1,0 +1,1 @@
+- Always use UV when interacting with python codebases

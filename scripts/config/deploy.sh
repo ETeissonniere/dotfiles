@@ -93,6 +93,33 @@ link_ghostty() {
   fi
 }
 
+link_claude() {
+  local source_dir="$DOTFILES_ROOT/config/claude"
+  local target_dir="$HOME/.claude"
+  ensure_dir "$target_dir"
+
+  # Link CLAUDE.md
+  if [[ "$DRY_RUN" == "1" ]]; then
+    log_info "DRY RUN: would link $target_dir/CLAUDE.md -> $source_dir/CLAUDE.md"
+  else
+    link_file "$source_dir/CLAUDE.md" "$target_dir/CLAUDE.md"
+  fi
+
+  # Link agents directory
+  if [[ "$DRY_RUN" == "1" ]]; then
+    log_info "DRY RUN: would link $target_dir/agents -> $source_dir/agents"
+  else
+    link_file "$source_dir/agents" "$target_dir/agents"
+  fi
+
+  # Link commands directory
+  if [[ "$DRY_RUN" == "1" ]]; then
+    log_info "DRY RUN: would link $target_dir/commands -> $source_dir/commands"
+  else
+    link_file "$source_dir/commands" "$target_dir/commands"
+  fi
+}
+
 ensure_default_shell() {
   local shell_path user
   shell_path="$(command -v zsh || true)"
@@ -131,6 +158,7 @@ render_gitconfig
 render_ssh_config
 link_zsh
 link_ghostty
+link_claude
 ensure_default_shell
 
 log_info "Configuration deployed"
