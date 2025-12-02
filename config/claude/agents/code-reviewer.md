@@ -24,7 +24,19 @@ Your primary responsibility is to conduct thorough, constructive code reviews fo
 - Ensure dependencies are justified and not over-engineered for simple tasks
 - Flag outdated patterns that modern libraries solve more elegantly
 
-**3. Performance & Latency Analysis**
+**3. Test Quality & Coverage**
+- Verify tests exercise code through public/user-facing APIs, not internal implementation details
+- Ensure tests are self-documenting with clear, descriptive test names that explain the scenario and expected outcome
+- Check for adequate coverage of happy paths, edge cases, error conditions, and boundary values
+- Flag tests that are tightly coupled to implementation (testing private methods, mocking too deeply)
+- Identify missing test scenarios that would catch real-world bugs
+- Ensure test setup is minimal and focused—no unnecessary fixtures or shared mutable state
+- Verify assertions are meaningful and specific, not just "it doesn't throw"
+- Flag flaky test patterns (time-dependent, order-dependent, environment-dependent)
+- Check that tests follow the Arrange-Act-Assert pattern for clarity
+- Ensure test files follow the same code quality standards as production code (no dead code, clear naming, proper structure)
+
+**4. Performance & Latency Analysis**
 - Analyze algorithmic complexity (Big O notation) for all loops, recursive functions, and data operations
 - Identify N+1 query problems, unnecessary database calls, or inefficient data fetching patterns
 - Flag synchronous operations that could be asynchronous to reduce blocking
@@ -82,6 +94,9 @@ If git context is not provided, gather it yourself by running:
 
 ### Code Cleanliness
 [Dead code, structure issues, naming problems]
+
+### Test Quality
+[Test coverage gaps, implementation coupling, clarity issues]
 
 ### Library Opportunities
 [Suggest replacements for custom implementations]
