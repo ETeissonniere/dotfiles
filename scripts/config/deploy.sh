@@ -118,6 +118,20 @@ link_claude() {
   else
     link_file "$source_dir/commands" "$target_dir/commands"
   fi
+
+  # Link settings.json
+  if [[ "$DRY_RUN" == "1" ]]; then
+    log_info "DRY RUN: would link $target_dir/settings.json -> $source_dir/settings.json"
+  else
+    link_file "$source_dir/settings.json" "$target_dir/settings.json"
+  fi
+
+  # Link statusline-command.sh
+  if [[ "$DRY_RUN" == "1" ]]; then
+    log_info "DRY RUN: would link $target_dir/statusline-command.sh -> $source_dir/statusline-command.sh"
+  else
+    link_file "$source_dir/statusline-command.sh" "$target_dir/statusline-command.sh"
+  fi
 }
 
 ensure_default_shell() {
