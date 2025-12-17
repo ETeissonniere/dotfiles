@@ -1,14 +1,14 @@
 #!/bin/bash
 input=$(cat)
 cwd=$(echo "$input" | jq -r '.workspace.current_dir')
-transcript_path=$(echo "$input" | jq -r '.transcript_path')
 model_name=$(echo "$input" | jq -r '.model.display_name')
+context_window_size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
+input_tokens=$(echo "$input" | jq -r '.context_window.current_usage.input_tokens // 0')
+output_tokens=$(echo "$input" | jq -r '.context_window.current_usage.output_tokens // 0')
 
-if [[ -f "$transcript_path" ]]; then
-    char_count=$(wc -c < "$transcript_path" 2>/dev/null || echo "0")
-    token_estimate=$((char_count / 4))
-    max_tokens=200000
-    percentage=$((token_estimate * 100 / max_tokens))
+total_tokens=$((input_tokens + output_tokens))
+if [[ $context_window_size -gt 0 ]]; then
+    percentage=$((total_tokens * 100 / context_window_size))
     [[ $percentage -gt 100 ]] && percentage=100
 
     bar_width=15
