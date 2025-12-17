@@ -3,10 +3,10 @@ input=$(cat)
 cwd=$(echo "$input" | jq -r '.workspace.current_dir')
 model_name=$(echo "$input" | jq -r '.model.display_name')
 context_window_size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
-input_tokens=$(echo "$input" | jq -r '.context_window.current_usage.input_tokens // 0')
-output_tokens=$(echo "$input" | jq -r '.context_window.current_usage.output_tokens // 0')
+total_input_tokens=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0')
+total_output_tokens=$(echo "$input" | jq -r '.context_window.total_output_tokens // 0')
 
-total_tokens=$((input_tokens + output_tokens))
+total_tokens=$((total_input_tokens + total_output_tokens))
 if [[ $context_window_size -gt 0 ]]; then
     percentage=$((total_tokens * 100 / context_window_size))
     [[ $percentage -gt 100 ]] && percentage=100
