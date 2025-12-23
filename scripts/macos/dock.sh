@@ -12,7 +12,7 @@ dockutil --no-restart --add "/Applications/Ghostty.app"
 
 # Only add VSCode if not in VM mode
 if [ "${VM:-0}" != "1" ]; then
-    dockutil --no-restart --add "/Applications/Visual Studio Code.app"
+    dockutil --no-restart --add "/Applications/Zed.app"
 fi
 
 # Only add slack if it is installed
