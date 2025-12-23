@@ -22,6 +22,11 @@ fi
 
 dockutil --no-restart --add "/Applications/Claude.app"
 
+# Only add Bambu Studio if PERSONAL_APPS is enabled and it is installed
+if [ "${PERSONAL_APPS:-0}" = "1" ] && [ -d "/Applications/BambuStudio.app" ]; then
+    dockutil --no-restart --add "/Applications/BambuStudio.app"
+fi
+
 dockutil --no-restart --add "$HOME/Downloads"
 
 killall Dock

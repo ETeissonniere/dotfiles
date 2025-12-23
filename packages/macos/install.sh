@@ -6,6 +6,7 @@
 #   VM=1       - Skip desktop apps (for VMs)
 #   NO_VIRT=1  - Skip virtualization tools
 #   LAPTOP=1   - Include laptop-specific tools
+#   PERSONAL_APPS=1 - Include personal apps (Bambu Studio)
 #
 # Usage:
 #   ./install.sh          # Install packages
@@ -76,6 +77,13 @@ if [[ "$WORK_APPS" == "1" ]]; then
     {
         echo ""
         echo "mas 'Slack for Desktop', id: 803453959"
+    } >> "$BREWFILE"
+fi
+
+if [[ "$PERSONAL_APPS" == "1" ]]; then
+    {
+        echo ""
+        echo "cask 'bambu-studio'"
     } >> "$BREWFILE"
 fi
 

@@ -41,6 +41,7 @@ The macOS package installer and configuration scripts react to a few environment
 - `NO_SOCIALS=1` – skip social apps like WhatsApp and Telegram.
 - `LAPTOP=1` – include laptop-only utilities such as Tailscale.
 - `WORK_APPS=1` – include work only apps like Slack.
+- `PERSONAL_APPS=1` – include personal apps like Bambu Studio.
 
 ## Post-install reminders
 
