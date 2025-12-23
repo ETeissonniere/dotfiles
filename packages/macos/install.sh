@@ -40,7 +40,7 @@ if [[ "$VM" != "1" ]]; then
 brew 'container'
 cask 'docker-desktop'
 cask 'logi-options+'
-cask 'visual-studio-code'
+cask 'zed'
 
 mas 'Flighty – Live Flight Tracker', id: 1358823008
 mas 'uBlock Origin Lite', id: 6745342698

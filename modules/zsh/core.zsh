@@ -81,11 +81,8 @@ if command -v uvx >/dev/null 2>&1; then
   eval "$(uvx --generate-shell-completion zsh)"
 fi
 
-# Editor preference: favour VS Code when available.
-if command -v code >/dev/null 2>&1; then
-  export EDITOR="code --wait"
-elif [[ "${VSCODE_INJECTION:-0}" == "1" ]]; then
-  export EDITOR="code --wait"
+if command -v zed >/dev/null 2>&1; then
+  export EDITOR="zed --wait"
 else
   export EDITOR="vim"
 fi
