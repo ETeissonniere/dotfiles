@@ -25,13 +25,16 @@ brew 'dockutil'
 brew 'eza'
 brew 'fd'
 brew 'fzf'
-brew 'gh'
 cask 'ghostty'
 brew 'git-lfs'
 brew 'httpie'
 brew 'ripgrep'
 brew 'uv'
 brew 'zoxide'
+
+brew 'gh'
+brew 'glab'
+brew 'tea'
 EOF
 
 if [[ "$VM" != "1" ]]; then
