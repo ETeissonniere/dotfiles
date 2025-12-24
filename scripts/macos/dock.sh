@@ -11,7 +11,7 @@ dockutil --no-restart --add "/System/Applications/Calendar.app"
 dockutil --no-restart --add "/Applications/Ghostty.app"
 
 # Only add VSCode if not in VM mode
-if [ "${VM:-0}" != "1" ]; then
+if [ -d "/Applications/Zed.app" ]; then
     dockutil --no-restart --add "/Applications/Zed.app"
 fi
 
