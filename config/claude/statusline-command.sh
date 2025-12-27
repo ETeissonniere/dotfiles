@@ -3,10 +3,19 @@ input=$(cat)
 cwd=$(echo "$input" | jq -r '.workspace.current_dir')
 model_name=$(echo "$input" | jq -r '.model.display_name')
 context_window_size=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
-total_input_tokens=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0')
-total_output_tokens=$(echo "$input" | jq -r '.context_window.total_output_tokens // 0')
 
-total_tokens=$((total_input_tokens + total_output_tokens))
+# Use current_usage for accurate context state (resets on context clear)
+# Falls back to cumulative totals if current_usage is not available
+current_input=$(echo "$input" | jq -r '.context_window.current_usage.input_tokens // empty')
+if [[ -n "$current_input" ]]; then
+    cache_read=$(echo "$input" | jq -r '.context_window.current_usage.cache_read_input_tokens // 0')
+    total_tokens=$((current_input + cache_read))
+else
+    # Fallback to cumulative totals
+    total_input_tokens=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0')
+    total_output_tokens=$(echo "$input" | jq -r '.context_window.total_output_tokens // 0')
+    total_tokens=$((total_input_tokens + total_output_tokens))
+fi
 if [[ $context_window_size -gt 0 ]]; then
     percentage=$((total_tokens * 100 / context_window_size))
     [[ $percentage -gt 100 ]] && percentage=100
