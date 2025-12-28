@@ -47,6 +47,9 @@ cask 'logi-options+'
 cask 'zed'
 
 mas 'Flighty – Live Flight Tracker', id: 1358823008
+# mas 'Keynote', id: 409183694
+mas 'Numbers', id: 409203825
+mas 'Pages', id: 409201541
 mas 'uBlock Origin Lite', id: 6745342698
 EOF
 
