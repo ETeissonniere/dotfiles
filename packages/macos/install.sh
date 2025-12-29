@@ -87,6 +87,7 @@ if [[ "$PERSONAL_APPS" == "1" ]]; then
     {
         echo ""
         echo "cask 'bambu-studio'"
+        echo "cask 'kicad'"
     } >> "$BREWFILE"
 fi
 
