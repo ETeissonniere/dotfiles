@@ -35,8 +35,43 @@ maybe_install_rosetta() {
   fi
 }
 
+update_remote_to_ssh() {
+  local remote_url
+  remote_url="$(git -C "${DOTFILES_ROOT}" remote get-url origin 2>/dev/null || true)"
+
+  if [[ -z "$remote_url" ]]; then
+    log_warn "No origin remote found, skipping SSH conversion"
+    return
+  fi
+
+  # Check if already using SSH
+  if [[ "$remote_url" == git@* ]]; then
+    log_info "Git remote already using SSH"
+    return
+  fi
+
+  # Convert HTTPS to SSH (supports github.com and other hosts)
+  # https://github.com/user/repo.git -> git@github.com:user/repo.git
+  if [[ "$remote_url" =~ ^https://([^/]+)/(.+)$ ]]; then
+    local host="${BASH_REMATCH[1]}"
+    local path="${BASH_REMATCH[2]}"
+    local ssh_url="git@${host}:${path}"
+
+    if [[ "${DRY_RUN:-0}" == "1" ]]; then
+      log_info "DRY RUN: would update remote to ${ssh_url}"
+      return
+    fi
+
+    git -C "${DOTFILES_ROOT}" remote set-url origin "$ssh_url"
+    log_info "Updated git remote to SSH: ${ssh_url}"
+  else
+    log_warn "Unrecognized remote URL format: ${remote_url}"
+  fi
+}
+
 "${DOTFILES_ROOT}/scripts/packages/install.sh"
 "${DOTFILES_ROOT}/scripts/config/deploy.sh"
 maybe_install_rosetta
+update_remote_to_ssh
 
 log_info "Bootstrap complete"
