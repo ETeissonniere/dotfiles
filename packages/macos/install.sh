@@ -79,6 +79,7 @@ fi
 if [[ "$WORK_APPS" == "1" ]]; then
     {
         echo ""
+        echo "cask 'google-chrome'"
         echo "mas 'Slack for Desktop', id: 803453959"
     } >> "$BREWFILE"
 fi

@@ -3,6 +3,12 @@
 dockutil --no-restart --remove all
 
 dockutil --no-restart --add "/Applications/Safari.app"
+
+# Add Chrome next to Safari if installed
+if [ -d "/Applications/Google Chrome.app" ]; then
+    dockutil --no-restart --add "/Applications/Google Chrome.app"
+fi
+
 dockutil --no-restart --add "$HOME/Applications/Youtube Music.app"
 dockutil --no-restart --add "/System/Applications/Mail.app"
 dockutil --no-restart --add "/System/Applications/Messages.app"
