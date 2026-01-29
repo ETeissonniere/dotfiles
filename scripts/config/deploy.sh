@@ -93,6 +93,21 @@ link_ghostty() {
   fi
 }
 
+link_tmux() {
+  # Only install tmux config on Linux servers
+  if [[ "$DOTFILES_PLATFORM" == "macos" ]]; then
+    return
+  fi
+
+  local source="$DOTFILES_ROOT/config/tmux/tmux.conf"
+  local target="$HOME/.tmux.conf"
+  if [[ "$DRY_RUN" == "1" ]]; then
+    log_info "DRY RUN: would link $target -> $source"
+  else
+    link_file "$source" "$target"
+  fi
+}
+
 link_claude() {
   local source_dir="$DOTFILES_ROOT/config/claude"
   local target_dir="$HOME/.claude"
@@ -172,6 +187,7 @@ render_gitconfig
 render_ssh_config
 link_zsh
 link_ghostty
+link_tmux
 link_claude
 ensure_default_shell
 
