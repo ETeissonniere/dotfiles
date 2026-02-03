@@ -13,6 +13,7 @@ dockutil --no-restart --add "$HOME/Applications/Youtube Music.app"
 dockutil --no-restart --add "/System/Applications/Mail.app"
 dockutil --no-restart --add "/System/Applications/Messages.app"
 dockutil --no-restart --add "/System/Applications/Notes.app"
+dockutil --no-restart --add "/Applications/Logseq.app"
 dockutil --no-restart --add "/System/Applications/Calendar.app"
 dockutil --no-restart --add "/Applications/Ghostty.app"
 
