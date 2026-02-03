@@ -39,13 +39,14 @@ _is_vm() {
 }
 
 _dotfiles_sync() {
+  local force="${1:-}"
   local dotfiles_dir="${DOTFILES_ROOT:-$HOME/.dotfiles}"
 
   # Create cache dir if needed
   mkdir -p "$(dirname "$DOTFILES_SYNC_CACHE_FILE")"
 
-  # Check if we should run (throttle checks)
-  if [[ -f "$DOTFILES_SYNC_CACHE_FILE" ]]; then
+  # Check if we should run (throttle checks) - skip if forced
+  if [[ "$force" != "--force" ]] && [[ -f "$DOTFILES_SYNC_CACHE_FILE" ]]; then
     local last_check=$(cat "$DOTFILES_SYNC_CACHE_FILE" 2>/dev/null || echo 0)
     local now=$(date +%s)
     local elapsed=$((now - last_check))
@@ -86,6 +87,9 @@ _dotfiles_sync() {
     done
 
     echo ""
+    # Flush any pending input before prompting (prevents accidental responses)
+    while read -t 0 -k 1 2>/dev/null; do :; done
+
     printf "Apply updates? [y/N]: "
     read -k 1 response
     echo  # newline
@@ -131,8 +135,10 @@ _dotfiles_sync() {
   trap - INT TERM
 }
 
-# Alias to manually trigger sync
-alias dotsync="_dotfiles_sync"
+# Function to manually trigger sync (always forces, bypasses throttle)
+dotsync() {
+  _dotfiles_sync --force
+}
 
 # Run check on shell startup (synchronous to allow for interactive prompt)
 _dotfiles_sync
