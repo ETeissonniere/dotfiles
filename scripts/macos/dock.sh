@@ -34,6 +34,11 @@ if [ -d "/Applications/BambuStudio.app" ]; then
     dockutil --no-restart --add "/Applications/BambuStudio.app"
 fi
 
+# Only add UGREEN NAS if installed
+if [ -d "/Applications/UGREEN NAS.app" ]; then
+    dockutil --no-restart --add "/Applications/UGREEN NAS.app"
+fi
+
 dockutil --no-restart --add "$HOME/Downloads"
 
 killall Dock
