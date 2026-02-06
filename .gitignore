@@ -1,1 +1,3 @@
-packages/macos/.Brewfile.tmp
+result
+result-*
+.direnv/

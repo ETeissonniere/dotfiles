@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# shellcheck source=scripts/lib/common.sh
-source "$(dirname "${BASH_SOURCE[0]}")/../lib/common.sh"
+log_info()  { printf '\033[1;34m[INFO]\033[0m %s\n' "$1"; }
+log_warn()  { printf '\033[1;33m[WARN]\033[0m %s\n' "$1"; }
+log_error() { printf '\033[1;31m[ERROR]\033[0m %s\n' "$1"; }
+ensure_dir() { mkdir -p "$1"; }
 
 usage() {
   cat <<USAGE
