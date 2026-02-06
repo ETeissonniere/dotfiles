@@ -88,13 +88,14 @@ usage() {
   echo "  check                        Validate flake configuration"
   echo ""
   echo "Flavors:"
-  echo "  macbook    Personal laptop (macOS, all apps)"
-  echo "  work-vm    Work VM (macOS, minimal)"
+  echo "  personal   Personal Mac (all apps, socials, Docker, UTM)"
+  echo "  work       Work Mac (Docker, Tailscale, no socials/personal apps)"
+  echo "  vm         Mac VM (minimal, no Docker/UTM/socials)"
   echo "  server     NixOS server (Docker, SSH, passwordless sudo)"
   echo "  linux      Non-NixOS Linux (Home Manager standalone)"
   echo ""
   echo "Examples:"
-  echo "  $0 switch macbook"
+  echo "  $0 switch personal"
   echo "  $0 deploy server user@192.168.1.100"
   echo "  $0 install server root@192.168.1.100"
   echo "  $0 update"
@@ -104,7 +105,7 @@ usage() {
 cmd_switch() {
   local flavor="${1:-}"
   if [[ -z "$flavor" ]]; then
-    log_error "Missing flavor. Available: macbook, work-vm, server, linux"
+    log_error "Missing flavor. Available: personal, work, vm, server, linux"
     exit 1
   fi
 

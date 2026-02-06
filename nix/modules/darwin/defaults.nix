@@ -24,7 +24,7 @@ in
 
   # Dock
   system.defaults.dock = {
-    autohide = !cfg.isVM;
+    autohide = cfg.profile != "vm";
     tilesize = 64;
     # Disable hot corners
     wvous-tl-corner = 1;

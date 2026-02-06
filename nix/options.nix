@@ -1,40 +1,17 @@
 { lib, ... }:
 {
   options.dotfiles = {
-    isVM = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Running in a virtual machine -- skip desktop apps and dock autohide";
-    };
-
-    isLaptop = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Laptop-specific tools (Tailscale)";
-    };
-
-    workApps = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Include work apps (Chrome, Slack)";
-    };
-
-    personalApps = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Include personal apps (Bambu Studio, KiCad)";
-    };
-
-    noSocials = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Skip social messaging apps (Telegram, WhatsApp)";
-    };
-
-    noVirt = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Skip virtualization tools (UTM)";
+    profile = lib.mkOption {
+      type = lib.types.enum [ "personal" "work" "vm" "server" "linux" ];
+      default = "personal";
+      description = ''
+        Machine profile:
+        - personal: All apps, socials, Docker, UTM, Tailscale
+        - work: Work apps, Docker, no socials/personal apps/UTM
+        - vm: Minimal macOS VM, no Docker/UTM/socials
+        - server: NixOS server
+        - linux: Non-NixOS Linux (Home Manager standalone)
+      '';
     };
 
     username = lib.mkOption {
@@ -50,7 +27,7 @@
 
     hostName = lib.mkOption {
       type = lib.types.str;
-      default = "macbook";
+      default = "nixos";
       description = "Machine hostname";
     };
   };

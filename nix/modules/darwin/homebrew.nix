@@ -1,6 +1,13 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.dotfiles;
+  isPersonal = cfg.profile == "personal";
+  isWork = cfg.profile == "work";
+  isVM = cfg.profile == "vm";
+  hasDocker = isPersonal || isWork;
+  hasSocials = isPersonal;
+  hasPersonalApps = isPersonal;
+  hasUTM = isPersonal;
 in
 {
   homebrew = {
@@ -14,6 +21,7 @@ in
 
     brews = [
       "dockutil"
+    ] ++ lib.optionals hasDocker [
       "container"
     ];
 
@@ -23,34 +31,35 @@ in
       "claude-code"
       "ghostty"
       "logseq"
-    ] ++ lib.optionals (!cfg.isVM) [
-      "docker-desktop"
+    ] ++ lib.optionals (!isVM) [
       "logi-options+"
       "zed"
-    ] ++ lib.optionals (!cfg.isVM && !cfg.noVirt) [
+    ] ++ lib.optionals hasDocker [
+      "docker-desktop"
+    ] ++ lib.optionals hasUTM [
       "utm"
-    ] ++ lib.optionals cfg.workApps [
+    ] ++ lib.optionals (isWork || isPersonal) [
       "google-chrome"
-    ] ++ lib.optionals cfg.personalApps [
+    ] ++ lib.optionals hasPersonalApps [
       "bambu-studio"
       "kicad"
     ];
 
     masApps = lib.mkMerge [
-      (lib.mkIf (!cfg.isVM) {
+      (lib.mkIf (!isVM) {
         "Flighty – Live Flight Tracker" = 1358823008;
         "Numbers" = 409203825;
         "Pages" = 409201541;
         "uBlock Origin Lite" = 6745342698;
       })
-      (lib.mkIf (!cfg.isVM && !cfg.noSocials) {
+      (lib.mkIf (isWork || isPersonal) {
+        "Tailscale" = 1475387142;
+      })
+      (lib.mkIf hasSocials {
         "Telegram" = 747648890;
         "WhatsApp Messenger" = 310633997;
       })
-      (lib.mkIf cfg.isLaptop {
-        "Tailscale" = 1475387142;
-      })
-      (lib.mkIf cfg.workApps {
+      (lib.mkIf (isWork || isPersonal) {
         "Slack for Desktop" = 803453959;
       })
     ];

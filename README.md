@@ -9,7 +9,7 @@ Declarative system configuration for macOS workstations, NixOS servers, and non-
 ```sh
 git clone https://github.com/ETeissonniere/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-./scripts/bootstrap.sh switch macbook
+./scripts/bootstrap.sh switch personal
 ```
 
 ### NixOS server (fresh install via nixos-anywhere)
@@ -72,8 +72,9 @@ scripts/
 
 | Flavor | Platform | Description |
 |--------|----------|-------------|
-| `macbook` | macOS | Personal laptop — all apps, dock, system preferences |
-| `work-vm` | macOS | Work VM — minimal, no GUI extras |
+| `personal` | macOS | All apps, socials, Docker, UTM, Tailscale |
+| `work` | macOS | Work apps, Docker, Tailscale — no socials/personal apps/UTM |
+| `vm` | macOS | Minimal VM — no Docker, UTM, or socials |
 | `server` | NixOS | Linux server — Docker, SSH, passwordless sudo |
 | `linux` | Linux | Non-NixOS fallback — Home Manager standalone |
 
@@ -121,18 +122,15 @@ After initial install, push config changes from your laptop:
 ./scripts/bootstrap.sh deploy server user@server-ip
 ```
 
-## Dotfiles options
+## Profiles
 
-Conditional flags in `nix/options.nix` control what gets installed:
+The `dotfiles.profile` option in `nix/options.nix` controls what gets installed:
 
-| Option | Default | Description |
-|--------|---------|-------------|
-| `dotfiles.isVM` | `false` | Skip desktop apps, keep dock visible |
-| `dotfiles.isLaptop` | `false` | Include Tailscale and laptop tools |
-| `dotfiles.workApps` | `false` | Include Chrome, Slack |
-| `dotfiles.personalApps` | `false` | Include Bambu Studio, KiCad |
-| `dotfiles.noSocials` | `false` | Skip Telegram, WhatsApp |
-| `dotfiles.noVirt` | `false` | Skip UTM |
+| Profile | Docker | UTM | Socials | Personal apps | Work apps | Tailscale |
+|---------|:---:|:---:|:---:|:---:|:---:|:---:|
+| `personal` | yes | yes | yes | yes | yes | yes |
+| `work` | yes | - | - | - | yes | yes |
+| `vm` | - | - | - | - | yes | - |
 
 ## Post-install reminders
 

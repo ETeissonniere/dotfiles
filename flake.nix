@@ -89,31 +89,32 @@
   {
     # --- macOS configurations ---
 
-    darwinConfigurations."macbook" = mkDarwin {
+    darwinConfigurations."personal" = mkDarwin {
       hostname = "macbook";
-      dotfilesFlags = {
-        isLaptop = true;
-        workApps = true;
-        personalApps = true;
-      };
+      dotfilesFlags = { profile = "personal"; };
     };
 
-    darwinConfigurations."work-vm" = mkDarwin {
-      hostname = "work-vm";
-      dotfilesFlags = {
-        isVM = true;
-        workApps = true;
-      };
+    darwinConfigurations."work" = mkDarwin {
+      hostname = "work";
+      dotfilesFlags = { profile = "work"; };
+    };
+
+    darwinConfigurations."vm" = mkDarwin {
+      hostname = "vm";
+      dotfilesFlags = { profile = "vm"; };
     };
 
     # --- NixOS configurations ---
 
     nixosConfigurations."server" = mkNixOS {
       hostname = "server";
+      dotfilesFlags = { profile = "server"; };
     };
 
     # --- Linux configurations ---
 
-    homeConfigurations."linux" = mkLinux {};
+    homeConfigurations."linux" = mkLinux {
+      dotfilesFlags = { profile = "linux"; };
+    };
   };
 }

@@ -105,7 +105,7 @@ _dotfiles_sync() {
       local flavor="${DOTFILES_FLAVOR:-}"
       if [[ -z "$flavor" ]]; then
         case "$OSTYPE" in
-          darwin*) flavor="macbook" ;;
+          darwin*) flavor="personal" ;;
           linux*)
             if [[ -f /etc/NIXOS ]]; then
               flavor="server"

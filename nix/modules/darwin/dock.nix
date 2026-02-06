@@ -1,11 +1,14 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.dotfiles;
+  isVM = cfg.profile == "vm";
+  isPersonal = cfg.profile == "personal";
+  isWork = cfg.profile == "work";
 
   dockApps = [
     "/Applications/Safari.app"
   ]
-  ++ lib.optionals cfg.workApps [
+  ++ lib.optionals (isWork || isPersonal) [
     "/Applications/Google Chrome.app"
   ]
   ++ [
@@ -17,16 +20,16 @@ let
     "/System/Applications/Calendar.app"
     "/Applications/Ghostty.app"
   ]
-  ++ lib.optionals (!cfg.isVM) [
+  ++ lib.optionals (!isVM) [
     "/Applications/Zed.app"
   ]
-  ++ lib.optionals cfg.workApps [
+  ++ lib.optionals (isWork || isPersonal) [
     "/Applications/Slack.app"
   ]
   ++ [
     "/Applications/Claude.app"
   ]
-  ++ lib.optionals cfg.personalApps [
+  ++ lib.optionals isPersonal [
     "/Applications/BambuStudio.app"
   ]
   ++ [
