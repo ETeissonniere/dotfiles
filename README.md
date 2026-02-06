@@ -128,7 +128,7 @@ The `dotfiles.profile` option in `nix/options.nix` controls what gets installed:
 
 | Profile | Docker | UTM | Socials | Personal apps | Work apps | Tailscale |
 |---------|:---:|:---:|:---:|:---:|:---:|:---:|
-| `personal` | yes | yes | yes | yes | yes | yes |
+| `personal` | yes | yes | yes | yes | yes | - |
 | `work` | yes | - | - | - | yes | yes |
 | `vm` | - | - | - | - | yes | - |
 

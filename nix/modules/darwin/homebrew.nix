@@ -52,7 +52,7 @@ in
         "Pages" = 409201541;
         "uBlock Origin Lite" = 6745342698;
       })
-      (lib.mkIf (isWork || isPersonal) {
+      (lib.mkIf isWork {
         "Tailscale" = 1475387142;
       })
       (lib.mkIf hasSocials {
