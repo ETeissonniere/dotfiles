@@ -113,40 +113,14 @@ link_claude() {
   local target_dir="$HOME/.claude"
   ensure_dir "$target_dir"
 
-  # Link CLAUDE.md
-  if [[ "$DRY_RUN" == "1" ]]; then
-    log_info "DRY RUN: would link $target_dir/CLAUDE.md -> $source_dir/CLAUDE.md"
-  else
-    link_file "$source_dir/CLAUDE.md" "$target_dir/CLAUDE.md"
-  fi
-
-  # Link agents directory
-  if [[ "$DRY_RUN" == "1" ]]; then
-    log_info "DRY RUN: would link $target_dir/agents -> $source_dir/agents"
-  else
-    link_file "$source_dir/agents" "$target_dir/agents"
-  fi
-
-  # Link commands directory
-  if [[ "$DRY_RUN" == "1" ]]; then
-    log_info "DRY RUN: would link $target_dir/commands -> $source_dir/commands"
-  else
-    link_file "$source_dir/commands" "$target_dir/commands"
-  fi
-
-  # Link settings.json
-  if [[ "$DRY_RUN" == "1" ]]; then
-    log_info "DRY RUN: would link $target_dir/settings.json -> $source_dir/settings.json"
-  else
-    link_file "$source_dir/settings.json" "$target_dir/settings.json"
-  fi
-
-  # Link statusline-command.sh
-  if [[ "$DRY_RUN" == "1" ]]; then
-    log_info "DRY RUN: would link $target_dir/statusline-command.sh -> $source_dir/statusline-command.sh"
-  else
-    link_file "$source_dir/statusline-command.sh" "$target_dir/statusline-command.sh"
-  fi
+  local items=(CLAUDE.md agents commands skills settings.json statusline-command.sh)
+  for item in "${items[@]}"; do
+    if [[ "$DRY_RUN" == "1" ]]; then
+      log_info "DRY RUN: would link $target_dir/$item -> $source_dir/$item"
+    else
+      link_file "$source_dir/$item" "$target_dir/$item"
+    fi
+  done
 }
 
 ensure_default_shell() {
