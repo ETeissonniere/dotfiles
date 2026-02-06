@@ -100,27 +100,22 @@ _dotfiles_sync() {
       local old_head=$(git rev-parse HEAD)
       git pull origin master
 
-      # Check if package definitions changed
-      local changed_files=$(git diff --name-only "$old_head" HEAD 2>/dev/null || echo "")
-      if echo "$changed_files" | grep -q "^packages/"; then
-        echo ""
-        echo "\033[1;33m⚠ Package definitions changed\033[0m"
-        echo "Run \033[1;36mmake packages\033[0m to install/update packages"
-        echo ""
-      fi
-
       echo ""
-      echo "\033[1mReapplying configuration files...\033[0m"
-      make -C "$dotfiles_dir" link
-
-      echo ""
-      echo "\033[1mReapplying system settings...\033[0m"
-      # Detect VM and pass flags to settings script
-      if _is_vm; then
-        VM=1 SKIP_RENAMING=1 make -C "$dotfiles_dir" settings
-      else
-        SKIP_RENAMING=1 make -C "$dotfiles_dir" settings
+      echo "\033[1mRebuilding configuration...\033[0m"
+      local flavor="${DOTFILES_FLAVOR:-}"
+      if [[ -z "$flavor" ]]; then
+        case "$OSTYPE" in
+          darwin*) flavor="macbook" ;;
+          linux*)
+            if [[ -f /etc/NIXOS ]]; then
+              flavor="server"
+            else
+              flavor="linux"
+            fi
+            ;;
+        esac
       fi
+      "$dotfiles_dir/scripts/bootstrap.sh" switch "$flavor"
 
       echo ""
       echo "\033[1;32m✓ Dotfiles updated and reapplied\033[0m"

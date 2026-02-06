@@ -1,53 +1,142 @@
 # Eliott's dotfiles
 
-These dotfiles configure macOS workstations and Linux servers with a consistent toolchain and shell experience. Use at your own risk.
+Declarative system configuration for macOS workstations, NixOS servers, and non-NixOS Linux machines. Everything is managed through [Nix Flakes](https://nixos.wiki/wiki/Flakes) with [nix-darwin](https://github.com/LnL7/nix-darwin), [NixOS](https://nixos.org/), and [Home Manager](https://github.com/nix-community/home-manager).
 
 ## Quick start
+
+### macOS (personal laptop)
 
 ```sh
 git clone https://github.com/ETeissonniere/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-make bootstrap
+./scripts/bootstrap.sh switch macbook
 ```
 
-Set `DRY_RUN=1` to preview actions without making changes:
+### NixOS server (fresh install via nixos-anywhere)
 
 ```sh
-DRY_RUN=1 make bootstrap
+./scripts/bootstrap.sh install server root@192.168.1.100
 ```
 
-## Targets
+### Non-NixOS Linux (Home Manager standalone)
 
-- `make bootstrap` – detect the platform, install packages, and deploy configuration files.
-- `make packages` – install only the package dependencies for the current platform.
-- `make link` – (re)link shell, git, and SSH config without touching packages.
-- `make verify` – run basic linting and structure checks.
-
-## Layout
-
-```
-config/           # Source dotfiles (git, ssh, zsh) grouped by domain
-modules/zsh/      # Shared zsh fragments with platform overrides
-packages/         # Package manifests per platform + post-install hooks
-scripts/          # Bootstrap helpers, library code, verification, SSH tooling
+```sh
+git clone https://github.com/ETeissonniere/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./scripts/bootstrap.sh switch linux
 ```
 
-## macOS package toggles
+## Architecture
 
-The macOS package installer and configuration scripts react to a few environment variables so you can tailor installs:
+```
+flake.nix                      # Entry point — defines all configurations
+nix/
+  options.nix                  # Shared option declarations (dotfiles.*)
+  hosts/
+    darwin.nix                 # macOS host (nix-darwin + Home Manager)
+    nixos.nix                  # NixOS host (full system + Home Manager)
+    linux.nix                  # Standalone Home Manager for non-NixOS Linux
+  modules/
+    shared/                    # Cross-platform Home Manager modules
+      git.nix                  #   Git with SSH signing
+      ssh.nix                  #   SSH client config
+      zsh.nix                  #   Zsh (sources runtime modules from modules/zsh/)
+      shell-tools.nix          #   CLI tools (eza, fd, fzf, ripgrep, etc.)
+      ghostty.nix              #   Ghostty terminal config
+      claude.nix               #   Claude Code config files
+    darwin/                    # macOS-specific system modules
+      homebrew.nix             #   Homebrew casks, brews, Mac App Store
+      defaults.nix             #   System preferences (dock, finder, keyboard)
+      dock.nix                 #   Dock app layout via dockutil
+    nixos/                     # NixOS-specific system modules
+      base.nix                 #   Core settings (locale, firewall, nix gc)
+      docker.nix               #   Docker with auto-prune
+      sudo.nix                 #   Passwordless sudo for wheel group
+      ssh-server.nix           #   OpenSSH server (key-only auth)
+      claude-code.nix          #   Claude Code native installer
+      disko.nix                #   Disk partitioning (GPT + EFI + ext4)
+    linux/                     # Non-NixOS Linux modules
+      tmux.nix                 #   Tmux with mouse support
+      packages.nix             #   Basic build tools
+modules/zsh/                   # Runtime zsh fragments (sourced, not Nix-managed)
+config/                        # Config files symlinked by Nix
+  ghostty/config               #   Ghostty settings
+  git/allowed_signers          #   SSH signing allowed keys
+  claude/                      #   Claude Code settings, agents, commands, skills
+scripts/
+  bootstrap.sh                 #   Unified CLI for all operations
+  ssh/import_key.sh            #   SSH key import helper
+```
 
-- `VM=1` – skip GUI-heavy tools (VS Code, Docker Desktop, etc.), don't add them to the dock, and keep the dock visible instead of auto-hiding.
-- `NO_VIRT=1` – skip UTM virtualization tooling.
-- `NO_SOCIALS=1` – skip social apps like WhatsApp and Telegram.
-- `LAPTOP=1` – include laptop-only utilities such as Tailscale.
-- `WORK_APPS=1` – include work only apps like Slack.
-- `PERSONAL_APPS=1` – include personal apps like Bambu Studio.
+## Available flavors
+
+| Flavor | Platform | Description |
+|--------|----------|-------------|
+| `macbook` | macOS | Personal laptop — all apps, dock, system preferences |
+| `work-vm` | macOS | Work VM — minimal, no GUI extras |
+| `server` | NixOS | Linux server — Docker, SSH, passwordless sudo |
+| `linux` | Linux | Non-NixOS fallback — Home Manager standalone |
+
+## Commands
+
+```sh
+# Apply configuration locally
+./scripts/bootstrap.sh switch <flavor>
+
+# Deploy NixOS config to a remote host
+./scripts/bootstrap.sh deploy <flavor> <user@host>
+
+# Provision NixOS on a new machine (wipes disk!)
+./scripts/bootstrap.sh install <flavor> <user@host>
+
+# Update all flake dependencies
+./scripts/bootstrap.sh update
+
+# Validate flake configuration
+./scripts/bootstrap.sh check
+```
+
+## Day-to-day usage
+
+### Adding a package
+
+Edit the relevant Nix module and rebuild:
+
+- **CLI tool (all platforms):** Add to `nix/modules/shared/shell-tools.nix`, run `switch`
+- **Homebrew cask (macOS):** Add to `nix/modules/darwin/homebrew.nix`, run `switch`
+- **NixOS system package:** Add to `nix/modules/nixos/base.nix`, run `switch` or `deploy`
+
+### Updating dependencies
+
+```sh
+./scripts/bootstrap.sh update
+./scripts/bootstrap.sh switch <flavor>
+```
+
+### Remote server management
+
+After initial install, push config changes from your laptop:
+
+```sh
+./scripts/bootstrap.sh deploy server user@server-ip
+```
+
+## Dotfiles options
+
+Conditional flags in `nix/options.nix` control what gets installed:
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `dotfiles.isVM` | `false` | Skip desktop apps, keep dock visible |
+| `dotfiles.isLaptop` | `false` | Include Tailscale and laptop tools |
+| `dotfiles.workApps` | `false` | Include Chrome, Slack |
+| `dotfiles.personalApps` | `false` | Include Bambu Studio, KiCad |
+| `dotfiles.noSocials` | `false` | Skip Telegram, WhatsApp |
+| `dotfiles.noVirt` | `false` | Skip UTM |
 
 ## Post-install reminders
 
-- Generate/import SSH keys with `scripts/ssh/import_key.sh` (update `config/git/allowed_signers` as needed).
-- Run `gh auth login -p ssh` to authenticate GitHub.
-- Configure Time Machine / Tailscale / other services manually when desired.
-- On Mac, enable iCloud folder sync if desired.
-- Set wallpaper.
-- If desired, switch the dotfiles remote to SSH `git remote remove origin && git remote add origin git@github.com:ETeissonniere/dotfiles.git`
+- Import SSH keys: `./scripts/ssh/import_key.sh --from /path/to/key`
+- Authenticate GitHub: `gh auth login -p ssh`
+- Set wallpaper manually
+- For NixOS servers: override `disko.devices.disk.main.device` if disk isn't `/dev/sda`
