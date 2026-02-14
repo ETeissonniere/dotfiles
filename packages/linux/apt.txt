@@ -1,14 +1,5 @@
-# Base tooling
+# Bootstrap packages needed before Homebrew
 build-essential
 curl
 git
-git-lfs
-btop
-vim
 zsh
-
-# Modern CLI enhancements
-fd-find
-fzf
-ripgrep
-zoxide

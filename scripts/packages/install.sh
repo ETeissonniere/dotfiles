@@ -11,20 +11,32 @@ export DRY_RUN
 
 export_platform
 
-install_macos_packages() {
-  local install_script="$DOTFILES_ROOT/packages/macos/install.sh"
-
-  if ! command -v brew >/dev/null 2>&1; then
-    log_warn "Homebrew not found"
-    if [[ "$DRY_RUN" == "1" ]]; then
-      log_info "DRY RUN: would install Homebrew"
-    else
-      log_info "Installing Homebrew"
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi
+ensure_homebrew() {
+  if command -v brew >/dev/null 2>&1; then
+    return
   fi
 
+  log_warn "Homebrew not found"
+  if [[ "$DRY_RUN" == "1" ]]; then
+    log_info "DRY RUN: would install Homebrew"
+    return
+  fi
+
+  log_info "Installing Homebrew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  case "$DOTFILES_PLATFORM" in
+    macos)
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+      ;;
+    *)
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      ;;
+  esac
+}
+
+run_brew_bundle() {
+  local install_script="$DOTFILES_ROOT/packages/install.sh"
   if [[ -x "$install_script" ]]; then
     if [[ "$DRY_RUN" == "1" ]]; then
       log_info "DRY RUN: $install_script"
@@ -36,7 +48,7 @@ install_macos_packages() {
   fi
 }
 
-install_apt_packages() {
+install_linux_prereqs() {
   local apt_list="$DOTFILES_ROOT/packages/linux/apt.txt"
   if ! command -v apt-get >/dev/null 2>&1; then
     log_warn "apt-get not available on this system"
@@ -44,14 +56,11 @@ install_apt_packages() {
   fi
 
   if [[ ! -f "$apt_list" ]]; then
-    log_warn "Missing $apt_list"
     return
   fi
 
   mapfile -t packages < <(grep -vE '^(#|\s*$)' "$apt_list")
-
   if [[ ${#packages[@]} -eq 0 ]]; then
-    log_warn "No apt packages listed"
     return
   fi
 
@@ -62,29 +71,32 @@ install_apt_packages() {
     sudo apt-get update
     sudo apt-get install -y "${packages[@]}"
   fi
+}
 
-  local postinstall_dir="$DOTFILES_ROOT/packages/linux/postinstall"
-  if [[ -d "$postinstall_dir" ]]; then
-    for script in "$postinstall_dir"/*.sh; do
-      [[ -e "$script" ]] || continue
-      if [[ "$DRY_RUN" == "1" ]]; then
-        log_info "DRY RUN: would run $script"
-      else
-        log_info "Running post-install script $script"
-        bash "$script"
-      fi
-    done
+install_linux_docker() {
+  local docker_script="$DOTFILES_ROOT/packages/linux/postinstall/docker.sh"
+  if [[ -x "$docker_script" ]]; then
+    if [[ "$DRY_RUN" == "1" ]]; then
+      log_info "DRY RUN: would run $docker_script"
+    else
+      log_info "Running Docker installer"
+      bash "$docker_script"
+    fi
   fi
 }
 
 case "$DOTFILES_PLATFORM" in
   macos)
-    install_macos_packages
+    ensure_homebrew
+    run_brew_bundle
     ;;
   ubuntu|raspbian|linux)
-    install_apt_packages
+    install_linux_prereqs
+    ensure_homebrew
+    run_brew_bundle
+    install_linux_docker
     ;;
   *)
     log_warn "No package installer defined for platform $DOTFILES_PLATFORM"
     ;;
- esac
+esac
