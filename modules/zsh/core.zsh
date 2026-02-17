@@ -101,12 +101,12 @@ setopt prompt_subst
 
 if [[ -z ${PROMPT_REMOTE_LABEL-} ]]; then
   if [[ -n ${SSH_CONNECTION:-} || -n ${SSH_TTY:-} ]]; then
-    PROMPT_REMOTE_LABEL='%F{244}[ %K{196}%F{231} remote %f%k%F{244} ]%f'
+    PROMPT_REMOTE_LABEL='%F{#8a9199}[ %K{#f28779}%F{#242936} remote %f%k%F{#8a9199} ]%f'
   fi
 fi
 
-PROMPT='%F{81}%n%f %F{247}on%f %F{39}%m%f${PROMPT_PLATFORM_LABEL:+ ${PROMPT_PLATFORM_LABEL}}${PROMPT_REMOTE_LABEL:+ ${PROMPT_REMOTE_LABEL}} %F{247}in%f %F{161}%2~%f %F{228}${vcs_info_msg_0_}%f
-%(?.%F{76}√%f.%F{196}%?%f) → '
+PROMPT='%F{#ffcc66}%n%f %F{#8a9199}on%f %F{#5ccfe6}%m%f${PROMPT_PLATFORM_LABEL:+ ${PROMPT_PLATFORM_LABEL}}${PROMPT_REMOTE_LABEL:+ ${PROMPT_REMOTE_LABEL}} %F{#8a9199}in%f %F{#73d0ff}%2~%f %F{#d5ff80}${vcs_info_msg_0_}%f
+%(?.%F{#d5ff80}√%f.%F{#f28779}%?%f) → '
 RPROMPT='${RPROMPT_PLATFORM_LABEL}'
 
 printf '\033[1 q'
