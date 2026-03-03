@@ -1,16 +1,13 @@
 # Starship prompt — Ayu Mirage palette
 
-format = """$username$hostname$directory$git_branch$git_status$sudo$cmd_duration$character"""
+format = """$hostname$directory$git_branch$git_status$sudo$cmd_duration$character"""
 
 [username]
-format = "[$user]($style) "
-style_user = "#ffcc66"
-style_root = "bold red"
-show_always = false
+disabled = true
 
 [hostname]
-format = "on [$hostname]($style) "
-style = "#5ccfe6"
+format = "[remote]($style) "
+style = "bold #f28779"
 ssh_only = true
 
 [directory]
