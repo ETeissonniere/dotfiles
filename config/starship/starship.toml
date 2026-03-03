@@ -2,9 +2,6 @@
 
 format = """$hostname$directory$git_branch$git_state$git_status$cmd_duration$character"""
 
-[username]
-disabled = true
-
 [hostname]
 format = "[\\[](#8a9199)[ remote ](#242936 bg:#f28779)[\\]](#8a9199) "
 ssh_only = true
@@ -27,9 +24,6 @@ style = "bold #f28779"
 format = "[$all_status$ahead_behind]($style) "
 style = "#f28779"
 
-[sudo]
-disabled = true
-
 [cmd_duration]
 format = "took [$duration]($style) "
 style = "#8a9199"
@@ -39,41 +33,3 @@ min_time = 2000
 success_symbol = "[→](bold #d5ff80)"
 error_symbol = "[→](bold #f28779)"
 
-[aws]
-disabled = true
-
-[azure]
-disabled = true
-
-[gcloud]
-disabled = true
-
-[golang]
-disabled = true
-
-[java]
-disabled = true
-
-[nodejs]
-disabled = true
-
-[python]
-disabled = true
-
-[ruby]
-disabled = true
-
-[rust]
-disabled = true
-
-[package]
-disabled = true
-
-[docker_context]
-disabled = true
-
-[terraform]
-disabled = true
-
-[kubernetes]
-disabled = true
