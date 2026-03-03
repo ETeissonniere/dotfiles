@@ -6,8 +6,8 @@ format = """$hostname$directory$git_branch$git_status$cmd_duration$character"""
 disabled = true
 
 [hostname]
-format = "[remote]($style) "
-style = "bold #f28779"
+format = "[\\[ remote \\]]($style) "
+style = "bold white bg:#f28779"
 ssh_only = true
 
 [directory]
