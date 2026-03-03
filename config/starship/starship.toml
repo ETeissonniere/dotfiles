@@ -1,0 +1,81 @@
+# Starship prompt — Ayu Mirage palette
+
+format = """$username$hostname$directory$git_branch$git_status$sudo$cmd_duration$character"""
+
+[username]
+format = "[$user]($style) "
+style_user = "#ffcc66"
+style_root = "bold red"
+show_always = false
+
+[hostname]
+format = "on [$hostname]($style) "
+style = "#5ccfe6"
+ssh_only = true
+
+[directory]
+format = "[$path]($style) "
+style = "#73d0ff"
+truncation_length = 2
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+style = "#d5ff80"
+symbol = ""
+
+[git_status]
+disabled = true
+
+[sudo]
+format = "[$symbol]($style)"
+symbol = "sudo "
+style = "bold #f28779"
+disabled = false
+
+[cmd_duration]
+format = "took [$duration]($style) "
+style = "#8a9199"
+min_time = 2000
+
+[character]
+success_symbol = "[→](bold #d5ff80)"
+error_symbol = "[→](bold #f28779)"
+
+[aws]
+disabled = true
+
+[azure]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[golang]
+disabled = true
+
+[java]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[python]
+disabled = true
+
+[ruby]
+disabled = true
+
+[rust]
+disabled = true
+
+[package]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[terraform]
+disabled = true
+
+[kubernetes]
+disabled = true

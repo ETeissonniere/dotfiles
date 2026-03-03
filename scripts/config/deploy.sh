@@ -108,6 +108,17 @@ link_tmux() {
   fi
 }
 
+link_starship() {
+  local source="$DOTFILES_ROOT/config/starship/starship.toml"
+  local target="$HOME/.config/starship.toml"
+  ensure_dir "$HOME/.config"
+  if [[ "$DRY_RUN" == "1" ]]; then
+    log_info "DRY RUN: would link $target -> $source"
+  else
+    link_file "$source" "$target"
+  fi
+}
+
 link_claude() {
   local source_dir="$DOTFILES_ROOT/config/claude"
   local target_dir="$HOME/.claude"
@@ -162,6 +173,7 @@ render_ssh_config
 link_zsh
 link_ghostty
 link_tmux
+link_starship
 link_claude
 ensure_default_shell
 
