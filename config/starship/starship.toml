@@ -1,6 +1,6 @@
 # Starship prompt — Ayu Mirage palette
 
-format = """$hostname$directory$git_branch$git_status$cmd_duration$character"""
+format = """$hostname$directory$git_branch$git_state$git_status$cmd_duration$character"""
 
 [username]
 disabled = true
@@ -19,8 +19,13 @@ format = "[$symbol$branch]($style) "
 style = "#d5ff80"
 symbol = ""
 
+[git_state]
+format = "[$state( $progress_current/$progress_total)]($style) "
+style = "bold #f28779"
+
 [git_status]
-disabled = true
+format = "[$all_status$ahead_behind]($style) "
+style = "#f28779"
 
 [sudo]
 disabled = true
