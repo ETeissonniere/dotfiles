@@ -21,7 +21,7 @@ format = "[$state( $progress_current/$progress_total)]($style) "
 style = "bold #f28779"
 
 [git_status]
-format = "[$all_status$ahead_behind]($style) "
+format = "[$all_status$ahead_behind]($style)"
 style = "#f28779"
 
 [cmd_duration]
