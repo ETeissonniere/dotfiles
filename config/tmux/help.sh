@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 printf '\n'
 printf '  \033[1;33mKeybindings\033[0m  (prefix = Ctrl-a)\n'
 printf '\n'
