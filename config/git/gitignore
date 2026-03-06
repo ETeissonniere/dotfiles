@@ -36,3 +36,6 @@ yarn-error.log*
 # IDEs
 .vscode
 .zed
+
+# AI agents
+.claude/settings.local.json
