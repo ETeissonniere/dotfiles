@@ -1,7 +1,9 @@
 # Global Claude Code Preferences
 
 ## Package Managers & Tools
-- Always use **UV** when interacting with Python codebases
+- Always use **UV** when interacting with Python codebases or tools
+- Always use the **UV's build backend `uv_build`** unless specified otherwise
+- Always make use of available linters, language servers, and formatting tools 
 - Use **cargo** for Rust projects
 
 ## Docker & Containers
