@@ -27,6 +27,12 @@
 - Use descriptive test names that explain the scenario
 - Follow Arrange-Act-Assert pattern
 
+## Agents & Parallelism
+- Leverage **subagents** and **agent teams** as much as possible to parallelize work
+- Prefer spawning multiple agents for independent tasks (e.g., research, testing, code review) rather than doing them sequentially
+- Use agent teams for complex multi-step workflows where different agents can own different responsibilities
+- Default to running independent agents in parallel to maximize throughput
+
 ## Documentation
 - Only add comments when the code isn't self-explanatory
 - Don't create README or documentation files unless explicitly asked

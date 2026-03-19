@@ -10,8 +10,9 @@
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
   },
-  "alwaysThinkingEnabled": false,
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true
-  }
+  },
+  "alwaysThinkingEnabled": false,
+  "effortLevel": "medium"
 }
