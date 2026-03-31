@@ -55,6 +55,7 @@ cask 'claude'
 cask 'claude-code'
 brew 'dockutil'
 cask 'ghostty'
+cask 'google-chrome'
 cask 'logseq'
 EOF
 
@@ -69,7 +70,6 @@ cask 'zed'
 mas 'Flighty – Live Flight Tracker', id: 1358823008
 mas 'Numbers', id: 409203825
 mas 'Pages', id: 409201541
-mas 'uBlock Origin Lite', id: 6745342698
 EOF
 
         if [[ "${NO_VIRT:-}" != "1" ]]; then
@@ -98,7 +98,6 @@ EOF
     if [[ "${WORK_APPS:-}" == "1" ]]; then
         {
             echo ""
-            echo "cask 'google-chrome'"
             echo "mas 'Slack for Desktop', id: 803453959"
         } >> "$BREWFILE"
     fi
