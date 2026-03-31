@@ -100,6 +100,9 @@ defaults write com.apple.finder FXICloudDriveDocuments -bool true
 defaults write com.apple.finder ShowRecentTags -bool no
 
 
+# Set default browser to Chrome (will prompt for confirmation)
+open -a "Google Chrome" --args --make-default-browser
+
 osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
 
 log_info "Editing TimeMachine exclusions"
