@@ -70,10 +70,12 @@ update_remote_to_ssh() {
 }
 
 "${DOTFILES_ROOT}/scripts/packages/install.sh"
+"${DOTFILES_ROOT}/scripts/ssh/setup_key.sh"
 "${DOTFILES_ROOT}/scripts/config/deploy.sh"
 
 if [[ "$DOTFILES_PLATFORM" != "macos" ]]; then
   "${DOTFILES_ROOT}/scripts/linux/defaults.sh"
+  "${DOTFILES_ROOT}/scripts/linux/install_docker.sh"
 fi
 
 maybe_install_rosetta

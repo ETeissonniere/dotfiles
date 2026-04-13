@@ -17,7 +17,7 @@ USAGE
 }
 
 SOURCE=""
-LABEL="id_rsa"
+LABEL="id_ed25519"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in

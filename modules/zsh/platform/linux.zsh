@@ -26,3 +26,8 @@ if command -v ssh-agent >/dev/null 2>&1; then
     eval "$(ssh-agent -s)" >/dev/null
   fi
 fi
+
+# Auto-load default SSH keys if the agent has no identities
+if [[ -n "$SSH_AUTH_SOCK" ]] && ! ssh-add -l >/dev/null 2>&1; then
+  ssh-add 2>/dev/null
+fi
