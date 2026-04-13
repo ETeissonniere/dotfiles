@@ -71,6 +71,11 @@ update_remote_to_ssh() {
 
 "${DOTFILES_ROOT}/scripts/packages/install.sh"
 "${DOTFILES_ROOT}/scripts/config/deploy.sh"
+
+if [[ "$DOTFILES_PLATFORM" != "macos" ]]; then
+  "${DOTFILES_ROOT}/scripts/linux/defaults.sh"
+fi
+
 maybe_install_rosetta
 update_remote_to_ssh
 

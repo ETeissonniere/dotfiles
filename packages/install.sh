@@ -26,6 +26,7 @@ cat > "$BREWFILE" <<'EOF'
 brew 'eza'
 brew 'fd'
 brew 'fzf'
+brew 'jq'
 brew 'gh'
 brew 'git-lfs'
 brew 'glab'
@@ -42,6 +43,7 @@ if [[ "$PLATFORM" == "Linux" ]]; then
     cat >> "$BREWFILE" <<'EOF'
 
 brew 'btop'
+brew 'claude-code'
 brew 'vim'
 EOF
 fi
