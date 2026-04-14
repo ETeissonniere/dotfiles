@@ -1,0 +1,41 @@
+{{- if and (eq .chezmoi.os "darwin") .isDesktop -}}
+{{ template "bash-header" . }}
+
+# Configure the macOS dock. Only runs on desktop workstations (not VMs).
+# Re-runs when the rendered content of this script changes (e.g. when the
+# includeWorkApps / includePersonalApps toggles change).
+
+if ! command -v dockutil >/dev/null 2>&1; then
+  log_warn "dockutil not found on PATH; skipping dock configuration"
+  exit 0
+fi
+
+log_info "Configuring dock"
+dockutil --no-restart --remove all
+
+dockutil --no-restart --add "/Applications/Google Chrome.app"
+dockutil --no-restart --add "$HOME/Applications/Chrome Apps.localized/YouTube Music.app" || true
+dockutil --no-restart --add "/System/Applications/Mail.app"
+dockutil --no-restart --add "/System/Applications/Messages.app"
+dockutil --no-restart --add "/System/Applications/Notes.app"
+dockutil --no-restart --add "/Applications/Logseq.app" || true
+dockutil --no-restart --add "/System/Applications/Calendar.app"
+dockutil --no-restart --add "/Applications/Ghostty.app" || true
+
+[[ -d /Applications/Zed.app ]]   && dockutil --no-restart --add "/Applications/Zed.app"   || true
+{{ if .includeWorkApps -}}
+[[ -d /Applications/Slack.app ]] && dockutil --no-restart --add "/Applications/Slack.app" || true
+{{- end }}
+
+dockutil --no-restart --add "/Applications/Claude.app" || true
+
+{{ if .includePersonalApps -}}
+[[ -d /Applications/BambuStudio.app ]] && dockutil --no-restart --add "/Applications/BambuStudio.app" || true
+{{- end }}
+[[ -d "/Applications/UGREEN NAS.app" ]] && dockutil --no-restart --add "/Applications/UGREEN NAS.app" || true
+
+dockutil --no-restart --add "$HOME/Downloads"
+
+killall Dock || true
+log_info "Dock configured"
+{{- end }}

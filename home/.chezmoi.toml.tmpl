@@ -1,0 +1,39 @@
+{{/*
+  This template renders ~/.config/chezmoi/chezmoi.toml on the first
+  `chezmoi init`. Answers are cached so subsequent runs reuse them. Use
+  `chezmoi init --force` (or `make configure`) to re-prompt.
+*/ -}}
+
+{{- $isDesktop         := promptBoolOnce . "isDesktop" "Is this a desktop workstation (vs. VM / headless server)?" true -}}
+{{- $includeVirt       := false -}}
+{{- $includeSocials    := false -}}
+{{- $isLaptop          := false -}}
+{{- $includeWorkApps   := false -}}
+{{- $includePersonalApps := false -}}
+{{- $installDocker     := false -}}
+
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   if $isDesktop -}}
+{{-     $includeVirt    = promptBoolOnce . "includeVirt"    "Include virtualization tools (UTM)?"         true -}}
+{{-     $includeSocials = promptBoolOnce . "includeSocials" "Include social apps (Telegram, WhatsApp)?"  false -}}
+{{-   end -}}
+{{-   $isLaptop           = promptBoolOnce . "isLaptop"           "Is this a laptop (install Tailscale)?"         false -}}
+{{-   $includeWorkApps    = promptBoolOnce . "includeWorkApps"    "Include work apps (Slack)?"                    false -}}
+{{-   $includePersonalApps = promptBoolOnce . "includePersonalApps" "Include personal apps (Bambu Studio, KiCad)?" false -}}
+{{- end -}}
+
+{{- if ne .chezmoi.os "darwin" -}}
+{{-   $installDocker = promptBoolOnce . "installDocker" "Install Docker (via get.docker.com)?" true -}}
+{{- end -}}
+
+sourceDir = {{ .chezmoi.workingTree | quote }}
+
+[data]
+    isDesktop           = {{ $isDesktop }}
+    includeVirt         = {{ $includeVirt }}
+    includeSocials      = {{ $includeSocials }}
+    isLaptop            = {{ $isLaptop }}
+    includeWorkApps     = {{ $includeWorkApps }}
+    includePersonalApps = {{ $includePersonalApps }}
+    installDocker       = {{ $installDocker }}
+    dotfilesRoot        = {{ .chezmoi.workingTree | quote }}

@@ -1,0 +1,7 @@
+{{/*
+  Exclude files that should not be materialized on the current platform.
+*/ -}}
+
+{{ if eq .chezmoi.os "darwin" -}}
+dot_tmux.conf
+{{- end }}

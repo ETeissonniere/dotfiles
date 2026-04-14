@@ -1,0 +1,26 @@
+{{ template "bash-header" . }}
+
+# Ensure zsh is the default shell for the current user.
+
+shell_path="$(command -v zsh || true)"
+if [[ -z "$shell_path" ]]; then
+  log_warn "zsh is not installed; skipping default shell update"
+  exit 0
+fi
+
+if ! grep -Fxq "$shell_path" /etc/shells; then
+  log_warn "$shell_path is not listed in /etc/shells; add it manually to change the default shell"
+  exit 0
+fi
+
+if [[ "${SHELL:-}" == "$shell_path" ]]; then
+  log_info "Default shell already $shell_path"
+  exit 0
+fi
+
+user="$(id -un)"
+if chsh -s "$shell_path" "$user"; then
+  log_info "Default shell changed to $shell_path"
+else
+  log_warn "Failed to change default shell automatically; run 'chsh -s $shell_path' manually"
+fi

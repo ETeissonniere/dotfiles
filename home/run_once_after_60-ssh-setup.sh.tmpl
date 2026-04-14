@@ -1,0 +1,48 @@
+{{ template "bash-header" . }}
+
+# Generate an ed25519 SSH key (if missing) and register it on GitHub via gh.
+# Runs once; re-runs when this script's rendered content changes.
+
+KEY_PATH="$HOME/.ssh/id_ed25519"
+
+mkdir -p "$HOME/.ssh"
+chmod 700 "$HOME/.ssh"
+
+if [[ -f "$KEY_PATH" ]]; then
+  log_info "SSH key already exists at $KEY_PATH"
+else
+  ssh-keygen -t ed25519 -f "$KEY_PATH" -N "" -C "$(whoami)@$(hostname)"
+  log_info "Generated ed25519 key at $KEY_PATH"
+fi
+
+if ! command -v gh >/dev/null 2>&1; then
+  log_warn "gh CLI not found; skipping GitHub key registration"
+  exit 0
+fi
+
+if ! gh auth status >/dev/null 2>&1; then
+  log_warn "Not authenticated with GitHub CLI"
+  log_warn "Run 'gh auth login' then re-run 'chezmoi apply' to register your SSH key"
+  exit 0
+fi
+
+gh auth refresh -h github.com -s admin:public_key -s admin:ssh_signing_key 2>/dev/null || true
+
+key_title="$(hostname)"
+pub_key="$(cat "$KEY_PATH.pub")"
+
+existing_keys="$(gh ssh-key list 2>/dev/null || true)"
+if echo "$existing_keys" | grep -qF "$pub_key"; then
+  log_info "SSH key already registered on GitHub"
+else
+  gh ssh-key add "$KEY_PATH.pub" --type authentication --title "$key_title"
+  log_info "Registered SSH authentication key on GitHub as '$key_title'"
+fi
+
+existing_signing="$(gh api user/ssh_signing_keys --jq '.[].key' 2>/dev/null || true)"
+if echo "$existing_signing" | grep -qF "$pub_key"; then
+  log_info "SSH signing key already registered on GitHub"
+else
+  gh ssh-key add "$KEY_PATH.pub" --type signing --title "$key_title signing"
+  log_info "Registered SSH signing key on GitHub as '$key_title signing'"
+fi

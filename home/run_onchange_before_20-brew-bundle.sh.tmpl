@@ -1,0 +1,87 @@
+{{ template "bash-header" . }}
+
+# Render a Brewfile from .chezmoidata/packages.yaml and run `brew bundle`.
+# The rendered script content (below) is the hashed input chezmoi uses to
+# decide whether to re-execute, so any package add/remove or toggle change
+# causes the bundle to re-run.
+
+if ! command -v brew >/dev/null 2>&1; then
+{{ if eq .chezmoi.os "darwin" -}}
+  if [[ -x /opt/homebrew/bin/brew ]]; then eval "$(/opt/homebrew/bin/brew shellenv)"; fi
+{{- else -}}
+  if [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"; fi
+{{- end }}
+fi
+
+if ! command -v brew >/dev/null 2>&1; then
+  log_error "brew not found on PATH; aborting"
+  exit 1
+fi
+
+BREWFILE=$(mktemp)
+trap 'rm -f "$BREWFILE"' EXIT
+
+cat > "$BREWFILE" <<'BREWFILE_EOF'
+# --- Common brews ---
+{{ range .packages.common.brews -}}
+brew {{ . | quote }}
+{{ end }}
+{{- if ne .chezmoi.os "darwin" }}
+# --- Linux-only brews ---
+{{ range .packages.linux.brews -}}
+brew {{ . | quote }}
+{{ end }}
+{{- end }}
+{{- if eq .chezmoi.os "darwin" }}
+# --- macOS base ---
+{{ range .packages.darwin.base.brews -}}
+brew {{ . | quote }}
+{{ end }}
+{{ range .packages.darwin.base.casks -}}
+cask {{ . | quote }}
+{{ end }}
+{{- if .isDesktop }}
+# --- macOS desktop apps ---
+{{ range .packages.darwin.desktop.brews -}}
+brew {{ . | quote }}
+{{ end }}
+{{ range .packages.darwin.desktop.casks -}}
+cask {{ . | quote }}
+{{ end }}
+{{ range .packages.darwin.desktop.mas -}}
+mas {{ .name | quote }}, id: {{ .id }}
+{{ end }}
+{{- if .includeVirt }}
+{{ range .packages.darwin.virt.casks -}}
+cask {{ . | quote }}
+{{ end }}
+{{- end }}
+{{- if .includeSocials }}
+{{ range .packages.darwin.socials.mas -}}
+mas {{ .name | quote }}, id: {{ .id }}
+{{ end }}
+{{- end }}
+{{- end }}
+{{- if .isLaptop }}
+# --- Laptop apps ---
+{{ range .packages.darwin.laptop.mas -}}
+mas {{ .name | quote }}, id: {{ .id }}
+{{ end }}
+{{- end }}
+{{- if .includeWorkApps }}
+# --- Work apps ---
+{{ range .packages.darwin.work.mas -}}
+mas {{ .name | quote }}, id: {{ .id }}
+{{ end }}
+{{- end }}
+{{- if .includePersonalApps }}
+# --- Personal apps ---
+{{ range .packages.darwin.personal.casks -}}
+cask {{ . | quote }}
+{{ end }}
+{{- end }}
+{{- end }}
+BREWFILE_EOF
+
+log_info "Running brew bundle"
+brew bundle --file="$BREWFILE"

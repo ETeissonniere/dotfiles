@@ -1,21 +1,21 @@
 SHELL := /bin/bash
 DOTFILES_ROOT := $(shell pwd)
 
-.PHONY: default bootstrap packages link settings
+.PHONY: default bootstrap apply configure verify
 
-default: bootstrap packages link settings
+default: bootstrap
 
+# First-time setup: install chezmoi, init from this repo, apply.
 bootstrap:
-	"$(DOTFILES_ROOT)/scripts/bootstrap/main.sh"
+	"$(DOTFILES_ROOT)/scripts/bootstrap.sh"
 
-packages:
-	"$(DOTFILES_ROOT)/scripts/packages/install.sh"
+# Re-apply templates and rerun any changed run_onchange_ scripts.
+apply:
+	chezmoi apply
 
-link:
-	"$(DOTFILES_ROOT)/scripts/config/deploy.sh"
+# Re-run chezmoi's interactive prompts (enable/disable modules), then apply.
+configure:
+	"$(DOTFILES_ROOT)/scripts/configure.sh"
 
 verify:
 	"$(DOTFILES_ROOT)/scripts/verify.sh"
-
-settings:
-	"$(DOTFILES_ROOT)/scripts/settings/apply.sh"
