@@ -1,6 +1,6 @@
 [user]
-	email = 10683430+ETeissonniere@users.noreply.github.com
-	name = Eliott Teissonniere
+	email = {{ .email | quote }}
+	name = {{ .name | quote }}
 	signingkey = ~/.ssh/id_ed25519.pub
 [core]
 	autocrlf = input
@@ -24,7 +24,3 @@
 	smudge = git-lfs smudge -- %f
 [init]
 	defaultBranch = master
-{{- if eq .chezmoi.os "darwin" }}
-# --- macOS overrides ---
-# (none currently)
-{{- end }}

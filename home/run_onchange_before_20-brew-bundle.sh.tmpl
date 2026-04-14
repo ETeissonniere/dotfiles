@@ -1,4 +1,5 @@
-{{ template "bash-header" . }}
+#!/usr/bin/env bash
+set -euo pipefail
 
 if ! command -v brew >/dev/null 2>&1; then
 {{ if eq .chezmoi.os "darwin" -}}
@@ -8,7 +9,7 @@ if ! command -v brew >/dev/null 2>&1; then
 {{- end }}
 fi
 
-log_info "Running brew bundle"
+echo "==> Running brew bundle"
 brew bundle --file=- <<'BREWFILE_EOF'
 {{ range .packages.common.brews -}}
 brew {{ . | quote }}

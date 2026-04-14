@@ -1,10 +1,11 @@
 {{- if eq .chezmoi.os "darwin" -}}
-{{ template "bash-header" . }}
+#!/usr/bin/env bash
+set -euo pipefail
 
-log_info "Applying macOS defaults"
+echo "==> Applying macOS defaults"
 
 # Not settable via `defaults` since macOS 10.13+ (keychain-gated):
-log_warn "Configure manually in System Settings: First day of week (Language & Region) and Lock Screen password"
+echo "    Configure manually in System Settings: First day of week (Language & Region) and Lock Screen password"
 
 defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"

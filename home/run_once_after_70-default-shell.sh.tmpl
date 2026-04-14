@@ -1,14 +1,15 @@
-{{ template "bash-header" . }}
+#!/usr/bin/env bash
+set -euo pipefail
 
 shell_path="$(command -v zsh || true)"
-[[ -n "$shell_path" ]] || { log_warn "zsh is not installed; skipping default shell update"; exit 0; }
+[[ -n "$shell_path" ]] || { echo "==> zsh is not installed; skipping default shell update"; exit 0; }
 
-grep -Fxq "$shell_path" /etc/shells || { log_warn "$shell_path is not listed in /etc/shells; add it manually to change the default shell"; exit 0; }
+grep -Fxq "$shell_path" /etc/shells || { echo "==> $shell_path missing from /etc/shells; add it manually"; exit 0; }
 
-[[ "${SHELL:-}" != "$shell_path" ]] || { log_info "Default shell already $shell_path"; exit 0; }
+[[ "${SHELL:-}" != "$shell_path" ]] || { echo "==> Default shell already $shell_path"; exit 0; }
 
 if chsh -s "$shell_path" "$(id -un)"; then
-  log_info "Default shell changed to $shell_path"
+  echo "==> Default shell changed to $shell_path"
 else
-  log_warn "Failed to change default shell; run 'chsh -s $shell_path' manually"
+  echo "==> chsh failed; run 'chsh -s $shell_path' manually"
 fi

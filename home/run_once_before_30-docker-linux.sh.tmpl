@@ -1,17 +1,17 @@
 {{- if and (ne .chezmoi.os "darwin") .installDocker -}}
-{{ template "bash-header" . }}
+#!/usr/bin/env bash
+set -euo pipefail
 
 if command -v docker >/dev/null 2>&1; then
-  log_info "Docker already installed: $(docker --version)"
+  echo "==> Docker already installed: $(docker --version)"
 else
-  log_info "Installing Docker"
+  echo "==> Installing Docker"
   curl -fsSL https://get.docker.com | sudo sh
-  log_info "Docker installed: $(docker --version)"
 fi
 
 me="$(whoami)"
 if ! id -nG "$me" | tr ' ' '\n' | grep -qx docker; then
   sudo usermod -aG docker "$me"
-  log_info "Added $me to docker group (re-login required)"
+  echo "==> Added $me to docker group (re-login required)"
 fi
 {{- end }}

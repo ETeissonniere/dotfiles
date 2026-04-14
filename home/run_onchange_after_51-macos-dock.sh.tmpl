@@ -1,9 +1,10 @@
 {{- if and (eq .chezmoi.os "darwin") .isDesktop -}}
-{{ template "bash-header" . }}
+#!/usr/bin/env bash
+set -euo pipefail
 
-command -v dockutil >/dev/null 2>&1 || { log_warn "dockutil not found; skipping dock configuration"; exit 0; }
+command -v dockutil >/dev/null 2>&1 || { echo "==> dockutil not found; skipping dock configuration"; exit 0; }
 
-log_info "Configuring dock"
+echo "==> Configuring dock"
 dockutil --no-restart --remove all
 
 dockutil --no-restart --add "/Applications/Google Chrome.app"

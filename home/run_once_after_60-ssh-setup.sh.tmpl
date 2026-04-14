@@ -1,4 +1,5 @@
-{{ template "bash-header" . }}
+#!/usr/bin/env bash
+set -euo pipefail
 
 KEY_PATH="$HOME/.ssh/id_ed25519"
 
@@ -6,16 +7,16 @@ mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
 
 if [[ -f "$KEY_PATH" ]]; then
-  log_info "SSH key already exists at $KEY_PATH"
+  echo "==> SSH key already exists at $KEY_PATH"
 else
   ssh-keygen -t ed25519 -f "$KEY_PATH" -N "" -C "$(whoami)@$(hostname)"
-  log_info "Generated ed25519 key at $KEY_PATH"
+  echo "==> Generated ed25519 key at $KEY_PATH"
 fi
 
-command -v gh >/dev/null 2>&1 || { log_warn "gh CLI not found; skipping GitHub key registration"; exit 0; }
+command -v gh >/dev/null 2>&1 || { echo "==> gh CLI not found; skipping GitHub key registration"; exit 0; }
 
 if ! gh auth status >/dev/null 2>&1; then
-  log_warn "Not authenticated with GitHub CLI. Run 'gh auth login' then 'chezmoi apply'"
+  echo "==> Not authenticated with GitHub CLI. Run 'gh auth login' then 'chezmoi apply'."
   exit 0
 fi
 
@@ -31,10 +32,10 @@ register_if_missing() {
     signing)        existing="$(gh api user/ssh_signing_keys --jq '.[].key' 2>/dev/null || true)" ;;
   esac
   if echo "$existing" | grep -qF "$pub_key"; then
-    log_info "SSH $type key already registered"
+    echo "==> SSH $type key already registered"
   else
     gh ssh-key add "$KEY_PATH.pub" --type "$type" --title "$title"
-    log_info "Registered SSH $type key on GitHub as '$title'"
+    echo "==> Registered SSH $type key on GitHub as '$title'"
   fi
 }
 
