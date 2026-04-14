@@ -1,6 +1,6 @@
 # shellcheck shell=zsh
 
-export DOTFILES_ROOT="${DOTFILES_ROOT:-{{ .dotfilesRoot }}}"
+export DOTFILES_ROOT="${DOTFILES_ROOT:-{{ .chezmoi.workingTree }}}"
 
 if [[ -f /etc/zshrc ]]; then
   source /etc/zshrc

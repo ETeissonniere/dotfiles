@@ -1,18 +1,11 @@
 {{- if and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64") -}}
 {{ template "bash-header" . }}
 
-# Install Rosetta 2 on Apple Silicon. Runs once.
-
 if /usr/bin/pgrep -q oahd; then
   log_info "Rosetta 2 is already installed"
   exit 0
 fi
 
 log_info "Installing Rosetta 2"
-if softwareupdate --install-rosetta --agree-to-license; then
-  log_info "Rosetta 2 installed"
-else
-  log_error "Failed to install Rosetta 2"
-  exit 1
-fi
+softwareupdate --install-rosetta --agree-to-license
 {{- end }}

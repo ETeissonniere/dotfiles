@@ -1,19 +1,14 @@
 {{- if ne .chezmoi.os "darwin" -}}
 {{ template "bash-header" . }}
 
-# Configure passwordless sudo for the admin group. Idempotent.
-
 admin_group=""
-if getent group sudo >/dev/null 2>&1; then
-  admin_group="sudo"
-elif getent group wheel >/dev/null 2>&1; then
-  admin_group="wheel"
-elif getent group admin >/dev/null 2>&1; then
-  admin_group="admin"
-else
-  log_warn "No admin group (sudo/wheel/admin) found; skipping"
-  exit 0
-fi
+for g in sudo wheel admin; do
+  if getent group "$g" >/dev/null 2>&1; then
+    admin_group="$g"
+    break
+  fi
+done
+[[ -n "$admin_group" ]] || { log_warn "No admin group (sudo/wheel/admin) found; skipping"; exit 0; }
 
 sudoers_file="/etc/sudoers.d/nopasswd-${admin_group}"
 sudoers_line="%${admin_group} ALL=(ALL) NOPASSWD: ALL"
@@ -27,11 +22,10 @@ log_info "Configuring passwordless sudo for ${admin_group}"
 echo "$sudoers_line" | sudo tee "$sudoers_file" >/dev/null
 sudo chmod 0440 "$sudoers_file"
 
+# Validate syntax; roll back on error to avoid a broken sudoers that locks the user out
 if ! sudo visudo -cf "$sudoers_file" >/dev/null 2>&1; then
   log_error "Invalid sudoers syntax; reverting"
   sudo rm -f "$sudoers_file"
   exit 1
 fi
-
-log_info "Passwordless sudo configured"
 {{- end }}

@@ -1,14 +1,10 @@
 {{- if and (ne .chezmoi.os "darwin") .installDocker -}}
 {{ template "bash-header" . }}
 
-# Install Docker using the official convenience script. Runs once, and again
-# only if this script's rendered content changes (for example, toggling the
-# installDocker flag via `chezmoi init --force`).
-
 if command -v docker >/dev/null 2>&1; then
   log_info "Docker already installed: $(docker --version)"
 else
-  log_info "Installing Docker via get.docker.com"
+  log_info "Installing Docker"
   curl -fsSL https://get.docker.com | sudo sh
   log_info "Docker installed: $(docker --version)"
 fi

@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
-# Shared logging + path helpers used by scripts/*.sh.
-# (chezmoi's run_ scripts use their own bash-header template; see
-# home/.chezmoitemplates/bash-header.)
+# Shared logging helpers. Sourced by scripts/*.sh and by chezmoi run_*.sh.tmpl
+# (via home/.chezmoitemplates/bash-header).
 
-if [[ -z "${DOTFILES_ROOT:-}" ]]; then
-  DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-fi
+DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 export DOTFILES_ROOT
 
 if [[ -t 1 && -z "${NO_COLOR:-}" ]]; then
@@ -17,8 +14,3 @@ fi
 log_info()  { printf '%s[INFO]%s %s\n'  "$_C_INFO" "$_C_OFF" "$*"; }
 log_warn()  { printf '%s[WARN]%s %s\n'  "$_C_WARN" "$_C_OFF" "$*" >&2; }
 log_error() { printf '%s[ERROR]%s %s\n' "$_C_ERR"  "$_C_OFF" "$*" >&2; }
-
-ensure_dir() {
-  local dir="$1"
-  [[ -d "$dir" ]] || mkdir -p "$dir"
-}

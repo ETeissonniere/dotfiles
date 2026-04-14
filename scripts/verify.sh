@@ -7,31 +7,14 @@ source "$(dirname "${BASH_SOURCE[0]}")/lib/common.sh"
 errors=0
 
 run_shellcheck() {
-  if ! command -v shellcheck >/dev/null 2>&1; then
-    log_warn "shellcheck not installed; skipping lint"
-    return
-  fi
+  command -v shellcheck >/dev/null 2>&1 || { log_warn "shellcheck not installed; skipping lint"; return; }
 
-  log_info "Running shellcheck"
-  local files
-  files="$(git ls-files '*.sh' | grep -vE 'modules/(zsh|tmux)' || true)"
-  if [[ -z "$files" ]]; then
-    log_warn "No shell scripts found"
-    return
-  fi
+  local -a files
+  mapfile -t files < <(git ls-files '*.sh' | grep -vE 'modules/(zsh|tmux)' || true)
+  [[ ${#files[@]} -gt 0 ]] || { log_warn "No shell scripts found"; return; }
 
-  local shellcheck_failed=0
-  while IFS= read -r file; do
-    [[ -n "$file" ]] || continue
-    if ! shellcheck -x "$file"; then
-      shellcheck_failed=1
-    fi
-  done <<< "$files"
-
-  if [[ $shellcheck_failed -ne 0 ]]; then
-    log_error "shellcheck reported issues"
-    errors=$((errors + 1))
-  fi
+  log_info "Running shellcheck on ${#files[@]} files"
+  shellcheck -x "${files[@]}" || errors=$((errors + 1))
 }
 
 check_chezmoi_sources() {
@@ -51,19 +34,18 @@ check_chezmoi_sources() {
   done
 }
 
-validate_templates_if_chezmoi() {
-  if ! command -v chezmoi >/dev/null 2>&1; then
-    log_warn "chezmoi not installed; skipping template validation"
-    return
-  fi
+validate_templates() {
+  command -v chezmoi >/dev/null 2>&1 || { log_warn "chezmoi not installed; skipping template validation"; return; }
 
   log_info "Validating chezmoi templates"
-  if ! chezmoi execute-template --init --promptBool 'isDesktop=true' \
-        --promptBool 'includeVirt=false' --promptBool 'includeSocials=false' \
-        --promptBool 'isLaptop=false'  --promptBool 'includeWorkApps=false' \
-        --promptBool 'includePersonalApps=false' \
-        --promptBool 'installDocker=false' \
-        < "$DOTFILES_ROOT/home/.chezmoi.toml.tmpl" >/dev/null; then
+  local -a args=(--init)
+  local key
+  # Auto-extract prompt keys so new toggles don't require editing this script
+  while IFS= read -r key; do
+    args+=(--promptBool "$key=false")
+  done < <(grep -oE 'promptBoolOnce \. "[^"]+"' "$DOTFILES_ROOT/home/.chezmoi.toml.tmpl" | awk -F'"' '{print $2}' | sort -u)
+
+  if ! chezmoi execute-template "${args[@]}" < "$DOTFILES_ROOT/home/.chezmoi.toml.tmpl" >/dev/null; then
     log_error "Failed to render .chezmoi.toml.tmpl"
     errors=$((errors + 1))
   fi
@@ -71,7 +53,7 @@ validate_templates_if_chezmoi() {
 
 run_shellcheck
 check_chezmoi_sources
-validate_templates_if_chezmoi
+validate_templates
 
 if [[ $errors -gt 0 ]]; then
   log_error "Verification completed with $errors issue(s)"

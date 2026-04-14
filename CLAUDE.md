@@ -23,7 +23,7 @@ This repo is managed by [chezmoi](https://www.chezmoi.io/). The chezmoi source t
 - `home/` — chezmoi source (managed dotfiles + run_ scripts)
   - `home/.chezmoi.toml.tmpl` — init prompts (`promptBoolOnce`)
   - `home/.chezmoidata/packages.yaml` — declarative Homebrew package list
-  - `home/.chezmoitemplates/` — shared template partials (`bash-header`)
+  - `home/.chezmoitemplates/bash-header` — shared shebang + sources `scripts/lib/common.sh` for log_* helpers
   - `home/.chezmoiignore` — platform-conditional exclusions
   - `home/dot_*.tmpl` / `home/dot_*` — rendered/symlinked dotfiles
   - `home/run_onchange_*` — re-run when rendered content hash changes
@@ -53,4 +53,4 @@ Existing users will be prompted the next time they `chezmoi apply`.
 
 - Keep `scripts/` POSIX-compatible (`#!/bin/sh`) when possible; use bash shebang only when bash features are needed.
 - Use `shellcheck` directives (`# shellcheck disable=SC...`) sparingly and with justification.
-- chezmoi `run_*.sh.tmpl` scripts should be small and self-contained. Share bash helpers via the `{{ template "bash-header" . }}` partial.
+- chezmoi `run_*.sh.tmpl` scripts start with `{{ template "bash-header" . }}`, which sets `set -euo pipefail` and sources `scripts/lib/common.sh` for the `log_*` helpers.

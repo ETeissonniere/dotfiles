@@ -13,7 +13,7 @@ _dotfiles_sync() {
   mkdir -p "$(dirname "$DOTFILES_SYNC_CACHE_FILE")"
 
   if [[ "$force" != "--force" ]] && [[ -f "$DOTFILES_SYNC_CACHE_FILE" ]]; then
-    local last_check=$(cat "$DOTFILES_SYNC_CACHE_FILE" 2>/dev/null || echo 0)
+    local last_check=$(<"$DOTFILES_SYNC_CACHE_FILE")
     local now=$(date +%s)
     local elapsed=$((now - last_check))
     if [[ $elapsed -lt $DOTFILES_SYNC_CHECK_INTERVAL ]]; then

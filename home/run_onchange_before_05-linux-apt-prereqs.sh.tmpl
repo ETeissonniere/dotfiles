@@ -1,28 +1,9 @@
 {{- if ne .chezmoi.os "darwin" -}}
 {{ template "bash-header" . }}
 
-# Bootstrap packages required before Homebrew can be installed. Re-runs
-# whenever the embedded package list changes.
-PACKAGES=(build-essential curl git zsh)
+command -v apt-get >/dev/null 2>&1 || { log_warn "apt-get not available; skipping"; exit 0; }
 
-if ! command -v apt-get >/dev/null 2>&1; then
-  log_warn "apt-get not available on this system; skipping prereqs"
-  exit 0
-fi
-
-missing=()
-for pkg in "${PACKAGES[@]}"; do
-  if ! dpkg -s "$pkg" >/dev/null 2>&1; then
-    missing+=("$pkg")
-  fi
-done
-
-if [[ ${#missing[@]} -eq 0 ]]; then
-  log_info "Linux prereq packages already installed"
-  exit 0
-fi
-
-log_info "Installing Linux prereqs: ${missing[*]}"
+log_info "Ensuring Linux prereqs (build-essential curl git zsh)"
 sudo apt-get update
-sudo apt-get install -y "${missing[@]}"
+sudo apt-get install -y build-essential curl git zsh
 {{- end }}

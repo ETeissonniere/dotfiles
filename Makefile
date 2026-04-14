@@ -5,17 +5,16 @@ DOTFILES_ROOT := $(shell pwd)
 
 default: bootstrap
 
-# First-time setup: install chezmoi, init from this repo, apply.
 bootstrap:
 	"$(DOTFILES_ROOT)/scripts/bootstrap.sh"
 
-# Re-apply templates and rerun any changed run_onchange_ scripts.
 apply:
 	chezmoi apply
 
-# Re-run chezmoi's interactive prompts (enable/disable modules), then apply.
 configure:
-	"$(DOTFILES_ROOT)/scripts/configure.sh"
+	@command -v chezmoi >/dev/null || { echo "Run 'make bootstrap' first"; exit 1; }
+	chezmoi init --prompt
+	chezmoi apply
 
 verify:
 	"$(DOTFILES_ROOT)/scripts/verify.sh"

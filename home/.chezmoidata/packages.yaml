@@ -1,22 +1,7 @@
-# Declarative package manifest. Consumed by
-# run_onchange_before_20-brew-bundle.sh.tmpl to generate a Brewfile on the
-# fly. Re-apply (`chezmoi apply`) reruns brew bundle whenever the rendered
-# Brewfile changes.
-#
-# Structure:
-#   packages.common             – brews installed on every platform
-#   packages.linux              – extra brews on Linux
-#   packages.darwin.base        – macOS brews/casks installed unconditionally
-#   packages.darwin.desktop     – extra apps on desktop workstations
-#   packages.darwin.virt        – UTM virtualization
-#   packages.darwin.socials     – Telegram + WhatsApp
-#   packages.darwin.laptop      – laptop-only (Tailscale)
-#   packages.darwin.work        – work apps (Slack)
-#   packages.darwin.personal    – personal apps (Bambu Studio, KiCad)
-#
-# Each bucket can carry the keys `brews`, `casks`, and `mas`. `mas` entries
-# are objects with `name` and `id` fields.
-
+# Declarative package manifest consumed by run_onchange_before_20-brew-bundle.
+# Buckets under `packages.darwin.*` are gated on the matching chezmoi toggle
+# (see .chezmoi.toml.tmpl). Each bucket may carry `brews`, `casks`, and `mas`
+# (objects with `name` and `id`).
 packages:
   common:
     brews:

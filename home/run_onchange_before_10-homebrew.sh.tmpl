@@ -1,7 +1,5 @@
 {{ template "bash-header" . }}
 
-# Ensure Homebrew is installed and available on PATH. Idempotent.
-
 if command -v brew >/dev/null 2>&1; then
   log_info "Homebrew already installed"
   exit 0
@@ -11,14 +9,7 @@ log_info "Installing Homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 {{ if eq .chezmoi.os "darwin" -}}
-BREW_BIN=/opt/homebrew/bin/brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 {{- else -}}
-BREW_BIN=/home/linuxbrew/.linuxbrew/bin/brew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {{- end }}
-
-if [[ -x "$BREW_BIN" ]]; then
-  eval "$("$BREW_BIN" shellenv)"
-  log_info "Homebrew ready at $BREW_BIN"
-else
-  log_warn "Expected brew at $BREW_BIN but did not find it"
-fi

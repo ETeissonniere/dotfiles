@@ -1,34 +1,28 @@
 {{- if eq .chezmoi.os "darwin" -}}
 {{ template "bash-header" . }}
 
-# Apply macOS system defaults. Re-runs when this file's rendered contents
-# change (for example when you flip a module toggle via `chezmoi init --force`).
-
 log_info "Applying macOS defaults"
 
-# Manual System Settings reminders (defaults commands no longer work reliably
-# for these since macOS 10.13+ moved them behind authentication):
+# Not settable via `defaults` since macOS 10.13+ (keychain-gated):
 log_warn "Configure manually in System Settings: First day of week (Language & Region) and Lock Screen password"
 
-# Locale & measurement units
 defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 defaults write NSGlobalDomain AppleTemperatureUnit -string "Celsius"
 
-# Keyboard & pointing devices
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 30
 defaults write NSGlobalDomain com.apple.trackpad.scaling -float 3
 defaults write NSGlobalDomain com.apple.mouse.scaling -float 3
 defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
-defaults write com.apple.HIToolbox AppleFnUsageType -int "3"
+# AppleFnUsageType=3 → fn/globe triggers dictation instead of emoji picker
+defaults write com.apple.HIToolbox AppleFnUsageType -int 3
 
-# Screenshots — Cmd+Shift+S copies selection to clipboard (requires logout)
+# Cmd+Shift+S → copy screenshot selection to clipboard (keycode 115, mod 1179648)
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 31 \
   '<dict><key>enabled</key><true/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>115</integer><integer>1</integer><integer>1179648</integer></array></dict></dict>'
 
-# Dock
 {{ if .isDesktop -}}
 defaults write com.apple.dock autohide -bool true
 {{- end }}
@@ -39,7 +33,6 @@ for corner in tl tr bl br; do
 done
 killall Dock >/dev/null 2>&1 || true
 
-# Finder
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
@@ -47,26 +40,16 @@ defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 defaults write com.apple.finder ShowSidebar -bool true
 defaults write com.apple.finder ShowRecentTags -bool false
-killall Finder || true
+defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/$(whoami)/"
+defaults write com.apple.finder FXICloudDriveDesktop -bool true
+defaults write com.apple.finder FXICloudDriveDocuments -bool true
+killall Finder >/dev/null 2>&1 || true
 
 mkdir -p "$HOME/Developer"
 
-# Open Finder in home directory
-defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/$(whoami)/"
-
-# iCloud Drive desktop/documents sync
-defaults write com.apple.finder FXICloudDriveDesktop -bool true
-defaults write com.apple.finder FXICloudDriveDocuments -bool true
-
-# Default browser
 open -a "Google Chrome" --args --make-default-browser || true
-
-# Dark mode
 osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true' || true
 
-# TimeMachine exclusions
 tmutil addexclusion "$HOME/Developer" 2>/dev/null || true
 tmutil addexclusion "$HOME/Downloads" 2>/dev/null || true
-
-log_info "macOS defaults applied"
 {{- end }}
