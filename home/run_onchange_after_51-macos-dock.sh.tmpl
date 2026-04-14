@@ -8,22 +8,24 @@ echo "==> Configuring dock"
 dockutil --no-restart --remove all
 
 dockutil --no-restart --add "/Applications/Google Chrome.app"
+# YouTube Music is a Chrome PWA; created manually
 [[ -d "$HOME/Applications/Chrome Apps.localized/YouTube Music.app" ]] && dockutil --no-restart --add "$HOME/Applications/Chrome Apps.localized/YouTube Music.app"
 dockutil --no-restart --add "/System/Applications/Mail.app"
 dockutil --no-restart --add "/System/Applications/Messages.app"
 dockutil --no-restart --add "/System/Applications/Notes.app"
-[[ -d /Applications/Logseq.app ]] && dockutil --no-restart --add "/Applications/Logseq.app"
+dockutil --no-restart --add "/Applications/Logseq.app"
 dockutil --no-restart --add "/System/Applications/Calendar.app"
-[[ -d /Applications/Ghostty.app ]] && dockutil --no-restart --add "/Applications/Ghostty.app"
-[[ -d /Applications/Zed.app ]]     && dockutil --no-restart --add "/Applications/Zed.app"
+dockutil --no-restart --add "/Applications/Ghostty.app"
+dockutil --no-restart --add "/Applications/Zed.app"
 {{ if .includeWorkApps -}}
-[[ -d /Applications/Slack.app ]]   && dockutil --no-restart --add "/Applications/Slack.app"
+dockutil --no-restart --add "/Applications/Slack.app"
 {{- end }}
-[[ -d /Applications/Claude.app ]]  && dockutil --no-restart --add "/Applications/Claude.app"
+dockutil --no-restart --add "/Applications/Claude.app"
 {{ if .includePersonalApps -}}
-[[ -d /Applications/BambuStudio.app ]]   && dockutil --no-restart --add "/Applications/BambuStudio.app"
+dockutil --no-restart --add "/Applications/BambuStudio.app"
 {{- end }}
-[[ -d "/Applications/UGREEN NAS.app" ]]  && dockutil --no-restart --add "/Applications/UGREEN NAS.app"
+# UGREEN NAS is installed manually
+[[ -d "/Applications/UGREEN NAS.app" ]] && dockutil --no-restart --add "/Applications/UGREEN NAS.app"
 dockutil --no-restart --add "$HOME/Downloads"
 
 killall Dock >/dev/null 2>&1 || true

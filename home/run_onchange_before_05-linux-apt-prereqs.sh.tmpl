@@ -4,7 +4,9 @@ set -euo pipefail
 
 command -v apt-get >/dev/null 2>&1 || { echo "==> apt-get not available; skipping"; exit 0; }
 
-echo "==> Ensuring Linux prereqs (build-essential curl git zsh)"
+# Homebrew on Linux requires git + a C toolchain; curl is assumed present
+# (it's what bootstrapped chezmoi). zsh and everything else comes through brew.
+echo "==> Ensuring Linux prereqs (build-essential curl git)"
 sudo apt-get update
-sudo apt-get install -y build-essential curl git zsh
+sudo apt-get install -y build-essential curl git
 {{- end }}

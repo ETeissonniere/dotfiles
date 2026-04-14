@@ -19,6 +19,7 @@ packages:
       - uv
       - vim
       - zoxide
+      - zsh
 
   linux:
     brews:
