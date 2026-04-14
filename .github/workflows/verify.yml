@@ -25,13 +25,9 @@ jobs:
           mapfile -t files < <(git ls-files '*.sh' | grep -vE 'modules/(zsh|tmux)' || true)
           [[ ${#files[@]} -gt 0 ]] && shellcheck -x "${files[@]}"
 
-      - name: Render chezmoi templates (smoke test)
+      - name: Render every chezmoi template (apply --dry-run)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # bumps gitHubKeys rate limit
         run: |
-          # Auto-extract every promptBoolOnce/promptStringOnce key and pass a
-          # synthetic default so execute-template doesn't try to open a TTY.
-          args=(--init)
-          while IFS= read -r k; do args+=(--promptBool "$k=false"); done \
-            < <(grep -oE 'promptBoolOnce \. "[^"]+"' home/.chezmoi.toml.tmpl | awk -F'"' '{print $2}' | sort -u)
-          while IFS= read -r k; do args+=(--promptString "$k=ci"); done \
-            < <(grep -oE 'promptStringOnce \. "[^"]+"' home/.chezmoi.toml.tmpl | awk -F'"' '{print $2}' | sort -u)
-          chezmoi execute-template "${args[@]}" < home/.chezmoi.toml.tmpl > /dev/null
+          chezmoi init --source="$PWD" --promptDefaults
+          chezmoi apply --dry-run --no-tty > /dev/null

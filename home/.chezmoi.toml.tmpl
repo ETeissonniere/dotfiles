@@ -3,8 +3,9 @@
   `chezmoi init --prompt` to re-prompt with the current values as defaults.
 */ -}}
 
-{{- $email := promptStringOnce . "email" "Git email" "10683430+ETeissonniere@users.noreply.github.com" -}}
-{{- $name  := promptStringOnce . "name"  "Git name"  "Eliott Teissonniere" -}}
+{{- $email      := promptStringOnce . "email"      "Git email"      "10683430+ETeissonniere@users.noreply.github.com" -}}
+{{- $name       := promptStringOnce . "name"       "Git name"       "Eliott Teissonniere" -}}
+{{- $githubUser := promptStringOnce . "githubUser" "GitHub username" "ETeissonniere" -}}
 
 {{- $isDesktop := promptBoolOnce . "isDesktop" "Desktop workstation (not a VM/server)?" true -}}
 
@@ -32,6 +33,7 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
 [data]
     email               = {{ $email | quote }}
     name                = {{ $name  | quote }}
+    githubUser          = {{ $githubUser | quote }}
     isDesktop           = {{ $isDesktop }}
     includeVirt         = {{ $includeVirt }}
     includeSocials      = {{ $includeSocials }}
