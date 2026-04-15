@@ -9,8 +9,6 @@ KEY_PATH="$HOME/.ssh/id_ed25519"
 
 command -v gh >/dev/null 2>&1 || { echo "gh CLI not installed" >&2; exit 1; }
 
-# Consider gh "ready" only if authed AND the current token carries the scopes
-# we need. Otherwise we'd hit a scope error on `gh ssh-key add`.
 gh_ready() {
   local status
   status="$(gh auth status 2>&1)" || return 1
@@ -29,16 +27,23 @@ if ! gh_ready; then
   fi
 fi
 
+# Compare by base64 key data only — GitHub strips the user@host comment on
+# upload, and `gh ssh-key list` (without --json) truncates for display.
 title="$(hostname)"
-pub_key="$(<"$KEY_PATH.pub")"
+pub_key_data="$(awk '{print $2}' "$KEY_PATH.pub")"
+
+key_registered() {
+  local type="$1" existing
+  case "$type" in
+    authentication) existing="$(gh ssh-key list --json key --jq '.[].key | split(" ")[1]' 2>/dev/null || true)" ;;
+    signing)        existing="$(gh api   user/ssh_signing_keys  --jq '.[].key | split(" ")[1]' 2>/dev/null || true)" ;;
+  esac
+  grep -qFx "$pub_key_data" <<<"$existing"
+}
 
 register_if_missing() {
-  local type="$1" label="$2" existing
-  case "$type" in
-    authentication) existing="$(gh ssh-key list 2>/dev/null || true)" ;;
-    signing)        existing="$(gh api user/ssh_signing_keys --jq '.[].key' 2>/dev/null || true)" ;;
-  esac
-  if echo "$existing" | grep -qF "$pub_key"; then
+  local type="$1" label="$2"
+  if key_registered "$type"; then
     echo "==> SSH $type key already registered"
   else
     gh ssh-key add "$KEY_PATH.pub" --type "$type" --title "$label"
