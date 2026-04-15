@@ -21,9 +21,10 @@ packages:
       - zoxide
       - zsh
 
+  # NOTE: claude-code on Linux is not in core Homebrew. Install it via
+  # `npm i -g @anthropic-ai/claude-code` or Anthropic's installer script.
   linux:
-    brews:
-      - claude-code
+    brews: []
 
   darwin:
     base:
