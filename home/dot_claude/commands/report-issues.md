@@ -5,7 +5,6 @@ allowed-tools: Skill
 
 Detect the git remote to determine the platform and use the appropriate skill:
 - If remote contains `github.com`: use the `github` skill
-- If remote contains `gitlab`: use the `gitlab` skill
 - If remote contains a Gitea instance: use the `gitea` skill
 
 Fetch all open issues from this repository using the skill's issue list command.

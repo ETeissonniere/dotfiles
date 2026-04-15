@@ -68,11 +68,11 @@ If git context is not provided, use the `git` skill to gather it:
 - `git log main..HEAD --oneline` to see commits on the branch
 
 **Available Skills** (use via Skill tool):
-You are **strictly limited** to these three skills only. Do NOT invoke any other skills:
+You are **strictly limited** to these skills only. Do NOT invoke any other skills:
 
 - `git` - Repository inspection (diff, log, status, remote, blame)
 - `github` - GitHub operations via `gh` CLI (PRs, issues, workflows)
-- `gitlab` - GitLab operations via `glab` CLI (MRs, issues, pipelines)
+- `gitea` - Gitea operations via `tea` CLI
 
 **Restrictions**:
 - You do NOT have direct Bash access
