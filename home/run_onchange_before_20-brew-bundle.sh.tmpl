@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v brew >/dev/null 2>&1; then
+{{ if eq .chezmoi.os "darwin" -}}
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+{{- else -}}
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{- end }}
+fi
+
+echo "==> Running brew bundle"
+brew bundle --file=- <<'BREWFILE_EOF'
+{{ range .packages.common.brews -}}
+brew {{ . | quote }}
+{{ end }}
+{{- if ne .chezmoi.os "darwin" -}}
+{{   range .packages.linux.brews }}
+brew {{ . | quote }}
+{{-  end }}
+{{- end -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{   range .packages.darwin.base.brews }}
+brew {{ . | quote }}
+{{-  end }}
+{{   range .packages.darwin.base.casks }}
+cask {{ . | quote }}
+{{-  end }}
+{{-  if .isDesktop -}}
+{{     range .packages.darwin.desktop.brews }}
+brew {{ . | quote }}
+{{-    end }}
+{{     range .packages.darwin.desktop.casks }}
+cask {{ . | quote }}
+{{-    end }}
+{{     range .packages.darwin.desktop.mas }}
+mas {{ .name | quote }}, id: {{ .id }}
+{{-    end }}
+{{-  end }}
+{{-  if .includeVirt -}}
+{{     range .packages.darwin.virt.casks }}
+cask {{ . | quote }}
+{{-    end }}
+{{-  end }}
+{{-  if .includeSocials -}}
+{{     range .packages.darwin.socials.mas }}
+mas {{ .name | quote }}, id: {{ .id }}
+{{-    end }}
+{{-  end }}
+{{-  if .isLaptop -}}
+{{     range .packages.darwin.laptop.mas }}
+mas {{ .name | quote }}, id: {{ .id }}
+{{-    end }}
+{{-  end }}
+{{-  if .includeWorkApps -}}
+{{     range .packages.darwin.work.mas }}
+mas {{ .name | quote }}, id: {{ .id }}
+{{-    end }}
+{{-  end }}
+{{-  if .includePersonalApps -}}
+{{     range .packages.darwin.personal.casks }}
+cask {{ . | quote }}
+{{-    end }}
+{{-  end }}
+{{- end }}
+BREWFILE_EOF

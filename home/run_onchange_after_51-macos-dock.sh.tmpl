@@ -1,0 +1,32 @@
+{{- if and (eq .chezmoi.os "darwin") .isDesktop -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+command -v dockutil >/dev/null 2>&1 || { echo "==> dockutil not found; skipping dock configuration"; exit 0; }
+
+echo "==> Configuring dock"
+dockutil --no-restart --remove all
+
+dockutil --no-restart --add "/Applications/Google Chrome.app"
+# YouTube Music is a Chrome PWA; created manually
+[[ -d "$HOME/Applications/Chrome Apps.localized/YouTube Music.app" ]] && dockutil --no-restart --add "$HOME/Applications/Chrome Apps.localized/YouTube Music.app"
+dockutil --no-restart --add "/System/Applications/Mail.app"
+dockutil --no-restart --add "/System/Applications/Messages.app"
+dockutil --no-restart --add "/System/Applications/Notes.app"
+dockutil --no-restart --add "/Applications/Logseq.app"
+dockutil --no-restart --add "/System/Applications/Calendar.app"
+dockutil --no-restart --add "/Applications/Ghostty.app"
+dockutil --no-restart --add "/Applications/Zed.app"
+{{ if .includeWorkApps -}}
+dockutil --no-restart --add "/Applications/Slack.app"
+{{- end }}
+dockutil --no-restart --add "/Applications/Claude.app"
+{{ if .includePersonalApps -}}
+dockutil --no-restart --add "/Applications/BambuStudio.app"
+{{- end }}
+# UGREEN NAS is installed manually
+[[ -d "/Applications/UGREEN NAS.app" ]] && dockutil --no-restart --add "/Applications/UGREEN NAS.app"
+dockutil --no-restart --add "$HOME/Downloads"
+
+killall Dock >/dev/null 2>&1 || true
+{{- end }}

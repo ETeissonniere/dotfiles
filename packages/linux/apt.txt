@@ -1,5 +1,0 @@
-# Bootstrap packages needed before Homebrew
-build-essential
-curl
-git
-zsh

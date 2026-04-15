@@ -1,0 +1,15 @@
+{{/*
+  allowed_signers — auto-populated from the public SSH keys on .githubUser's
+  GitHub account so any commit signed with one of those keys verifies. Keys
+  are cached for `gitHub.refreshPeriod` (default 1m); raise it via the
+  [gitHub] section of chezmoi.toml if you'd rather not hit the API often.
+
+  NOTE: this trusts every SSH key on your GitHub account (not only the keys
+  flagged as "signing keys"). For a personal config that's what you want;
+  just be aware that anyone with write access to your GitHub keys can add a
+  key that will then be trusted to sign commits.
+*/ -}}
+{{- $email := .email -}}
+{{ range gitHubKeys .githubUser -}}
+{{ $email }} namespaces="git" {{ .Key }}
+{{ end -}}

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+shell_path="$(command -v zsh || true)"
+[[ -n "$shell_path" ]] || { echo "==> zsh is not installed; skipping default shell update"; exit 0; }
+
+grep -Fxq "$shell_path" /etc/shells || { echo "==> $shell_path missing from /etc/shells; add it manually"; exit 0; }
+
+[[ "${SHELL:-}" != "$shell_path" ]] || { echo "==> Default shell already $shell_path"; exit 0; }
+
+# Run chsh via sudo so it skips PAM's login-password prompt — on WSL that
+# prompt often fails because the WSL user has no password set.
+if sudo chsh -s "$shell_path" "$(id -un)"; then
+  echo "==> Default shell changed to $shell_path (takes effect on next login)"
+else
+  echo "==> chsh failed; run 'sudo chsh -s $shell_path' manually"
+fi

@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Runs after every `chezmoi apply`. Prints a short TODO list of post-install
+# steps that still need manual attention. Silent when everything's set.
+set -euo pipefail
+
+pending=()
+
+if [[ -f "$HOME/.ssh/id_ed25519.pub" ]] && command -v gh >/dev/null 2>&1; then
+  # Compare by base64 data (field 2) since GitHub strips the comment on upload.
+  pub_key_data="$(awk '{print $2}' "$HOME/.ssh/id_ed25519.pub")"
+
+  if ! gh auth status >/dev/null 2>&1; then
+    pending+=("Register SSH key on GitHub (will also run gh auth login): {{ .chezmoi.workingTree }}/scripts/post/setup_github.sh")
+  elif ! gh api user/keys --jq '.[].key | split(" ")[1]' 2>/dev/null \
+         | grep -qFx "$pub_key_data"; then
+    pending+=("Register SSH key on GitHub: {{ .chezmoi.workingTree }}/scripts/post/setup_github.sh")
+  fi
+fi
+
+{{ if .useGitea -}}
+if command -v tea >/dev/null 2>&1 && [[ ! -f "$HOME/.config/tea/config.yml" ]]; then
+  pending+=("Set up Gitea (tea login + SSH key): {{ .chezmoi.workingTree }}/scripts/post/setup_gitea.sh")
+fi
+{{- end }}
+
+if [[ ${#pending[@]} -gt 0 ]]; then
+  echo
+  echo "==> Post-install steps pending:"
+  printf '    - %s\n' "${pending[@]}"
+  echo
+fi

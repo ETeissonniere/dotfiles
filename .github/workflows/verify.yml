@@ -11,13 +11,23 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Install shellcheck and chezmoi
         run: |
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y shellcheck
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
-      - name: Run make verify
-        run: make verify
+      - name: Shellcheck tracked .sh files
+        run: |
+          mapfile -t files < <(git ls-files '*.sh' | grep -vE 'modules/(zsh|tmux)' || true)
+          [[ ${#files[@]} -gt 0 ]] && shellcheck -x "${files[@]}"
+
+      - name: Render every chezmoi template (apply --dry-run)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # bumps gitHubKeys rate limit
+        run: |
+          chezmoi init --source="$PWD" --promptDefaults
+          chezmoi apply --dry-run --no-tty > /dev/null

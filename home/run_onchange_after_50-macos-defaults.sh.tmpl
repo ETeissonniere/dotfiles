@@ -1,0 +1,56 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "==> Applying macOS defaults"
+
+# Not settable via `defaults` since macOS 10.13+ (keychain-gated):
+echo "    Configure manually in System Settings: First day of week (Language & Region) and Lock Screen password"
+
+defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+defaults write NSGlobalDomain AppleMetricUnits -bool true
+defaults write NSGlobalDomain AppleTemperatureUnit -string "Celsius"
+
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 30
+defaults write NSGlobalDomain com.apple.trackpad.scaling -float 3
+defaults write NSGlobalDomain com.apple.mouse.scaling -float 3
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
+# AppleFnUsageType=3 → fn/globe triggers dictation instead of emoji picker
+defaults write com.apple.HIToolbox AppleFnUsageType -int 3
+
+# Cmd+Shift+S → copy screenshot selection to clipboard (keycode 115, mod 1179648)
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 31 \
+  '<dict><key>enabled</key><true/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>115</integer><integer>1</integer><integer>1179648</integer></array></dict></dict>'
+
+{{ if .isDesktop -}}
+defaults write com.apple.dock autohide -bool true
+{{- end }}
+defaults write com.apple.dock tilesize -int 64
+for corner in tl tr bl br; do
+  defaults write com.apple.dock "wvous-${corner}-corner" -int 0
+  defaults write com.apple.dock "wvous-${corner}-modifier" -int 0
+done
+killall Dock >/dev/null 2>&1 || true
+
+defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+defaults write com.apple.finder ShowSidebar -bool true
+defaults write com.apple.finder ShowRecentTags -bool false
+defaults write com.apple.finder NewWindowTargetPath -string "file:///Users/$(whoami)/"
+defaults write com.apple.finder FXICloudDriveDesktop -bool true
+defaults write com.apple.finder FXICloudDriveDocuments -bool true
+killall Finder >/dev/null 2>&1 || true
+
+mkdir -p "$HOME/Developer"
+
+open -a "Google Chrome" --args --make-default-browser || true
+osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true' || true
+
+tmutil addexclusion "$HOME/Developer" 2>/dev/null || true
+tmutil addexclusion "$HOME/Downloads" 2>/dev/null || true
+{{- end }}

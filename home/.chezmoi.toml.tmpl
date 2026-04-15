@@ -1,0 +1,59 @@
+{{/*
+  Init prompts. Answers are cached in ~/.config/chezmoi/chezmoi.toml; use
+  `chezmoi init --prompt` to re-prompt with the current values as defaults.
+*/ -}}
+
+{{- $email      := promptStringOnce . "email"      "Git email"      "git@eteiss.org" -}}
+{{- $name       := promptStringOnce . "name"       "Git name"       "Eliott Teissonniere" -}}
+{{- $githubUser := promptStringOnce . "githubUser" "GitHub username" "ETeissonniere" -}}
+
+{{- $isDesktop := promptBoolOnce . "isDesktop" "Desktop workstation (not a VM/server)" true -}}
+{{- $useGitea  := promptBoolOnce . "useGitea"  "Use a (self-hosted) Gitea instance"    false -}}
+
+{{- $includeVirt         := false -}}
+{{- $includeSocials      := false -}}
+{{- $isLaptop            := false -}}
+{{- $includeWorkApps     := false -}}
+{{- $includePersonalApps := false -}}
+{{- $installDocker       := false -}}
+{{- $installClaudeCode   := false -}}
+
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   if $isDesktop -}}
+{{-     $includeVirt    = promptBoolOnce . "includeVirt"    "Include virtualization tools (UTM)"        true -}}
+{{-     $includeSocials = promptBoolOnce . "includeSocials" "Include social apps (Telegram, WhatsApp)" false -}}
+{{-   end -}}
+{{-   $isLaptop            = promptBoolOnce . "isLaptop"            "Laptop (install Tailscale)"                    false -}}
+{{-   $includeWorkApps     = promptBoolOnce . "includeWorkApps"     "Include work apps (Slack)"                     false -}}
+{{-   $includePersonalApps = promptBoolOnce . "includePersonalApps" "Include personal apps (Bambu Studio, KiCad)"   false -}}
+{{- else -}}
+{{-   $installDocker     = promptBoolOnce . "installDocker"     "Install Docker (via get.docker.com)"    true -}}
+{{-   $installClaudeCode = promptBoolOnce . "installClaudeCode" "Install Claude Code (via install.sh)"  true -}}
+{{- end -}}
+
+sourceDir = {{ .chezmoi.workingTree | quote }}
+
+# Make brew + ~/.local/bin visible to every run script. chezmoi run scripts
+# inherit the env from before `chezmoi apply` started, which on a fresh box
+# won't yet have brew shellenv sourced — so `gh`, `dockutil`, etc. wouldn't
+# be found by later run scripts without this.
+[scriptEnv]
+{{- if eq .chezmoi.os "darwin" }}
+    PATH = "{{ .chezmoi.homeDir }}/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:{{ env "PATH" }}"
+{{- else }}
+    PATH = "{{ .chezmoi.homeDir }}/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:{{ env "PATH" }}"
+{{- end }}
+
+[data]
+    email               = {{ $email | quote }}
+    name                = {{ $name  | quote }}
+    githubUser          = {{ $githubUser | quote }}
+    isDesktop           = {{ $isDesktop }}
+    useGitea            = {{ $useGitea }}
+    includeVirt         = {{ $includeVirt }}
+    includeSocials      = {{ $includeSocials }}
+    isLaptop            = {{ $isLaptop }}
+    includeWorkApps     = {{ $includeWorkApps }}
+    includePersonalApps = {{ $includePersonalApps }}
+    installDocker       = {{ $installDocker }}
+    installClaudeCode   = {{ $installClaudeCode }}

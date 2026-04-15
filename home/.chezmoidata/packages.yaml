@@ -1,0 +1,72 @@
+# Declarative package manifest consumed by run_onchange_before_20-brew-bundle.
+# Buckets under `packages.darwin.*` are gated on the matching chezmoi toggle
+# (see .chezmoi.toml.tmpl). Each bucket may carry `brews`, `casks`, and `mas`
+# (objects with `name` and `id`).
+packages:
+  common:
+    brews:
+      - btop
+      - eza
+      - fd
+      - fzf
+      - gh
+      - git-lfs
+      - httpie
+      - jq
+      - ripgrep
+      - starship
+      - tea
+      - uv
+      - vim
+      - zoxide
+
+  # NOTE: claude-code on Linux is not in core Homebrew. Install it via
+  # `npm i -g @anthropic-ai/claude-code` or Anthropic's installer script.
+  linux:
+    brews: []
+
+  darwin:
+    base:
+      brews:
+        - container
+      casks:
+        - claude-code
+
+    desktop:
+      brews:
+        - dockutil
+      casks:
+        - appcleaner
+        - claude
+        - docker-desktop
+        - ghostty
+        - google-chrome
+        - logi-options+
+        - logseq
+        - zed
+      mas:
+        - { name: "Flighty – Live Flight Tracker", id: 1358823008 }
+        - { name: "Numbers",                        id: 409203825 }
+        - { name: "Pages",                          id: 409201541 }
+
+    virt:
+      casks:
+        - utm
+
+    socials:
+      mas:
+        - { name: "Telegram",           id: 747648890 }
+        - { name: "WhatsApp Messenger", id: 310633997 }
+
+    laptop:
+      mas:
+        - { name: "Tailscale", id: 1475387142 }
+
+    work:
+      mas:
+        - { name: "Slack for Desktop", id: 803453959 }
+
+    personal:
+      casks:
+        - bambu-studio
+        - kicad

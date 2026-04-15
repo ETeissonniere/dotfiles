@@ -1,53 +1,85 @@
 # Eliott's dotfiles
 
-These dotfiles configure macOS workstations and Linux servers with a consistent toolchain and shell experience. Use at your own risk.
+Managed by [chezmoi](https://www.chezmoi.io/). Module selection is interactive at first run and cached for subsequent applies.
 
 ## Quick start
 
 ```sh
-git clone https://github.com/ETeissonniere/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-make bootstrap
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply ETeissonniere
 ```
 
-Set `DRY_RUN=1` to preview actions without making changes:
+The `/lb` variant installs chezmoi to `~/.local/bin` (which the rendered zsh config puts on PATH for you).
+
+That installs chezmoi, clones this repo into its source directory, asks a short list of yes/no questions (desktop? Docker? social apps?…), and applies everything.
+
+On a fresh Ubuntu/Debian, install `curl` first: `sudo apt install -y curl`. Everything else (build-essential, zsh, Homebrew, Docker, packages, macOS defaults) is handled by the `run_*` scripts.
+
+## Daily operations
 
 ```sh
-DRY_RUN=1 make bootstrap
+chezmoi update                 # pull source repo + re-apply
+chezmoi init --prompt          # re-run toggle prompts, then `chezmoi apply`
+chezmoi apply                  # apply local source-tree edits
+chezmoi edit <path>            # edit a managed file and re-apply on exit
 ```
 
-## Targets
+`dotsync` (auto-runs once/day on shell startup, or run manually) fetches the source repo, shows incoming commits, prompts, and runs `chezmoi update`.
 
-- `make bootstrap` – detect the platform, install packages, and deploy configuration files.
-- `make packages` – install only the package dependencies for the current platform.
-- `make link` – (re)link shell, git, and SSH config without touching packages.
-- `make verify` – run basic linting and structure checks.
+### Optional: auto-commit/push changes to the repo
+
+Add this to `~/.config/chezmoi/chezmoi.toml` if you'd like local edits to be pushed automatically:
+
+```toml
+[git]
+    autoCommit = true
+    autoPush = true
+```
+
+See the [chezmoi docs](https://www.chezmoi.io/user-guide/daily-operations/) for details.
+
+## Module toggles
+
+Asked at init and cached; re-prompt via `chezmoi init --prompt`.
+
+| Toggle                | Effect                                                   |
+|-----------------------|----------------------------------------------------------|
+| `isDesktop`           | Enables desktop GUI apps, Docker Desktop, Zed, macOS dock auto-hide. Off for VMs/servers. |
+| `includeVirt`         | UTM virtualization (macOS desktop only).                 |
+| `includeSocials`      | Telegram + WhatsApp (macOS desktop only).                |
+| `isLaptop`            | Tailscale (macOS only).                                  |
+| `includeWorkApps`     | Slack (macOS only).                                      |
+| `includePersonalApps` | Bambu Studio, KiCad (macOS only).                        |
+| `installDocker`       | Docker via get.docker.com (Linux only).                  |
+| `installClaudeCode`   | Claude Code via `claude.ai/install.sh` (Linux only; macOS gets it via brew). |
+| `useGitea`            | Enable the post-install reminder for `scripts/post/setup_gitea.sh`. |
+
+Plus two string prompts: `email` and `name` for git config.
 
 ## Layout
 
 ```
-config/           # Source dotfiles (git, ssh, zsh) grouped by domain
-modules/zsh/      # Shared zsh fragments with platform overrides
-packages/         # Package manifests per platform + post-install hooks
-scripts/          # Bootstrap helpers, library code, verification, SSH tooling
+.chezmoiroot                       # points chezmoi at ./home
+home/
+  .chezmoi.toml.tmpl               # init prompts
+  .chezmoidata/packages.yaml       # declarative Homebrew manifest
+  .chezmoiignore                   # platform-conditional exclusions
+  dot_*                            # → $HOME/.* after apply
+  private_dot_ssh/                 # → $HOME/.ssh (mode 700)
+  run_onchange_*                   # re-run when rendered content changes
+  run_once_*                       # run once per content hash
+modules/                           # runtime zsh/tmux helpers
+scripts/post/                      # post-install helpers (user-invoked)
 ```
 
-## macOS package toggles
+## Post-install helpers
 
-The macOS package installer and configuration scripts react to a few environment variables so you can tailor installs:
+Scripts under `scripts/post/` are one-shot tasks the user runs manually (chezmoi can't sensibly drive interactive OAuth-style flows). A checker at the end of every `chezmoi apply` prints a reminder for each pending item until it's done.
 
-- `VM=1` – skip GUI-heavy tools (VS Code, Docker Desktop, etc.), don't add them to the dock, and keep the dock visible instead of auto-hiding.
-- `NO_VIRT=1` – skip UTM virtualization tooling.
-- `NO_SOCIALS=1` – skip social apps like WhatsApp and Telegram.
-- `LAPTOP=1` – include laptop-only utilities such as Tailscale.
-- `WORK_APPS=1` – include work only apps like Slack.
-- `PERSONAL_APPS=1` – include personal apps like Bambu Studio.
+- `scripts/post/setup_github.sh` — register `~/.ssh/id_ed25519.pub` on GitHub as both an authentication and signing key. Runs `gh auth login` itself if needed; idempotent on re-run.
+- `scripts/post/setup_gitea.sh` — configure `tea` for a (self-hosted) Gitea instance and register `~/.ssh/id_ed25519.pub` on it via the Gitea REST API. Prompts once for URL + username + token. Re-run per instance.
 
-## Post-install reminders
+## Other reminders
 
-- Generate/import SSH keys with `scripts/ssh/import_key.sh` (update `config/git/allowed_signers` as needed).
-- Run `gh auth login -p ssh` to authenticate GitHub.
+- On Linux, if you want passwordless sudo: `sudo visudo` and add `%sudo ALL=(ALL) NOPASSWD: ALL`.
 - Configure Time Machine / Tailscale / other services manually when desired.
-- On Mac, enable iCloud folder sync if desired.
-- Set wallpaper.
-- If desired, switch the dotfiles remote to SSH `git remote remove origin && git remote add origin git@github.com:ETeissonniere/dotfiles.git`
+- On macOS, enable iCloud folder sync and set the wallpaper.
