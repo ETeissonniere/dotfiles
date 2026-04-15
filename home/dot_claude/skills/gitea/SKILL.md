@@ -7,12 +7,12 @@ description: Gitea operations via tea CLI. Use when user mentions: gitea, tea, o
 
 ## When to Use This Skill
 
-Use `tea` for Gitea repositories. To detect Gitea, check if the remote is not GitHub or GitLab:
+Use `tea` for Gitea repositories. To detect Gitea, check the remote:
 ```bash
 git remote -v
 ```
 
-If the remote doesn't contain `github.com` or `gitlab`, it may be a Gitea instance.
+If the remote doesn't contain `github.com`, it may be a Gitea instance.
 
 ## Before Any Operation
 
