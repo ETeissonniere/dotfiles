@@ -69,8 +69,12 @@ scripts/ssh/import_key.sh          # manual helper for SSH key import
 
 ## Post-install reminders
 
-- Import an existing SSH key: `scripts/ssh/import_key.sh --from /path/to/key`. Update `home/dot_config/git/allowed_signers` as needed.
-- Run `gh auth login -p ssh` then `chezmoi apply` to register your SSH key with GitHub.
+- **Register your SSH key with GitHub** (once, after `chezmoi apply` generates the key):
+  ```sh
+  gh auth login -h github.com -p ssh -s admin:public_key -s admin:ssh_signing_key
+  ~/.local/share/chezmoi/scripts/ssh/register_github_key.sh
+  ```
+- Import an existing SSH key instead of generating a new one: `scripts/ssh/import_key.sh --from /path/to/key`.
 - On Linux, if you want passwordless sudo: `sudo visudo` and add `%sudo ALL=(ALL) NOPASSWD: ALL`.
 - Configure Time Machine / Tailscale / other services manually when desired.
 - On macOS, enable iCloud folder sync and set the wallpaper.

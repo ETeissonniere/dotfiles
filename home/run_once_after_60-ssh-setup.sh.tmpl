@@ -8,38 +8,12 @@ chmod 700 "$HOME/.ssh"
 
 if [[ -f "$KEY_PATH" ]]; then
   echo "==> SSH key already exists at $KEY_PATH"
-else
-  ssh-keygen -t ed25519 -f "$KEY_PATH" -N "" -C "$(whoami)@$(hostname)"
-  echo "==> Generated ed25519 key at $KEY_PATH"
+  exit 0
 fi
 
-command -v gh >/dev/null 2>&1 || { echo "==> gh CLI not found; skipping GitHub key registration"; exit 0; }
-
-if ! gh auth status >/dev/null 2>&1; then
-  echo "==> Authenticating with GitHub (SSH) — follow the prompts"
-  gh auth login --hostname github.com --git-protocol ssh \
-                -s admin:public_key -s admin:ssh_signing_key
-fi
-
-# Refresh in case existing auth is missing the SSH-key scopes
-gh auth refresh -h github.com -s admin:public_key -s admin:ssh_signing_key 2>/dev/null || true
-
-key_title="$(hostname)"
-pub_key="$(<"$KEY_PATH.pub")"
-
-register_if_missing() {
-  local type="$1" title="$2" existing
-  case "$type" in
-    authentication) existing="$(gh ssh-key list 2>/dev/null || true)" ;;
-    signing)        existing="$(gh api user/ssh_signing_keys --jq '.[].key' 2>/dev/null || true)" ;;
-  esac
-  if echo "$existing" | grep -qF "$pub_key"; then
-    echo "==> SSH $type key already registered"
-  else
-    gh ssh-key add "$KEY_PATH.pub" --type "$type" --title "$title"
-    echo "==> Registered SSH $type key on GitHub as '$title'"
-  fi
-}
-
-register_if_missing authentication "$key_title"
-register_if_missing signing        "$key_title signing"
+ssh-keygen -t ed25519 -f "$KEY_PATH" -N "" -C "$(whoami)@$(hostname)"
+echo "==> Generated ed25519 key at $KEY_PATH"
+echo
+echo "    To register this key on GitHub, run:"
+echo "      gh auth login -h github.com -p ssh -s admin:public_key -s admin:ssh_signing_key"
+echo "      {{ .chezmoi.workingTree }}/scripts/ssh/register_github_key.sh"
