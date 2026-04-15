@@ -1,0 +1,11 @@
+# Files and directories that chezmoi should delete from ~ on every apply.
+# Add an entry here (in the same commit) whenever you remove a file from the
+# chezmoi source tree so the deletion propagates to all machines.
+#
+# Paths are relative to ~. Globs and template directives are supported.
+# Preview what will be deleted before committing:
+#   chezmoi apply -v --dry-run
+#
+# Example:
+#   .old_tool_config
+#   {{ if eq .chezmoi.os "darwin" }}.macos_only_file{{ end }}

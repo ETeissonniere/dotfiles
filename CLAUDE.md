@@ -24,6 +24,7 @@ Managed by [chezmoi](https://www.chezmoi.io/). The chezmoi source tree lives und
   - `home/dot_*.tmpl` / `home/dot_*` — rendered/symlinked dotfiles
   - `home/run_onchange_*` — re-run when rendered content hash changes
   - `home/run_once_*` — run once per content hash
+  - `home/.chezmoiremove.tmpl` — paths chezmoi should delete from `~` on every apply
 - `modules/zsh/` — zsh fragments sourced from `~/.zshrc` at runtime (excluded from shellcheck)
 - `modules/tmux/` — tmux helper scripts (sourced from `~/.tmux.conf`)
 - `scripts/ssh/import_key.sh` — manual helper for importing an existing SSH key
@@ -44,6 +45,10 @@ Edit `home/.chezmoidata/packages.yaml`. Bucket by platform and feature flag:
 3. Update the README table.
 
 Existing users get prompted on the next `chezmoi apply`.
+
+## Removing managed files
+
+When you delete a file from the chezmoi source tree, add its target path to `home/.chezmoiremove.tmpl` in the same commit. chezmoi will delete it from `~` on the next `chezmoi apply` on every machine. Preview with `chezmoi apply -v --dry-run` before committing.
 
 ## Shell scripts
 
