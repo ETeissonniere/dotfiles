@@ -8,8 +8,10 @@ grep -Fxq "$shell_path" /etc/shells || { echo "==> $shell_path missing from /etc
 
 [[ "${SHELL:-}" != "$shell_path" ]] || { echo "==> Default shell already $shell_path"; exit 0; }
 
-if chsh -s "$shell_path" "$(id -un)"; then
-  echo "==> Default shell changed to $shell_path"
+# Run chsh via sudo so it skips PAM's login-password prompt — on WSL that
+# prompt often fails because the WSL user has no password set.
+if sudo chsh -s "$shell_path" "$(id -un)"; then
+  echo "==> Default shell changed to $shell_path (takes effect on next login)"
 else
-  echo "==> chsh failed; run 'chsh -s $shell_path' manually"
+  echo "==> chsh failed; run 'sudo chsh -s $shell_path' manually"
 fi
