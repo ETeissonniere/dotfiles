@@ -33,11 +33,12 @@ title="$(hostname)"
 pub_key_data="$(awk '{print $2}' "$KEY_PATH.pub")"
 
 key_registered() {
-  local type="$1" existing
+  local type="$1" endpoint existing
   case "$type" in
-    authentication) existing="$(gh ssh-key list --json key --jq '.[].key | split(" ")[1]' 2>/dev/null || true)" ;;
-    signing)        existing="$(gh api   user/ssh_signing_keys  --jq '.[].key | split(" ")[1]' 2>/dev/null || true)" ;;
+    authentication) endpoint="user/keys"              ;;
+    signing)        endpoint="user/ssh_signing_keys"  ;;
   esac
+  existing="$(gh api "$endpoint" --jq '.[].key | split(" ")[1]' 2>/dev/null || true)"
   grep -qFx "$pub_key_data" <<<"$existing"
 }
 
