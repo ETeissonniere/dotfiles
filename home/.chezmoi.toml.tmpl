@@ -32,6 +32,17 @@
 
 sourceDir = {{ .chezmoi.workingTree | quote }}
 
+# Make brew + ~/.local/bin visible to every run script. chezmoi run scripts
+# inherit the env from before `chezmoi apply` started, which on a fresh box
+# won't yet have brew shellenv sourced — so `gh`, `dockutil`, etc. wouldn't
+# be found by later run scripts without this.
+[scriptEnv]
+{{- if eq .chezmoi.os "darwin" }}
+    PATH = "{{ .chezmoi.homeDir }}/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:{{ env "PATH" }}"
+{{- else }}
+    PATH = "{{ .chezmoi.homeDir }}/.local/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:{{ env "PATH" }}"
+{{- end }}
+
 [data]
     email               = {{ $email | quote }}
     name                = {{ $name  | quote }}
