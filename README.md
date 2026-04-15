@@ -50,6 +50,7 @@ Asked at init and cached; re-prompt via `chezmoi init --prompt`.
 | `includeWorkApps`     | Slack (macOS only).                                      |
 | `includePersonalApps` | Bambu Studio, KiCad (macOS only).                        |
 | `installDocker`       | Docker via get.docker.com (Linux only).                  |
+| `installClaudeCode`   | Claude Code via `claude.ai/install.sh` (Linux only; macOS gets it via brew). |
 
 Plus two string prompts: `email` and `name` for git config.
 

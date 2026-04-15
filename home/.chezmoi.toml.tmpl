@@ -15,6 +15,7 @@
 {{- $includeWorkApps     := false -}}
 {{- $includePersonalApps := false -}}
 {{- $installDocker       := false -}}
+{{- $installClaudeCode   := false -}}
 
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   if $isDesktop -}}
@@ -25,7 +26,8 @@
 {{-   $includeWorkApps    = promptBoolOnce . "includeWorkApps"     "Include work apps (Slack)?"                    false -}}
 {{-   $includePersonalApps = promptBoolOnce . "includePersonalApps" "Include personal apps (Bambu Studio, KiCad)?" false -}}
 {{- else -}}
-{{-   $installDocker = promptBoolOnce . "installDocker" "Install Docker (via get.docker.com)?" true -}}
+{{-   $installDocker     = promptBoolOnce . "installDocker"     "Install Docker (via get.docker.com)?"     true -}}
+{{-   $installClaudeCode = promptBoolOnce . "installClaudeCode" "Install Claude Code (via install.sh)?"  true -}}
 {{- end -}}
 
 sourceDir = {{ .chezmoi.workingTree | quote }}
@@ -41,3 +43,4 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
     includeWorkApps     = {{ $includeWorkApps }}
     includePersonalApps = {{ $includePersonalApps }}
     installDocker       = {{ $installDocker }}
+    installClaudeCode   = {{ $installClaudeCode }}

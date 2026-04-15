@@ -1,13 +1,8 @@
 ---
 description: Show issues organized by risk and difficulty
-allowed-tools: Skill
 ---
 
-Detect the git remote to determine the platform and use the appropriate skill:
-- If remote contains `github.com`: use the `github` skill
-- If remote contains a Gitea instance: use the `gitea` skill
-
-Fetch all open issues from this repository using the skill's issue list command.
+Fetch all open issues from the current repository. Detect the platform from `git remote -v` and use the matching CLI (`gh issue list` for GitHub, `tea issue list` for Gitea).
 
 Analyze each issue and create a dashboard table with columns:
 - Issue number
