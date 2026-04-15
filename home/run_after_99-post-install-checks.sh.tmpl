@@ -17,6 +17,12 @@ if [[ -f "$HOME/.ssh/id_ed25519.pub" ]] && command -v gh >/dev/null 2>&1; then
   fi
 fi
 
+{{ if .useGitea -}}
+if command -v tea >/dev/null 2>&1 && [[ ! -f "$HOME/.config/tea/config.yml" ]]; then
+  pending+=("Set up Gitea (tea login + SSH key): {{ .chezmoi.workingTree }}/scripts/post/setup_gitea.sh")
+fi
+{{- end }}
+
 if [[ ${#pending[@]} -gt 0 ]]; then
   echo
   echo "==> Post-install steps pending:"

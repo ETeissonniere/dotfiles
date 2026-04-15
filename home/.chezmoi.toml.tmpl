@@ -7,7 +7,8 @@
 {{- $name       := promptStringOnce . "name"       "Git name"       "Eliott Teissonniere" -}}
 {{- $githubUser := promptStringOnce . "githubUser" "GitHub username" "ETeissonniere" -}}
 
-{{- $isDesktop := promptBoolOnce . "isDesktop" "Desktop workstation (not a VM/server)?" true -}}
+{{- $isDesktop := promptBoolOnce . "isDesktop" "Desktop workstation (not a VM/server)" true -}}
+{{- $useGitea  := promptBoolOnce . "useGitea"  "Use a (self-hosted) Gitea instance"    false -}}
 
 {{- $includeVirt         := false -}}
 {{- $includeSocials      := false -}}
@@ -19,15 +20,15 @@
 
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   if $isDesktop -}}
-{{-     $includeVirt    = promptBoolOnce . "includeVirt"    "Include virtualization tools (UTM)?"        true -}}
-{{-     $includeSocials = promptBoolOnce . "includeSocials" "Include social apps (Telegram, WhatsApp)?" false -}}
+{{-     $includeVirt    = promptBoolOnce . "includeVirt"    "Include virtualization tools (UTM)"        true -}}
+{{-     $includeSocials = promptBoolOnce . "includeSocials" "Include social apps (Telegram, WhatsApp)" false -}}
 {{-   end -}}
-{{-   $isLaptop           = promptBoolOnce . "isLaptop"            "Laptop (install Tailscale)?"                   false -}}
-{{-   $includeWorkApps    = promptBoolOnce . "includeWorkApps"     "Include work apps (Slack)?"                    false -}}
-{{-   $includePersonalApps = promptBoolOnce . "includePersonalApps" "Include personal apps (Bambu Studio, KiCad)?" false -}}
+{{-   $isLaptop            = promptBoolOnce . "isLaptop"            "Laptop (install Tailscale)"                    false -}}
+{{-   $includeWorkApps     = promptBoolOnce . "includeWorkApps"     "Include work apps (Slack)"                     false -}}
+{{-   $includePersonalApps = promptBoolOnce . "includePersonalApps" "Include personal apps (Bambu Studio, KiCad)"   false -}}
 {{- else -}}
-{{-   $installDocker     = promptBoolOnce . "installDocker"     "Install Docker (via get.docker.com)?"     true -}}
-{{-   $installClaudeCode = promptBoolOnce . "installClaudeCode" "Install Claude Code (via install.sh)?"  true -}}
+{{-   $installDocker     = promptBoolOnce . "installDocker"     "Install Docker (via get.docker.com)"    true -}}
+{{-   $installClaudeCode = promptBoolOnce . "installClaudeCode" "Install Claude Code (via install.sh)"  true -}}
 {{- end -}}
 
 sourceDir = {{ .chezmoi.workingTree | quote }}
@@ -48,6 +49,7 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
     name                = {{ $name  | quote }}
     githubUser          = {{ $githubUser | quote }}
     isDesktop           = {{ $isDesktop }}
+    useGitea            = {{ $useGitea }}
     includeVirt         = {{ $includeVirt }}
     includeSocials      = {{ $includeSocials }}
     isLaptop            = {{ $isLaptop }}

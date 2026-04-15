@@ -51,6 +51,7 @@ Asked at init and cached; re-prompt via `chezmoi init --prompt`.
 | `includePersonalApps` | Bambu Studio, KiCad (macOS only).                        |
 | `installDocker`       | Docker via get.docker.com (Linux only).                  |
 | `installClaudeCode`   | Claude Code via `claude.ai/install.sh` (Linux only; macOS gets it via brew). |
+| `useGitea`            | Enable the post-install reminder for `scripts/post/setup_gitea.sh`. |
 
 Plus two string prompts: `email` and `name` for git config.
 
