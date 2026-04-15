@@ -71,7 +71,7 @@ scripts/ssh/import_key.sh          # manual helper for SSH key import
 
 Scripts under `scripts/post/` are one-shot tasks the user runs manually (chezmoi can't sensibly drive interactive OAuth-style flows). A checker at the end of every `chezmoi apply` prints a reminder for each pending item until it's done.
 
-- `scripts/post/register_github_key.sh` — register `~/.ssh/id_ed25519.pub` on GitHub as both an authentication and signing key. Run after `gh auth login`.
+- `scripts/post/register_github_key.sh` — register `~/.ssh/id_ed25519.pub` on GitHub as both an authentication and signing key. Handles `gh auth login` itself if not already authenticated.
 - `scripts/ssh/import_key.sh --from /path/to/key` — copy an existing SSH key over from another machine instead of generating a new one.
 
 ## Other reminders
