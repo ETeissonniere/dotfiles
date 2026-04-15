@@ -5,8 +5,10 @@ Managed by [chezmoi](https://www.chezmoi.io/). Module selection is interactive a
 ## Quick start
 
 ```sh
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply ETeissonniere
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply ETeissonniere
 ```
+
+The `/lb` variant installs chezmoi to `~/.local/bin` (which the rendered zsh config puts on PATH for you).
 
 That installs chezmoi, clones this repo into its source directory, asks a short list of yes/no questions (desktop? Docker? social apps?…), and applies everything.
 
@@ -64,15 +66,14 @@ home/
   run_onchange_*                   # re-run when rendered content changes
   run_once_*                       # run once per content hash
 modules/                           # runtime zsh/tmux helpers
-scripts/ssh/import_key.sh          # manual helper for SSH key import
+scripts/post/                      # post-install helpers (user-invoked)
 ```
 
 ## Post-install helpers
 
 Scripts under `scripts/post/` are one-shot tasks the user runs manually (chezmoi can't sensibly drive interactive OAuth-style flows). A checker at the end of every `chezmoi apply` prints a reminder for each pending item until it's done.
 
-- `scripts/post/register_github_key.sh` — register `~/.ssh/id_ed25519.pub` on GitHub as both an authentication and signing key. Handles `gh auth login` itself if not already authenticated.
-- `scripts/ssh/import_key.sh --from /path/to/key` — copy an existing SSH key over from another machine instead of generating a new one.
+- `scripts/post/register_github_key.sh` — registers `~/.ssh/id_ed25519.pub` on GitHub as both an authentication and signing key. Runs `gh auth login` itself if needed; idempotent on re-run.
 
 ## Other reminders
 
