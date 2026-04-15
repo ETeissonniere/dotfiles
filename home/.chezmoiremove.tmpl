@@ -9,3 +9,11 @@
 # Example:
 #   .old_tool_config
 #   {{ if eq .chezmoi.os "darwin" }}.macos_only_file{{ end }}
+
+# Cleanup from machines bootstrapped against an early iteration of the chezmoi
+# migration (#17) before .chezmoiroot existed. Without that redirect, chezmoi
+# treated the repo root as the source and copied these top-level paths into ~.
+# They belong in the chezmoi working tree only, never in $HOME.
+CLAUDE.md
+modules
+scripts
