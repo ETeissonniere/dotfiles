@@ -16,10 +16,12 @@ fi
 command -v gh >/dev/null 2>&1 || { echo "==> gh CLI not found; skipping GitHub key registration"; exit 0; }
 
 if ! gh auth status >/dev/null 2>&1; then
-  echo "==> Authenticating with GitHub (SSH)"
-  gh auth login --hostname github.com --git-protocol ssh --web
+  echo "==> Authenticating with GitHub (SSH) — follow the prompts"
+  gh auth login --hostname github.com --git-protocol ssh \
+                -s admin:public_key -s admin:ssh_signing_key
 fi
 
+# Refresh in case existing auth is missing the SSH-key scopes
 gh auth refresh -h github.com -s admin:public_key -s admin:ssh_signing_key 2>/dev/null || true
 
 key_title="$(hostname)"
