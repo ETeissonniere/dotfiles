@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Runs after every `chezmoi apply`. Prints a short TODO list of post-install
+# steps that still need manual attention. Silent when everything's set.
+set -euo pipefail
+
+pending=()
+
+# SSH key registered with GitHub?
+if [[ -f "$HOME/.ssh/id_ed25519.pub" ]] && command -v gh >/dev/null 2>&1; then
+  pub_key="$(<"$HOME/.ssh/id_ed25519.pub")"
+  if ! gh auth status >/dev/null 2>&1; then
+    pending+=("Authenticate gh + register SSH key: gh auth login -h github.com -p ssh -s admin:public_key -s admin:ssh_signing_key && {{ .chezmoi.workingTree }}/scripts/post/register_github_key.sh")
+  elif ! gh ssh-key list 2>/dev/null | grep -qF "$pub_key"; then
+    pending+=("Register SSH key on GitHub: {{ .chezmoi.workingTree }}/scripts/post/register_github_key.sh")
+  fi
+fi
+
+if [[ ${#pending[@]} -gt 0 ]]; then
+  echo
+  echo "==> Post-install steps pending:"
+  printf '    - %s\n' "${pending[@]}"
+  echo
+fi

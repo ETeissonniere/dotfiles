@@ -13,7 +13,5 @@ fi
 
 ssh-keygen -t ed25519 -f "$KEY_PATH" -N "" -C "$(whoami)@$(hostname)"
 echo "==> Generated ed25519 key at $KEY_PATH"
-echo
-echo "    To register this key on GitHub, run:"
-echo "      gh auth login -h github.com -p ssh -s admin:public_key -s admin:ssh_signing_key"
-echo "      {{ .chezmoi.workingTree }}/scripts/ssh/register_github_key.sh"
+# A reminder to register it on GitHub is printed at the end of every apply
+# by run_after_99-post-install-checks.sh until the key is actually registered.

@@ -67,14 +67,15 @@ modules/                           # runtime zsh/tmux helpers
 scripts/ssh/import_key.sh          # manual helper for SSH key import
 ```
 
-## Post-install reminders
+## Post-install helpers
 
-- **Register your SSH key with GitHub** (once, after `chezmoi apply` generates the key):
-  ```sh
-  gh auth login -h github.com -p ssh -s admin:public_key -s admin:ssh_signing_key
-  ~/.local/share/chezmoi/scripts/ssh/register_github_key.sh
-  ```
-- Import an existing SSH key instead of generating a new one: `scripts/ssh/import_key.sh --from /path/to/key`.
+Scripts under `scripts/post/` are one-shot tasks the user runs manually (chezmoi can't sensibly drive interactive OAuth-style flows). A checker at the end of every `chezmoi apply` prints a reminder for each pending item until it's done.
+
+- `scripts/post/register_github_key.sh` — register `~/.ssh/id_ed25519.pub` on GitHub as both an authentication and signing key. Run after `gh auth login`.
+- `scripts/ssh/import_key.sh --from /path/to/key` — copy an existing SSH key over from another machine instead of generating a new one.
+
+## Other reminders
+
 - On Linux, if you want passwordless sudo: `sudo visudo` and add `%sudo ALL=(ALL) NOPASSWD: ALL`.
 - Configure Time Machine / Tailscale / other services manually when desired.
 - On macOS, enable iCloud folder sync and set the wallpaper.
