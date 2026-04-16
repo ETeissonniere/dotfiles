@@ -5,10 +5,10 @@ Managed by [chezmoi](https://www.chezmoi.io/). Module selection is interactive a
 ## Quick start
 
 ```sh
-sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply ETeissonniere
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -P init --apply ETeissonniere
 ```
 
-The `/lb` variant installs chezmoi to `~/.local/bin` (which the rendered zsh config puts on PATH for you).
+`-P`/`--purge-binary` removes the bootstrap chezmoi binary once `init --apply` finishes; the persistent binary is installed via Homebrew as part of the run.
 
 That installs chezmoi, clones this repo into its source directory, asks a short list of yes/no questions (desktop? Docker? social apps?…), and applies everything.
 
