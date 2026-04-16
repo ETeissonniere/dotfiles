@@ -3,9 +3,16 @@
   `chezmoi init --prompt` to re-prompt with the current values as defaults.
 */ -}}
 
-{{- $email      := promptStringOnce . "email"      "Git email"      "git@eteiss.org" -}}
-{{- $name       := promptStringOnce . "name"       "Git name"       "Eliott Teissonniere" -}}
-{{- $githubUser := promptStringOnce . "githubUser" "GitHub username" "ETeissonniere" -}}
+{{- $setupGit := promptBoolOnce . "setupGit" "Configure git (user, signing, global ignore)" true -}}
+
+{{- $email      := "" -}}
+{{- $name       := "" -}}
+{{- $githubUser := "" -}}
+{{- if $setupGit -}}
+{{-   $email      = promptStringOnce . "email"      "Git email"       "git@eteiss.org" -}}
+{{-   $name       = promptStringOnce . "name"       "Git name"        "Eliott Teissonniere" -}}
+{{-   $githubUser = promptStringOnce . "githubUser" "GitHub username" "ETeissonniere" -}}
+{{- end -}}
 
 {{- $isDesktop := promptBoolOnce . "isDesktop" "Desktop workstation (not a VM/server)" true -}}
 {{- $useGitea  := promptBoolOnce . "useGitea"  "Use a (self-hosted) Gitea instance"    false -}}
@@ -45,6 +52,7 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
 {{- end }}
 
 [data]
+    setupGit            = {{ $setupGit }}
     email               = {{ $email | quote }}
     name                = {{ $name  | quote }}
     githubUser          = {{ $githubUser | quote }}
