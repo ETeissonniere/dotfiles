@@ -6,6 +6,7 @@ packages:
   common:
     brews:
       - btop
+      - chezmoi
       - eza
       - fd
       - fzf
