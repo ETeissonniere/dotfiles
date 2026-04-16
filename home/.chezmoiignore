@@ -5,3 +5,8 @@
 {{ if eq .chezmoi.os "darwin" -}}
 dot_tmux.conf
 {{- end }}
+
+{{ if not .setupGit -}}
+.gitconfig
+.config/git/**
+{{- end }}
