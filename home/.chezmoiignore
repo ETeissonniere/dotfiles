@@ -9,4 +9,5 @@ dot_tmux.conf
 {{ if not .setupGit -}}
 .gitconfig
 .config/git/**
+.ssh/config
 {{- end }}
