@@ -81,6 +81,10 @@ if command -v uvx >/dev/null 2>&1; then
   eval "$(uvx --generate-shell-completion zsh)"
 fi
 
+if command -v chezmoi >/dev/null 2>&1; then
+  eval "$(chezmoi completion zsh)"
+fi
+
 if command -v zed >/dev/null 2>&1; then
   export EDITOR="zed --wait"
 else
