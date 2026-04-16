@@ -5,6 +5,7 @@ set -euo pipefail
 
 pending=()
 
+{{ if .setupGit -}}
 if [[ -f "$HOME/.ssh/id_ed25519.pub" ]] && command -v gh >/dev/null 2>&1; then
   # Compare by base64 data (field 2) since GitHub strips the comment on upload.
   pub_key_data="$(awk '{print $2}' "$HOME/.ssh/id_ed25519.pub")"
@@ -16,6 +17,7 @@ if [[ -f "$HOME/.ssh/id_ed25519.pub" ]] && command -v gh >/dev/null 2>&1; then
     pending+=("Register SSH key on GitHub: {{ .chezmoi.workingTree }}/scripts/post/setup_github.sh")
   fi
 fi
+{{- end }}
 
 {{ if .useGitea -}}
 if command -v tea >/dev/null 2>&1 && [[ ! -f "$HOME/.config/tea/config.yml" ]]; then
