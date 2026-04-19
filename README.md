@@ -77,7 +77,7 @@ scripts/post/                      # post-install helpers (user-invoked)
 Scripts under `scripts/post/` are one-shot tasks the user runs manually (chezmoi can't sensibly drive interactive OAuth-style flows). A checker at the end of every `chezmoi apply` prints a reminder for each pending item until it's done.
 
 - `scripts/post/setup_github.sh` — register `~/.ssh/id_ed25519.pub` on GitHub as both an authentication and signing key. Runs `gh auth login` itself if needed; idempotent on re-run.
-- `scripts/post/setup_gitea.sh` — configure `tea` for a (self-hosted) Gitea instance and register `~/.ssh/id_ed25519.pub` on it via the Gitea REST API. Prompts once for URL + username + token. Re-run per instance.
+- `scripts/post/setup_gitea.sh` — configure `tea` for a (self-hosted) Gitea instance using SSH-based auth. Prints copy-paste-ready values for the instance's SSH key page, waits for you to register the key, then runs `tea login add --ssh-agent-key` so no API token is ever created or stored. Prompts once for URL + username. Re-run per instance.
 
 ## Other reminders
 
