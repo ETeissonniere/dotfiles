@@ -25,6 +25,20 @@ if command -v tea >/dev/null 2>&1 && [[ ! -f "$HOME/.config/tea/config.yml" ]]; 
 fi
 {{- end }}
 
+if command -v claude >/dev/null 2>&1; then
+  claude_logged_in=false
+  if [[ -f "$HOME/.claude/.credentials.json" ]]; then
+    claude_logged_in=true
+  {{- if eq .chezmoi.os "darwin" }}
+  elif security find-generic-password -s "Claude Code-credentials" -a "$USER" >/dev/null 2>&1; then
+    claude_logged_in=true
+  {{- end }}
+  fi
+  if [[ "$claude_logged_in" != true ]]; then
+    pending+=("Log in to Claude Code: run 'claude' and authenticate")
+  fi
+fi
+
 if [[ ${#pending[@]} -gt 0 ]]; then
   echo
   echo "==> Post-install steps pending:"
