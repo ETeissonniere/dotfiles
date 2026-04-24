@@ -5,7 +5,7 @@ Managed by [chezmoi](https://www.chezmoi.io/). Module selection is interactive a
 ## Quick start
 
 ```sh
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -P init --apply ETeissonniere
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --purge-binary ETeissonniere
 ```
 
 `-P`/`--purge-binary` removes the bootstrap chezmoi binary once `init --apply` finishes; the persistent binary is installed via Homebrew as part of the run.
