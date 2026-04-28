@@ -30,9 +30,9 @@ packages:
     base:
       brews:
         - container
-        - codex
       casks:
         - claude-code
+        - codex
         - codex-app
 
     desktop:
