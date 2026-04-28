@@ -30,8 +30,10 @@ packages:
     base:
       brews:
         - container
+        - codex
       casks:
         - claude-code
+        - codex-app
 
     desktop:
       brews:
@@ -64,6 +66,8 @@ packages:
         - { name: "Tailscale", id: 1475387142 }
 
     work:
+      casks:
+        - linear-linear
       mas:
         - { name: "Slack for Desktop", id: 803453959 }
 

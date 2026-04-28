@@ -19,8 +19,10 @@ dockutil --no-restart --add "/Applications/Ghostty.app"
 dockutil --no-restart --add "/Applications/Zed.app"
 {{ if .includeWorkApps -}}
 dockutil --no-restart --add "/Applications/Slack.app"
+[[ -d "/Applications/Linear.app" ]] && dockutil --no-restart --add "/Applications/Linear.app"
 {{- end }}
 dockutil --no-restart --add "/Applications/Claude.app"
+[[ -d "/Applications/Codex.app" ]] && dockutil --no-restart --add "/Applications/Codex.app"
 {{ if .includePersonalApps -}}
 dockutil --no-restart --add "/Applications/BambuStudio.app"
 {{- end }}
