@@ -52,6 +52,7 @@ Asked at init and cached; re-prompt via `chezmoi init --prompt`.
 | `installDocker`       | Docker via get.docker.com (Linux only).                  |
 | `installClaudeCode`   | Claude Code via `claude.ai/install.sh` (Linux only; macOS gets it via brew). |
 | `useGitea`            | Enable the post-install reminder for `scripts/post/setup_gitea.sh`. |
+| `includeClaudeOfficialDevPlugins` | Enable official Claude development plugins such as clangd. |
 | `setupGit`            | Manage `~/.gitconfig` and `~/.config/git/*` (user, SSH signing, global ignore). Off for machines that don't need git. |
 
 Plus three string prompts asked only when `setupGit` is on: `email`, `name`, and `githubUser` for git config.

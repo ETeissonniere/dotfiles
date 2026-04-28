@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+command -v jq >/dev/null 2>&1 || { echo "==> jq not found; skipping Claude settings merge"; exit 0; }
+
+settings="$HOME/.claude/settings.json"
+tmp="$(mktemp)"
+trap 'rm -f "$tmp"' EXIT
+
+mkdir -p "$HOME/.claude"
+
+if [[ ! -f "$settings" ]]; then
+  printf '{}\n' > "$settings"
+fi
+
+if ! jq empty "$settings" >/dev/null 2>&1; then
+  echo "==> Claude settings are not valid JSON; skipping merge: $settings"
+  exit 0
+fi
+
+echo "==> Merging Claude settings baseline"
+jq '
+  .env = (.env // {}) |
+  .env.CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1" |
+  .attribution = (.attribution // {}) |
+  .attribution.commit = (.attribution.commit // "") |
+  .attribution.pr = (.attribution.pr // "") |
+  .statusLine = {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  } |
+  .enabledPlugins = (.enabledPlugins // {}) |
+  .enabledPlugins."rust-analyzer-lsp@claude-plugins-official" = true |
+  .enabledPlugins."linear@claude-plugins-official" = true |
+{{- if get . "includeClaudeOfficialDevPlugins" | default true }}
+  .enabledPlugins."clangd-lsp@claude-plugins-official" = true |
+{{- end }}
+  .alwaysThinkingEnabled = (.alwaysThinkingEnabled // false) |
+  .effortLevel = (.effortLevel // "medium") |
+  .autoUpdatesChannel = (.autoUpdatesChannel // "stable")
+' "$settings" > "$tmp"
+
+mv "$tmp" "$settings"

@@ -16,6 +16,7 @@
 
 {{- $isDesktop := promptBoolOnce . "isDesktop" "Desktop workstation (not a VM/server)" true -}}
 {{- $useGitea  := promptBoolOnce . "useGitea"  "Use a (self-hosted) Gitea instance"    false -}}
+{{- $includeClaudeOfficialDevPlugins := promptBoolOnce . "includeClaudeOfficialDevPlugins" "Enable Claude official development plugins" true -}}
 
 {{- $includeVirt         := false -}}
 {{- $includeSocials      := false -}}
@@ -58,6 +59,7 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
     githubUser          = {{ $githubUser | quote }}
     isDesktop           = {{ $isDesktop }}
     useGitea            = {{ $useGitea }}
+    includeClaudeOfficialDevPlugins = {{ $includeClaudeOfficialDevPlugins }}
     includeVirt         = {{ $includeVirt }}
     includeSocials      = {{ $includeSocials }}
     isLaptop            = {{ $isLaptop }}
