@@ -53,6 +53,9 @@ mas {{ .name | quote }}, id: {{ .id }}
 {{-    end }}
 {{-  end }}
 {{-  if .includeWorkApps -}}
+{{     range .packages.darwin.work.casks }}
+cask {{ . | quote }}
+{{-    end }}
 {{     range .packages.darwin.work.mas }}
 mas {{ .name | quote }}, id: {{ .id }}
 {{-    end }}

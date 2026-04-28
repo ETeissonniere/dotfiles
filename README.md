@@ -47,7 +47,7 @@ Asked at init and cached; re-prompt via `chezmoi init --prompt`.
 | `includeVirt`         | UTM virtualization (macOS desktop only).                 |
 | `includeSocials`      | Telegram + WhatsApp (macOS desktop only).                |
 | `isLaptop`            | Tailscale (macOS only).                                  |
-| `includeWorkApps`     | Slack (macOS only).                                      |
+| `includeWorkApps`     | Slack and Linear Desktop (macOS only).                   |
 | `includePersonalApps` | Bambu Studio, KiCad (macOS only).                        |
 | `installDocker`       | Docker via get.docker.com (Linux only).                  |
 | `installClaudeCode`   | Claude Code via `claude.ai/install.sh` (Linux only; macOS gets it via brew). |
