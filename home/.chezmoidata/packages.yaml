@@ -25,6 +25,9 @@ packages:
   # `npm i -g @anthropic-ai/claude-code` or Anthropic's installer script.
   linux:
     brews: []
+    casks: []
+    codex_casks:
+      - codex
 
   darwin:
     base:

@@ -25,6 +25,7 @@
 {{- $includePersonalApps := false -}}
 {{- $installDocker       := false -}}
 {{- $installClaudeCode   := false -}}
+{{- $installCodex        := false -}}
 
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   if $isDesktop -}}
@@ -37,6 +38,7 @@
 {{- else -}}
 {{-   $installDocker     = promptBoolOnce . "installDocker"     "Install Docker (via get.docker.com)"    true -}}
 {{-   $installClaudeCode = promptBoolOnce . "installClaudeCode" "Install Claude Code (via install.sh)"  true -}}
+{{-   $installCodex      = promptBoolOnce . "installCodex"      "Install Codex (via Homebrew cask)"     true -}}
 {{- end -}}
 
 sourceDir = {{ .chezmoi.workingTree | quote }}
@@ -67,3 +69,4 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
     includePersonalApps = {{ $includePersonalApps }}
     installDocker       = {{ $installDocker }}
     installClaudeCode   = {{ $installClaudeCode }}
+    installCodex        = {{ $installCodex }}

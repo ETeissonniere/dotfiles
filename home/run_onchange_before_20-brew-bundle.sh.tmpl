@@ -18,6 +18,14 @@ brew {{ . | quote }}
 {{   range .packages.linux.brews }}
 brew {{ . | quote }}
 {{-  end }}
+{{   range .packages.linux.casks }}
+cask {{ . | quote }}
+{{-  end }}
+{{-  if .installCodex -}}
+{{   range .packages.linux.codex_casks }}
+cask {{ . | quote }}
+{{-  end }}
+{{-  end }}
 {{- end -}}
 {{- if eq .chezmoi.os "darwin" -}}
 {{   range .packages.darwin.base.brews }}
