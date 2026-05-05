@@ -18,6 +18,23 @@ export LS_COLORS="di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30
 setopt appendhistory extendedglob
 unsetopt beep
 
+# Key bindings.
+bindkey -e
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+[[ -n "${terminfo[kcuu1]:-}" ]] && bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+[[ -n "${terminfo[kcud1]:-}" ]] && bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+[[ -n "${terminfo[kLFT5]:-}" ]] && bindkey "${terminfo[kLFT5]}" backward-word
+[[ -n "${terminfo[kRIT5]:-}" ]] && bindkey "${terminfo[kRIT5]}" forward-word
+
+# Windows Terminal and other xterm-compatible terminals send these for Ctrl+Arrow.
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+bindkey '^[[5D' backward-word
+bindkey '^[[5C' forward-word
+
 # Completion configuration.
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' menu select
