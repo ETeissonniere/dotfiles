@@ -21,11 +21,17 @@
 - Write clear, descriptive commit messages focusing on "why" not "what"
 - Keep commits atomic - one logical change per commit
 - Always check `git status` before committing
+- Before finishing committed or pushed work, check whether the repo defines CI in `.github/workflows/`, `Taskfile.yml`, `justfile`, `Makefile`, package scripts, or similar project automation
 
 ## Testing
-- Write tests that test behavior, not implementation
+- Write tests that verify code behavior, not implementation details
+- Focus tests on application logic and user-visible behavior, not incidental config-file structure
 - Use descriptive test names that explain the scenario
 - Follow Arrange-Act-Assert pattern
+- Prefer parametrized test suites when they make related scenarios clearer without hiding important differences
+- When a repo has CI, take a reasonable local stab at reproducing the relevant pipeline before calling the work done
+- Run the available test, formatting, linting, type-checking, and build commands that correspond to the files changed
+- If the full CI pipeline is impractical locally, run the closest meaningful subset and clearly report what was and was not verified
 
 ## Agents & Parallelism
 - Leverage **subagents** and **agent teams** as much as possible to parallelize work
