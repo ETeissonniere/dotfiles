@@ -34,7 +34,6 @@ packages:
       brews:
         - container
       casks:
-        - claude-code
         - codex
         - codex-app
 
@@ -43,8 +42,6 @@ packages:
         - dockutil
       casks:
         - appcleaner
-        - claude
-        - docker-desktop
         - ghostty
         - google-chrome
         - logi-options+
