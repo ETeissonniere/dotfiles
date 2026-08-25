@@ -5,6 +5,22 @@ set -euo pipefail
 
 pending=()
 
+{{ if eq .chezmoi.os "darwin" -}}
+xcode_developer_dir="/Applications/Xcode.app/Contents/Developer"
+
+if ! xcrun --find clang >/dev/null 2>&1; then
+  pending+=("Install the Xcode Command Line Tools: xcode-select --install")
+fi
+
+if [[ ! -d "$xcode_developer_dir" ]]; then
+  pending+=("Install Xcode from the App Store, then re-run chezmoi apply")
+elif [[ "$(xcode-select --print-path 2>/dev/null || true)" != "$xcode_developer_dir" ]]; then
+  pending+=("Select and finish Xcode setup: sudo xcode-select --switch $xcode_developer_dir && sudo xcodebuild -runFirstLaunch")
+elif ! xcodebuild -checkFirstLaunchStatus >/dev/null 2>&1; then
+  pending+=("Finish Xcode setup: sudo xcodebuild -runFirstLaunch")
+fi
+{{- end }}
+
 {{ if .setupGit -}}
 if [[ -f "$HOME/.ssh/id_ed25519.pub" ]] && command -v gh >/dev/null 2>&1; then
   # Compare by base64 data (field 2) since GitHub strips the comment on upload.

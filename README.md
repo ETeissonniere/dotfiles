@@ -12,7 +12,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --purge-binary ETeissonnier
 
 That installs chezmoi, clones this repo into its source directory, asks a short list of yes/no questions (social apps, work apps, Git setup, etc.), and applies everything.
 
-On a fresh Ubuntu/Debian, install `curl` first: `sudo apt install -y curl`. Everything else (build-essential, zsh, Homebrew, Docker, packages, macOS defaults) is handled by the `run_*` scripts.
+On a fresh Ubuntu/Debian, install `curl` first: `sudo apt install -y curl`. Everything else (build-essential, zsh, Homebrew, Docker, packages, macOS defaults) is handled by the `run_*` scripts. On macOS, the bootstrap installs the Xcode Command Line Tools before Homebrew, installs Xcode from the App Store, selects it as the active developer directory, accepts its license, and installs its required components. You may be prompted for your administrator password and must be signed in to the App Store.
 
 ## Daily operations
 
