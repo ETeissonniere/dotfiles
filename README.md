@@ -51,7 +51,7 @@ Asked at init and cached; re-prompt via `chezmoi init --prompt`.
 
 Plus three string prompts asked only when `setupGit` is on: `email`, `name`, and `githubUser` for git config.
 
-Bambu Studio is installed on every Mac. Docker is installed on every Linux machine.
+Bambu Studio and OrbStack are installed on every Mac. Docker Engine is installed on every Linux machine.
 
 ## Layout
 
