@@ -5,7 +5,7 @@ set -euo pipefail
 command -v dockutil >/dev/null 2>&1 || { echo "==> dockutil not found; skipping dock configuration"; exit 0; }
 
 echo "==> Configuring dock"
-dockutil --no-restart --remove all
+dockutil --remove all --no-restart
 
 dockutil --no-restart --add "/Applications/Google Chrome.app"
 # YouTube Music is a Chrome PWA; created manually
@@ -16,14 +16,16 @@ dockutil --no-restart --add "/System/Applications/Notes.app"
 dockutil --no-restart --add "/Applications/Logseq.app"
 dockutil --no-restart --add "/System/Applications/Calendar.app"
 dockutil --no-restart --add "/Applications/Ghostty.app"
+dockutil --no-restart --add "/Applications/ChatGPT.app"
+dockutil --no-restart --add "/Applications/Visual Studio Code.app"
 {{ if .includeWorkApps -}}
 dockutil --no-restart --add "/Applications/Slack.app"
 [[ -d "/Applications/Linear.app" ]] && dockutil --no-restart --add "/Applications/Linear.app"
 {{- end }}
-[[ -d "/Applications/Codex.app" ]] && dockutil --no-restart --add "/Applications/Codex.app"
 dockutil --no-restart --add "/Applications/BambuStudio.app"
 # UGREEN NAS is installed manually
 [[ -d "/Applications/UGREEN NAS.app" ]] && dockutil --no-restart --add "/Applications/UGREEN NAS.app"
+dockutil --no-restart --add "/System/Applications/Siri.app"
 dockutil --no-restart --add "$HOME/Downloads"
 
 killall Dock >/dev/null 2>&1 || true
