@@ -8,7 +8,9 @@ packages:
       - btop
       - chezmoi
       - eza
+      - fastfetch
       - fd
+      - fish
       - fzf
       - gh
       - git-lfs

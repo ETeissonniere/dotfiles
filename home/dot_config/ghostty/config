@@ -1,2 +1,3 @@
+command = /opt/homebrew/bin/fish
 keybind = shift+enter=text:\x1b\r
 shell-integration-features = sudo,ssh-terminfo,ssh-env
