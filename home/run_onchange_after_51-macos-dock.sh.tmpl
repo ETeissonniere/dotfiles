@@ -1,4 +1,4 @@
-{{- if and (eq .chezmoi.os "darwin") .isDesktop -}}
+{{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -21,9 +21,7 @@ dockutil --no-restart --add "/Applications/Slack.app"
 [[ -d "/Applications/Linear.app" ]] && dockutil --no-restart --add "/Applications/Linear.app"
 {{- end }}
 [[ -d "/Applications/Codex.app" ]] && dockutil --no-restart --add "/Applications/Codex.app"
-{{ if .includePersonalApps -}}
 dockutil --no-restart --add "/Applications/BambuStudio.app"
-{{- end }}
 # UGREEN NAS is installed manually
 [[ -d "/Applications/UGREEN NAS.app" ]] && dockutil --no-restart --add "/Applications/UGREEN NAS.app"
 dockutil --no-restart --add "$HOME/Downloads"

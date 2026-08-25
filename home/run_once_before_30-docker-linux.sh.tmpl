@@ -1,4 +1,4 @@
-{{- if and (ne .chezmoi.os "darwin") .installDocker -}}
+{{- if ne .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 set -euo pipefail
 

@@ -10,7 +10,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply --purge-binary ETeissonnier
 
 `-P`/`--purge-binary` removes the bootstrap chezmoi binary once `init --apply` finishes; the persistent binary is installed via Homebrew as part of the run.
 
-That installs chezmoi, clones this repo into its source directory, asks a short list of yes/no questions (desktop? Docker? social apps?…), and applies everything.
+That installs chezmoi, clones this repo into its source directory, asks a short list of yes/no questions (social apps, work apps, Git setup, etc.), and applies everything.
 
 On a fresh Ubuntu/Debian, install `curl` first: `sudo apt install -y curl`. Everything else (build-essential, zsh, Homebrew, Docker, packages, macOS defaults) is handled by the `run_*` scripts.
 
@@ -43,18 +43,15 @@ Asked at init and cached; re-prompt via `chezmoi init --prompt`.
 
 | Toggle                | Effect                                                   |
 |-----------------------|----------------------------------------------------------|
-| `isDesktop`           | Enables desktop GUI apps and macOS dock auto-hide. Off for VMs/servers. |
-| `includeVirt`         | UTM virtualization (macOS desktop only).                 |
 | `includeSocials`      | Telegram + WhatsApp (macOS desktop only).                |
-| `isLaptop`            | Tailscale (macOS only).                                  |
-| `includeWorkApps`     | Slack and Linear Desktop (macOS only).                   |
-| `includePersonalApps` | Bambu Studio, KiCad (macOS only).                        |
-| `installDocker`       | Docker via get.docker.com (Linux only).                  |
+| `includeWorkApps`     | Slack, Linear, Tailscale, and KiCad (macOS only).         |
 | `installCodex`        | Codex via Homebrew cask, plus `bubblewrap` apt dependency (Linux only; macOS gets it via brew). |
 | `useGitea`            | Enable the post-install reminder for `scripts/post/setup_gitea.sh`. |
 | `setupGit`            | Manage `~/.gitconfig` and `~/.config/git/*` (user, SSH signing, global ignore). Off for machines that don't need git. |
 
 Plus three string prompts asked only when `setupGit` is on: `email`, `name`, and `githubUser` for git config.
+
+Bambu Studio is installed on every Mac. Docker is installed on every Linux machine.
 
 ## Layout
 

@@ -1,7 +1,7 @@
 # Declarative package manifest consumed by run_onchange_before_20-brew-bundle.
-# Buckets under `packages.darwin.*` are gated on the matching chezmoi toggle
-# (see .chezmoi.toml.tmpl). Each bucket may carry `brews`, `casks`, and `mas`
-# (objects with `name` and `id`).
+# The Darwin base and desktop buckets are unconditional; the remaining Darwin
+# buckets are gated on matching chezmoi toggles (see .chezmoi.toml.tmpl). Each
+# bucket may carry `brews`, `casks`, and `mas` (objects with `name` and `id`).
 packages:
   common:
     brews:
@@ -41,6 +41,7 @@ packages:
         - dockutil
       casks:
         - appcleaner
+        - bambu-studio
         - ghostty
         - google-chrome
         - logi-options+
@@ -50,26 +51,15 @@ packages:
         - { name: "Numbers",                        id: 361304891 }
         - { name: "Pages",                          id: 361309726 }
 
-    virt:
-      casks:
-        - utm
-
     socials:
       mas:
         - { name: "Telegram",           id: 747648890 }
         - { name: "WhatsApp Messenger", id: 310633997 }
 
-    laptop:
-      mas:
-        - { name: "Tailscale", id: 1475387142 }
-
     work:
       casks:
+        - kicad
         - linear
       mas:
         - { name: "Slack for Desktop", id: 803453959 }
-
-    personal:
-      casks:
-        - bambu-studio
-        - kicad
+        - { name: "Tailscale",         id: 1475387142 }

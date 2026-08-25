@@ -34,7 +34,6 @@ brew {{ . | quote }}
 {{   range .packages.darwin.base.casks }}
 cask {{ . | quote }}
 {{-  end }}
-{{-  if .isDesktop -}}
 {{     range .packages.darwin.desktop.brews }}
 brew {{ . | quote }}
 {{-    end }}
@@ -44,19 +43,8 @@ cask {{ . | quote }}
 {{     range .packages.darwin.desktop.mas }}
 mas {{ .name | quote }}, id: {{ .id }}
 {{-    end }}
-{{-  end }}
-{{-  if .includeVirt -}}
-{{     range .packages.darwin.virt.casks }}
-cask {{ . | quote }}
-{{-    end }}
-{{-  end }}
 {{-  if .includeSocials -}}
 {{     range .packages.darwin.socials.mas }}
-mas {{ .name | quote }}, id: {{ .id }}
-{{-    end }}
-{{-  end }}
-{{-  if .isLaptop -}}
-{{     range .packages.darwin.laptop.mas }}
 mas {{ .name | quote }}, id: {{ .id }}
 {{-    end }}
 {{-  end }}
@@ -66,11 +54,6 @@ cask {{ . | quote }}
 {{-    end }}
 {{     range .packages.darwin.work.mas }}
 mas {{ .name | quote }}, id: {{ .id }}
-{{-    end }}
-{{-  end }}
-{{-  if .includePersonalApps -}}
-{{     range .packages.darwin.personal.casks }}
-cask {{ . | quote }}
 {{-    end }}
 {{-  end }}
 {{- end }}
