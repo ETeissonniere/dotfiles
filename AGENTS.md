@@ -1,4 +1,4 @@
-# Dotfiles — Claude Code Instructions
+# Dotfiles Agent Instructions
 
 Managed by [chezmoi](https://www.chezmoi.io/). The chezmoi source tree lives under `home/` (selected via `.chezmoiroot`). Interactive toggles ask about modules at first run and live in `~/.config/chezmoi/chezmoi.toml`.
 

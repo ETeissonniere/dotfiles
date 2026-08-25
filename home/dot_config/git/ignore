@@ -38,4 +38,3 @@ yarn-error.log*
 .zed
 
 # AI agents
-.claude/settings.local.json

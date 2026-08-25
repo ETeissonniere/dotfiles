@@ -16,7 +16,6 @@
 
 {{- $isDesktop := promptBoolOnce . "isDesktop" "Desktop workstation (not a VM/server)" true -}}
 {{- $useGitea  := promptBoolOnce . "useGitea"  "Use a (self-hosted) Gitea instance"    false -}}
-{{- $includeClaudeOfficialDevPlugins := promptBoolOnce . "includeClaudeOfficialDevPlugins" "Enable Claude official development plugins" true -}}
 
 {{- $includeVirt         := false -}}
 {{- $includeSocials      := false -}}
@@ -24,7 +23,6 @@
 {{- $includeWorkApps     := false -}}
 {{- $includePersonalApps := false -}}
 {{- $installDocker       := false -}}
-{{- $installClaudeCode   := false -}}
 {{- $installCodex        := false -}}
 
 {{- if eq .chezmoi.os "darwin" -}}
@@ -37,7 +35,6 @@
 {{-   $includePersonalApps = promptBoolOnce . "includePersonalApps" "Include personal apps (Bambu Studio, KiCad)"   false -}}
 {{- else -}}
 {{-   $installDocker     = promptBoolOnce . "installDocker"     "Install Docker (via get.docker.com)"    true -}}
-{{-   $installClaudeCode = promptBoolOnce . "installClaudeCode" "Install Claude Code (via install.sh)"  true -}}
 {{-   $installCodex      = promptBoolOnce . "installCodex"      "Install Codex (via Homebrew cask)"     true -}}
 {{- end -}}
 
@@ -61,12 +58,10 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
     githubUser          = {{ $githubUser | quote }}
     isDesktop           = {{ $isDesktop }}
     useGitea            = {{ $useGitea }}
-    includeClaudeOfficialDevPlugins = {{ $includeClaudeOfficialDevPlugins }}
     includeVirt         = {{ $includeVirt }}
     includeSocials      = {{ $includeSocials }}
     isLaptop            = {{ $isLaptop }}
     includeWorkApps     = {{ $includeWorkApps }}
     includePersonalApps = {{ $includePersonalApps }}
     installDocker       = {{ $installDocker }}
-    installClaudeCode   = {{ $installClaudeCode }}
     installCodex        = {{ $installCodex }}
