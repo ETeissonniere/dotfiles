@@ -17,19 +17,13 @@
 {{- $useGitea  := promptBoolOnce . "useGitea"  "Use a (self-hosted) Gitea instance"    false -}}
 
 {{- $includeSocials      := false -}}
-{{- $isLaptop            := false -}}
 {{- $includeWorkApps     := false -}}
-{{- $includePersonalApps := false -}}
-{{- $installDocker       := false -}}
 {{- $installCodex        := false -}}
 
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $includeSocials      = promptBoolOnce . "includeSocials"      "Include social apps (Telegram, WhatsApp)" false -}}
-{{-   $isLaptop            = promptBoolOnce . "isLaptop"            "Laptop (install Tailscale)"                    false -}}
-{{-   $includeWorkApps     = promptBoolOnce . "includeWorkApps"     "Include work apps (Slack, Linear Desktop)"     false -}}
-{{-   $includePersonalApps = promptBoolOnce . "includePersonalApps" "Include personal apps (Bambu Studio, KiCad)"   false -}}
+{{-   $includeWorkApps     = promptBoolOnce . "includeWorkApps"     "Include work apps (Slack, Linear, Tailscale, KiCad)" false -}}
 {{- else -}}
-{{-   $installDocker     = promptBoolOnce . "installDocker"     "Install Docker (via get.docker.com)"    true -}}
 {{-   $installCodex      = promptBoolOnce . "installCodex"      "Install Codex (via Homebrew cask)"     true -}}
 {{- end -}}
 
@@ -53,8 +47,5 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
     githubUser          = {{ $githubUser | quote }}
     useGitea            = {{ $useGitea }}
     includeSocials      = {{ $includeSocials }}
-    isLaptop            = {{ $isLaptop }}
     includeWorkApps     = {{ $includeWorkApps }}
-    includePersonalApps = {{ $includePersonalApps }}
-    installDocker       = {{ $installDocker }}
     installCodex        = {{ $installCodex }}
