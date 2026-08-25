@@ -1,0 +1,25 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+xcode_developer_dir="/Applications/Xcode.app/Contents/Developer"
+
+if [[ ! -d "$xcode_developer_dir" ]]; then
+  echo "Xcode was not installed by Homebrew Bundle." >&2
+  echo "Sign in to the App Store, then re-run chezmoi apply." >&2
+  exit 1
+fi
+
+if [[ "$(xcode-select --print-path 2>/dev/null || true)" != "$xcode_developer_dir" ]]; then
+  echo "==> Selecting Xcode developer tools"
+  sudo xcode-select --switch "$xcode_developer_dir"
+fi
+
+if ! xcodebuild -checkFirstLaunchStatus >/dev/null 2>&1; then
+  echo "==> Accepting the Xcode license and installing required components"
+  sudo xcodebuild -license accept
+  sudo xcodebuild -runFirstLaunch
+fi
+
+xcodebuild -version
+{{- end }}

@@ -1,0 +1,27 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+if xcode-select --print-path >/dev/null 2>&1 \
+    && xcrun --find clang >/dev/null 2>&1; then
+  echo "==> Xcode Command Line Tools already installed"
+  exit 0
+fi
+
+echo "==> Installing Xcode Command Line Tools"
+touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+trap 'rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress' EXIT
+
+clt_label="$({ softwareupdate --list 2>&1 || true; } \
+  | sed -n 's/^[[:space:]]*\* Label: \(Command Line Tools.*\)$/\1/p' \
+  | tail -n 1)"
+
+if [[ -z "$clt_label" ]]; then
+  echo "Unable to find an available Xcode Command Line Tools update." >&2
+  echo "Run 'xcode-select --install', finish the installer, then re-run chezmoi apply." >&2
+  exit 1
+fi
+
+sudo softwareupdate --install "$clt_label" --verbose
+xcrun --find clang >/dev/null
+{{- end }}

@@ -51,6 +51,7 @@ packages:
         - { name: "Flighty – Live Flight Tracker", id: 1358823008 }
         - { name: "Numbers",                        id: 361304891 }
         - { name: "Pages",                          id: 361309726 }
+        - { name: "Xcode",                          id: 497799835 }
 
     socials:
       mas:
