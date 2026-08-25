@@ -43,7 +43,7 @@ Asked at init and cached; re-prompt via `chezmoi init --prompt`.
 
 | Toggle                | Effect                                                   |
 |-----------------------|----------------------------------------------------------|
-| `isDesktop`           | Enables desktop GUI apps, Docker Desktop, Zed, macOS dock auto-hide. Off for VMs/servers. |
+| `isDesktop`           | Enables desktop GUI apps and macOS dock auto-hide. Off for VMs/servers. |
 | `includeVirt`         | UTM virtualization (macOS desktop only).                 |
 | `includeSocials`      | Telegram + WhatsApp (macOS desktop only).                |
 | `isLaptop`            | Tailscale (macOS only).                                  |
