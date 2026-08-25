@@ -34,7 +34,8 @@ Managed by [chezmoi](https://www.chezmoi.io/). The chezmoi source tree lives und
 Edit `home/.chezmoidata/packages.yaml`. Bucket by platform and feature flag:
 - `packages.common.brews` → every platform
 - `packages.linux.brews`, `packages.darwin.base.{brews,casks,mas}`, etc.
-- `packages.darwin.{desktop,virt,socials,laptop,work,personal}` are gated on the corresponding chezmoi toggle.
+- `packages.darwin.desktop` is installed on every Mac.
+- `packages.darwin.{socials,laptop,work,personal}` are gated on the corresponding chezmoi toggle.
 
 `chezmoi apply` re-runs `brew bundle` automatically whenever the rendered Brewfile changes.
 

@@ -50,10 +50,6 @@ packages:
         - { name: "Numbers",                        id: 361304891 }
         - { name: "Pages",                          id: 361309726 }
 
-    virt:
-      casks:
-        - utm
-
     socials:
       mas:
         - { name: "Telegram",           id: 747648890 }

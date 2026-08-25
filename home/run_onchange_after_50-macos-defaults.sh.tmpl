@@ -24,9 +24,7 @@ defaults write com.apple.HIToolbox AppleFnUsageType -int 3
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 31 \
   '<dict><key>enabled</key><true/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>115</integer><integer>1</integer><integer>1179648</integer></array></dict></dict>'
 
-{{ if .isDesktop -}}
 defaults write com.apple.dock autohide -bool true
-{{- end }}
 defaults write com.apple.dock tilesize -int 64
 for corner in tl tr bl br; do
   defaults write com.apple.dock "wvous-${corner}-corner" -int 0
