@@ -48,6 +48,7 @@ packages:
         - logi-options+
         - logseq
         - orbstack
+        - stats
       mas:
         - { name: "Flighty – Live Flight Tracker", id: 1358823008 }
         - { name: "Numbers",                        id: 361304891 }
