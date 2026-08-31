@@ -41,6 +41,10 @@ if command -v tea >/dev/null 2>&1 && [[ ! -f "$HOME/.config/tea/config.yml" ]]; 
 fi
 {{- end }}
 
+if command -v hf >/dev/null 2>&1 && ! hf auth whoami >/dev/null 2>&1; then
+  pending+=("Authenticate Hugging Face CLI: {{ .chezmoi.workingTree }}/scripts/post/setup_huggingface.sh")
+fi
+
 if [[ ${#pending[@]} -gt 0 ]]; then
   echo
   echo "==> Post-install steps pending:"

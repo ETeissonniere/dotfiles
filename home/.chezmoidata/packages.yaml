@@ -14,6 +14,7 @@ packages:
       - fzf
       - gh
       - git-lfs
+      - hf
       - httpie
       - jq
       - ripgrep
