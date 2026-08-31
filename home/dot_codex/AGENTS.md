@@ -12,10 +12,12 @@
 - Leverage devcontainers when available for consistent development environments
 
 ## Code Style
-- Write concise, readable code - avoid over-engineering
+- Write concise, readable code - avoid over-engineering and follow KISS methodology
+- Never create unnecessary backward compatibility before asking the user whether backward compatibility is desired
 - Prefer explicit over implicit
-- Use meaningful variable and function names
-- Keep functions small and focused on a single responsibility
+- Use meaningful variable and function names with human friendly, easy to understand, names
+- Keep functions small and focused on a single responsibility, when it doubt, follow the Linux Kernel's instructions: "Functions should be short and sweet, and do just one thing."
+- Consider running styling and maintenability adversarial reviews on your own work before declaring it done
 
 ## Git Workflow
 - Write clear, descriptive commit messages focusing on "why" not "what"
@@ -27,8 +29,7 @@
 - Write tests that verify code behavior, not implementation details
 - Focus tests on application logic and user-visible behavior, not incidental config-file structure
 - Use descriptive test names that explain the scenario
-- Follow Arrange-Act-Assert pattern
-- Prefer parametrized test suites when they make related scenarios clearer without hiding important differences
+- When possible, prefer using a test suite or array over writing multiple tests
 - When a repo has CI, take a reasonable local stab at reproducing the relevant pipeline before calling the work done
 - Run the available test, formatting, linting, type-checking, and build commands that correspond to the files changed
 - If the full CI pipeline is impractical locally, run the closest meaningful subset and clearly report what was and was not verified
