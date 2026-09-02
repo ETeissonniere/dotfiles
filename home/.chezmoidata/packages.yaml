@@ -18,7 +18,6 @@ packages:
       - httpie
       - jq
       - ripgrep
-      - starship
       - tea
       - uv
       - vim
@@ -46,7 +45,6 @@ packages:
         - ghostty
         - google-chrome
         - logi-options+
-        - logseq
         - orbstack
         - stats
       mas:
