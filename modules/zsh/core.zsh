@@ -107,5 +107,3 @@ if command -v zed >/dev/null 2>&1; then
 else
   export EDITOR="vim"
 fi
-
-eval "$(starship init zsh)"
