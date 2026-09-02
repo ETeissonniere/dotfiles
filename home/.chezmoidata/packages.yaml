@@ -34,7 +34,7 @@ packages:
       brews: []
       casks:
         - codex
-        - codex-app
+        - chatgpt
 
     desktop:
       brews:
@@ -47,6 +47,7 @@ packages:
         - logi-options+
         - orbstack
         - stats
+        - visual-studio-code
       mas:
         - { name: "Flighty – Live Flight Tracker", id: 1358823008 }
         - { name: "Numbers",                        id: 361304891 }
