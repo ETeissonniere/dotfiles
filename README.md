@@ -18,12 +18,14 @@ On a fresh Ubuntu/Debian, install `curl` first: `sudo apt install -y curl`. Ever
 
 ```sh
 chezmoi update                 # pull source repo + re-apply
+DOTFILES_BREW_MODE=install chezmoi update  # install missing Brew packages without a general upgrade
+DOTFILES_BREW_MODE=skip chezmoi update     # apply everything except the Brew bundle
 chezmoi init --prompt          # re-run toggle prompts, then `chezmoi apply`
 chezmoi apply                  # apply local source-tree edits
 chezmoi edit <path>            # edit a managed file and re-apply on exit
 ```
 
-`dotsync` (auto-runs once/day on shell startup, or run manually) fetches the source repo, shows incoming commits, prompts, and runs `chezmoi update`.
+`dotsync` (auto-runs once/day on shell startup, or run manually) fetches the source repo, shows incoming commits, then lets you upgrade Brew packages, install only missing packages, skip Brew, or cancel the update. Plain `chezmoi update` keeps the existing upgrade behavior. Homebrew's no-upgrade mode can still upgrade dependencies when required to install a missing package.
 
 ### Optional: auto-commit/push changes to the repo
 
