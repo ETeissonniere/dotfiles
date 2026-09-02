@@ -37,18 +37,11 @@ _dotfiles_sync() {
     git log --oneline HEAD..origin/master | sed 's/^/  → /'
     echo ""
     while read -t 0 -k 1 2>/dev/null; do :; done
-    printf "Apply? [u]pgrade packages / [i]nstall missing only / [s]kip Brew / [N]: "
+    printf "Apply? [y/N]: "
     read -k 1 response
     echo
-    local brew_mode
-    case "$response" in
-      [YyUu]) brew_mode=upgrade ;;
-      [Ii]) brew_mode=install ;;
-      [Ss]) brew_mode=skip ;;
-      *) brew_mode= ;;
-    esac
-    if [[ -n "$brew_mode" ]]; then
-      DOTFILES_BREW_MODE="$brew_mode" chezmoi update && echo "\033[1;32m✓ Dotfiles updated\033[0m"
+    if [[ "$response" =~ ^[Yy]$ ]]; then
+      chezmoi update && echo "\033[1;32m✓ Dotfiles updated\033[0m"
     fi
     echo ""
   fi
