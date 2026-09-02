@@ -1,6 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+brew_mode={{ env "DOTFILES_BREW_MODE" | default "upgrade" | quote }}
+case "$brew_mode" in
+  upgrade)
+    brew_bundle_args=(--file=-)
+    ;;
+  install)
+    brew_bundle_args=(--no-upgrade --file=-)
+    ;;
+  skip)
+    echo "==> Skipping brew bundle"
+    exit 0
+    ;;
+  *)
+    echo "DOTFILES_BREW_MODE must be upgrade, install, or skip (got: $brew_mode)" >&2
+    exit 2
+    ;;
+esac
+
 if ! command -v brew >/dev/null 2>&1; then
 {{ if eq .chezmoi.os "darwin" -}}
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -9,8 +27,8 @@ if ! command -v brew >/dev/null 2>&1; then
 {{- end }}
 fi
 
-echo "==> Running brew bundle"
-brew bundle --file=- <<'BREWFILE_EOF'
+echo "==> Running brew bundle ($brew_mode mode)"
+brew bundle "${brew_bundle_args[@]}" <<'BREWFILE_EOF'
 {{ range .packages.common.brews -}}
 brew {{ . | quote }}
 {{ end }}
