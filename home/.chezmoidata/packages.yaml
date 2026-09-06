@@ -45,6 +45,7 @@ packages:
         - ghostty
         - google-chrome
         - logi-options+
+        - monitorcontrol
         - orbstack
         - stats
         - visual-studio-code
