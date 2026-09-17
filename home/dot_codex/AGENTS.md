@@ -6,10 +6,10 @@
 - Explicit user instructions take precedence over skill guidelines. Explain and identify any instruction that actually blocks progress.
 
 ## Keep work and context small
-- Prefer deletion, existing helpers, standard libraries, and native features over new abstractions or dependencies. Preserve required behavior and compatibility contracts; do not add speculative compatibility.
+- Follow KISS; prefer explicit over implicit. Favor deletion, existing helpers, standard libraries, and native features over new abstractions or dependencies. Preserve required behavior and compatibility contracts; do not add speculative compatibility. Ask when compatibility requirements are unclear and affect the design.
 - Read the relevant instructions and trace the affected behavior. Search narrowly, load references only when needed, and reuse established facts instead of rereading whole files or dumping logs.
-- Use descriptive names and small, focused functions. Comment only when the reason is not evident. Do not create README or documentation files unless requested.
-- Use UV for Python and `uv_build` unless specified otherwise; use cargo for Rust. Use relevant existing formatters, linters, and language servers.
+- Use descriptive names and small, single-purpose functions. Document why, not what; comment only when the reason is not evident. Do not create README or documentation files unless requested.
+- Always use UV for Python codebases and tools. Use `uv_build` unless specified otherwise; use cargo for Rust. Use relevant existing formatters, linters, and language servers.
 - Inspect existing devcontainer, Compose, and Dockerfile setups first. Prefer those environments or Docker for missing tools over asking the user to install them.
 
 ## Delegate by task, not by habit
@@ -28,8 +28,8 @@ First decide whether delegation is worthwhile: do a one-line typo fix or a quick
 - If a task exceeds the chosen model's ability, narrow the task or escalate with the evidence already gathered. Do not repeat the same failed attempt or automatically run every task through every tier.
 
 ## Validate and deliver
-- Test user-visible behavior and contracts, not incidental structure or wording. Add coverage when it can catch a real regression; avoid tests that mirror the implementation.
+- Test user-visible behavior and contracts, not incidental structure or wording. Use descriptive scenario names and table-driven cases where useful. Add coverage when it can catch a real regression; avoid tests that mirror the implementation.
 - Inspect repo automation before finishing committed or pushed work. Run relevant formatting, lint, type, build, and test checks plus required repo checks. Reproduce CI locally where practical; report any meaningful gap.
-- Stop repeating or broadening passing checks unless new changes, failures, or unresolved risks justify it. Use independent review when complexity or risk warrants it.
+- Stop repeating or broadening passing checks unless new changes, failures, or unresolved risks justify it. Consider an independent adversarial review of correctness, style, and maintainability when complexity or risk warrants it.
 - Check `git status` before committing. Keep commits atomic and explain why. Preserve unrelated work.
 - Lead with the outcome in concise, plain language. Report changes, meaningful validation, and blockers; distinguish local checks, CI, and live verification.
