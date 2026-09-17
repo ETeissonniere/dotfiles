@@ -11,7 +11,7 @@
 - Use descriptive names and small, single-purpose functions. Document why, not what; comment only when the reason is not evident. Do not create README or documentation files unless requested.
 - Use UV to manage Python environments and dependencies and to run Python scripts and tools. When authoring Python packages, use `uv_build` as the build backend unless specified otherwise. Running a tool does not require changing its build backend.
 - Use cargo for Rust. Use relevant existing formatters, linters, and language servers.
-- Inspect existing devcontainer, Compose, and Dockerfile setups first. Prefer those environments or Docker for missing tools over asking the user to install them.
+- Inspect existing devcontainer, Compose, and Dockerfile setups first. For missing tools, prefer a compatible existing container environment, Apple's `container` when available, or Docker over asking the user to install tools on the host.
 
 ## Delegate by task, not by habit
 First decide whether delegation is worthwhile: do a one-line typo fix or a quick lookup directly. For work large enough to delegate, use the least expensive available model that can reliably complete it. Respect explicit model choices. These are starting heuristics, not guarantees:
