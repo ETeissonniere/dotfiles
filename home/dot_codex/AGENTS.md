@@ -9,7 +9,8 @@
 - Follow KISS; prefer explicit over implicit. Favor deletion, existing helpers, standard libraries, and native features over new abstractions or dependencies. Preserve required behavior and compatibility contracts; do not add speculative compatibility. Ask when compatibility requirements are unclear and affect the design.
 - Read the relevant instructions and trace the affected behavior. Search narrowly, load references only when needed, and reuse established facts instead of rereading whole files or dumping logs.
 - Use descriptive names and small, single-purpose functions. Document why, not what; comment only when the reason is not evident. Do not create README or documentation files unless requested.
-- Always use UV for Python codebases and tools. Use `uv_build` unless specified otherwise; use cargo for Rust. Use relevant existing formatters, linters, and language servers.
+- Use UV to manage Python environments and dependencies and to run Python scripts and tools. When authoring Python packages, use `uv_build` as the build backend unless specified otherwise. Running a tool does not require changing its build backend.
+- Use cargo for Rust. Use relevant existing formatters, linters, and language servers.
 - Inspect existing devcontainer, Compose, and Dockerfile setups first. Prefer those environments or Docker for missing tools over asking the user to install them.
 
 ## Delegate by task, not by habit
