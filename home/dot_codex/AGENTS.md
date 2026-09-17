@@ -37,7 +37,7 @@
 - Use descriptive test names that explain the scenario
 - When possible, prefer using a test suite or array over writing multiple tests
 - When a repo has CI, take a reasonable local stab at reproducing the relevant pipeline before calling the work done
-- Run the available test, formatting, linting, type-checking, and build commands that correspond to the files changed
+- Run test, formatting, linting, type-checking, and build commands relevant to the changed behavior, plus required repo checks
 - If the full CI pipeline is impractical locally, run the closest meaningful subset and clearly report what was and was not verified
 - Match validation to the change and complete required checks. Broaden or repeat passing checks only for new changes, failures, or unresolved concerns
 - Do not add tests that only assert wording or mirror implementation details for low-impact edits
