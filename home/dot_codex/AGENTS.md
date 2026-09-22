@@ -13,9 +13,6 @@
 - Use cargo for Rust. Use relevant existing formatters, linters, and language servers.
 - Inspect existing devcontainer, Compose, and Dockerfile setups first. For missing tools, prefer a compatible existing container environment, Apple's `container` when available, or Docker over asking the user to install tools on the host.
 
-## Delegate by task, not by habit
-Delegate only when independent work or review justifies the coordination cost. Keep assignments bounded, provide the necessary context and acceptance checks, and avoid duplicating work. Choose from the models available in the session based on difficulty, risk, and cost, respecting explicit user choices. The main agent remains responsible for integration, verification, and the final result.
-
 ## Validate and deliver
 - Before final validation, make a simplification pass over the complete diff, including delegated changes. Remove unnecessary abstractions, duplication, speculative behavior, and stale comments while preserving required behavior and preferences. Keep the pass within scope; do not turn it into an unrelated rewrite.
 - Test user-visible behavior and contracts, not incidental structure or wording. Use descriptive scenario names and table-driven cases where useful. Add coverage when it can catch a real regression; avoid tests that mirror the implementation.
