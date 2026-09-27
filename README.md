@@ -1,5 +1,8 @@
 # Eliott's dotfiles
 
+> [!IMPORTANT]
+> I've moved to Nix! My current configuration lives in [config.nix](https://github.com/ETeissonniere/config.nix).
+
 Managed by [chezmoi](https://www.chezmoi.io/). Module selection is interactive at first run and cached for subsequent applies.
 
 ## Quick start
